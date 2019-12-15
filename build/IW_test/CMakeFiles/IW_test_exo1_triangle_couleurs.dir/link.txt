@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/IW_test_exo1_triangle_couleurs.dir/exo1_triangle_couleurs.cpp.o  -o IW_test_exo1_triangle_couleurs ../glimac/libglimac.a -lSDL2 -lGL -lGLU -lGLEW 

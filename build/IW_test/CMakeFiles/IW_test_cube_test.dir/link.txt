@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/IW_test_cube_test.dir/cube_test.cpp.o  -o IW_test_cube_test ../glimac/libglimac.a -lSDL2 -lGL -lGLU -lGLEW 
