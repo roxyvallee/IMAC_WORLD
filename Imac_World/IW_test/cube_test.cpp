@@ -5,6 +5,7 @@
 #include <glimac/Cube.hpp>
 #include <glimac/FilePath.hpp>
 #include <glimac/Image.hpp>
+#include <glimac/TrackballCamera.hpp>
 #include <iostream>
 
 using namespace glimac;
@@ -56,13 +57,15 @@ int main(int argc, char** argv) {
     /*********************************
      * HERE SHOULD COME THE INITIALIZATION CODE
      *********************************/
-    glm::mat4 ProjMatrix;
-    glm::mat4 MVMatrix;
-    glm::mat4 NormalMatrix;
 
-    ProjMatrix = glm::perspective( glm::radians(90.f), 800.f/600.f, 0.1f, 100.f);
-    MVMatrix = glm::translate(MVMatrix, glm::vec3(0.f, 0.f, -5.f) );
-    NormalMatrix = glm::transpose(glm::inverse(MVMatrix));
+    TrackballCamera camera;
+
+    const glm::mat4 ProjMatrix = glm::perspective( glm::radians(70.f), 800.f/600.f, 0.1f, 100.f);
+    //glm::mat4 MVMatrix; //on les appelle plus tard dans le rendering code
+    //glm::mat4 NormalMatrix;
+
+    //MVMatrix = glm::translate(MVMatrix, glm::vec3(0.f, 0.f, -5.f) );
+    //NormalMatrix = glm::transpose(glm::inverse(MVMatrix));
 
     Cube cube;
     GLuint vbo;
@@ -94,6 +97,7 @@ int main(int argc, char** argv) {
 
     glBindVertexArray(0);
 
+
     // Application loop:
     bool done = false;
     while(!done) {
@@ -103,23 +107,51 @@ int main(int argc, char** argv) {
             if(e.type == SDL_QUIT) {
                 done = true; // Leave the loop after this iteration
             }
+            if(e.type == SDL_KEYDOWN)
+            {
+                switch(e.key.keysym.sym)
+                {
+                    case SDLK_LEFT :
+                        camera.rotateLeft(-10.f); // la caméra bouge à gauche
+                    break;
+                    case SDLK_RIGHT : 
+                        camera.rotateUp(10.f); // la caméra bouge vers le haut
+                    case SDLK_UP :
+                        camera.moveFront(1.f); // la caméra avance
+                    break;
+                    case SDLK_DOWN :
+                        camera.moveFront(-1.f); // la caméra recule
+                    break;
+
+
+                }
+                break;
+            }
         }
 
-
+        const glm::mat4 ViewMatrix = camera.getViewMatrix(); // pour placer notre caméra
+        
         /*********************************
          * HERE SHOULD COME THE RENDERING CODE
          *********************************/
-         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
          
 
-         glUniformMatrix4fv(locationMVP, 1, GL_FALSE, glm::value_ptr(ProjMatrix * MVMatrix));
-         glUniformMatrix4fv(locationMV, 1, GL_FALSE, glm::value_ptr(MVMatrix));
-         glUniformMatrix4fv(locationNormal, 1, GL_FALSE, glm::value_ptr(NormalMatrix));
+        glm::mat4 ModelMatrix;
+        ModelMatrix = glm::translate(ModelMatrix, glm::vec3(0.f, 0.f, -5.f) ); // on recule notre caméra
+        //Sending matrices to shaders
+        const glm::mat4 MVMatrix = ViewMatrix * ModelMatrix;
+        const glm::mat4 NormalMatrix = glm::transpose(glm::inverse(MVMatrix));
 
-         glBindVertexArray(vao);
-         glDrawArrays(GL_TRIANGLES, 0, cube.getVertexCount());
+        glUniformMatrix4fv(locationMVP, 1, GL_FALSE, glm::value_ptr(ProjMatrix * MVMatrix));
+        glUniformMatrix4fv(locationMV, 1, GL_FALSE, glm::value_ptr(MVMatrix));
+        glUniformMatrix4fv(locationNormal, 1, GL_FALSE, glm::value_ptr(NormalMatrix));
 
-         glBindVertexArray(0);
+        glBindVertexArray(vao);
+        glDrawArrays(GL_TRIANGLES, 0, cube.getVertexCount());
+
+        glBindVertexArray(0);
 
      
         // Update the display

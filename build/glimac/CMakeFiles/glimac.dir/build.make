@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/roxane/Documents/linux/Imac_World/Imac_World
+CMAKE_SOURCE_DIR = /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/roxane/Documents/linux/Imac_World/build
+CMAKE_BINARY_DIR = /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build
 
 # Include any dependencies generated for this target.
 include glimac/CMakeFiles/glimac.dir/depend.make
@@ -58,17 +58,17 @@ include glimac/CMakeFiles/glimac.dir/progress.make
 include glimac/CMakeFiles/glimac.dir/flags.make
 
 glimac/CMakeFiles/glimac.dir/src/Cone.cpp.o: glimac/CMakeFiles/glimac.dir/flags.make
-glimac/CMakeFiles/glimac.dir/src/Cone.cpp.o: /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Cone.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roxane/Documents/linux/Imac_World/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object glimac/CMakeFiles/glimac.dir/src/Cone.cpp.o"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/glimac.dir/src/Cone.cpp.o -c /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Cone.cpp
+glimac/CMakeFiles/glimac.dir/src/Cone.cpp.o: /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Cone.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object glimac/CMakeFiles/glimac.dir/src/Cone.cpp.o"
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/glimac.dir/src/Cone.cpp.o -c /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Cone.cpp
 
 glimac/CMakeFiles/glimac.dir/src/Cone.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/glimac.dir/src/Cone.cpp.i"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Cone.cpp > CMakeFiles/glimac.dir/src/Cone.cpp.i
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Cone.cpp > CMakeFiles/glimac.dir/src/Cone.cpp.i
 
 glimac/CMakeFiles/glimac.dir/src/Cone.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/glimac.dir/src/Cone.cpp.s"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Cone.cpp -o CMakeFiles/glimac.dir/src/Cone.cpp.s
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Cone.cpp -o CMakeFiles/glimac.dir/src/Cone.cpp.s
 
 glimac/CMakeFiles/glimac.dir/src/Cone.cpp.o.requires:
 
@@ -82,17 +82,17 @@ glimac/CMakeFiles/glimac.dir/src/Cone.cpp.o.provides.build: glimac/CMakeFiles/gl
 
 
 glimac/CMakeFiles/glimac.dir/src/Geometry.cpp.o: glimac/CMakeFiles/glimac.dir/flags.make
-glimac/CMakeFiles/glimac.dir/src/Geometry.cpp.o: /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Geometry.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roxane/Documents/linux/Imac_World/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object glimac/CMakeFiles/glimac.dir/src/Geometry.cpp.o"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/glimac.dir/src/Geometry.cpp.o -c /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Geometry.cpp
+glimac/CMakeFiles/glimac.dir/src/Geometry.cpp.o: /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Geometry.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object glimac/CMakeFiles/glimac.dir/src/Geometry.cpp.o"
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/glimac.dir/src/Geometry.cpp.o -c /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Geometry.cpp
 
 glimac/CMakeFiles/glimac.dir/src/Geometry.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/glimac.dir/src/Geometry.cpp.i"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Geometry.cpp > CMakeFiles/glimac.dir/src/Geometry.cpp.i
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Geometry.cpp > CMakeFiles/glimac.dir/src/Geometry.cpp.i
 
 glimac/CMakeFiles/glimac.dir/src/Geometry.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/glimac.dir/src/Geometry.cpp.s"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Geometry.cpp -o CMakeFiles/glimac.dir/src/Geometry.cpp.s
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Geometry.cpp -o CMakeFiles/glimac.dir/src/Geometry.cpp.s
 
 glimac/CMakeFiles/glimac.dir/src/Geometry.cpp.o.requires:
 
@@ -106,17 +106,17 @@ glimac/CMakeFiles/glimac.dir/src/Geometry.cpp.o.provides.build: glimac/CMakeFile
 
 
 glimac/CMakeFiles/glimac.dir/src/Image.cpp.o: glimac/CMakeFiles/glimac.dir/flags.make
-glimac/CMakeFiles/glimac.dir/src/Image.cpp.o: /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Image.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roxane/Documents/linux/Imac_World/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object glimac/CMakeFiles/glimac.dir/src/Image.cpp.o"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/glimac.dir/src/Image.cpp.o -c /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Image.cpp
+glimac/CMakeFiles/glimac.dir/src/Image.cpp.o: /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Image.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object glimac/CMakeFiles/glimac.dir/src/Image.cpp.o"
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/glimac.dir/src/Image.cpp.o -c /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Image.cpp
 
 glimac/CMakeFiles/glimac.dir/src/Image.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/glimac.dir/src/Image.cpp.i"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Image.cpp > CMakeFiles/glimac.dir/src/Image.cpp.i
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Image.cpp > CMakeFiles/glimac.dir/src/Image.cpp.i
 
 glimac/CMakeFiles/glimac.dir/src/Image.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/glimac.dir/src/Image.cpp.s"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Image.cpp -o CMakeFiles/glimac.dir/src/Image.cpp.s
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Image.cpp -o CMakeFiles/glimac.dir/src/Image.cpp.s
 
 glimac/CMakeFiles/glimac.dir/src/Image.cpp.o.requires:
 
@@ -130,17 +130,17 @@ glimac/CMakeFiles/glimac.dir/src/Image.cpp.o.provides.build: glimac/CMakeFiles/g
 
 
 glimac/CMakeFiles/glimac.dir/src/Imagev2.cpp.o: glimac/CMakeFiles/glimac.dir/flags.make
-glimac/CMakeFiles/glimac.dir/src/Imagev2.cpp.o: /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Imagev2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roxane/Documents/linux/Imac_World/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object glimac/CMakeFiles/glimac.dir/src/Imagev2.cpp.o"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/glimac.dir/src/Imagev2.cpp.o -c /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Imagev2.cpp
+glimac/CMakeFiles/glimac.dir/src/Imagev2.cpp.o: /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Imagev2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object glimac/CMakeFiles/glimac.dir/src/Imagev2.cpp.o"
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/glimac.dir/src/Imagev2.cpp.o -c /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Imagev2.cpp
 
 glimac/CMakeFiles/glimac.dir/src/Imagev2.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/glimac.dir/src/Imagev2.cpp.i"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Imagev2.cpp > CMakeFiles/glimac.dir/src/Imagev2.cpp.i
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Imagev2.cpp > CMakeFiles/glimac.dir/src/Imagev2.cpp.i
 
 glimac/CMakeFiles/glimac.dir/src/Imagev2.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/glimac.dir/src/Imagev2.cpp.s"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Imagev2.cpp -o CMakeFiles/glimac.dir/src/Imagev2.cpp.s
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Imagev2.cpp -o CMakeFiles/glimac.dir/src/Imagev2.cpp.s
 
 glimac/CMakeFiles/glimac.dir/src/Imagev2.cpp.o.requires:
 
@@ -154,17 +154,17 @@ glimac/CMakeFiles/glimac.dir/src/Imagev2.cpp.o.provides.build: glimac/CMakeFiles
 
 
 glimac/CMakeFiles/glimac.dir/src/Program.cpp.o: glimac/CMakeFiles/glimac.dir/flags.make
-glimac/CMakeFiles/glimac.dir/src/Program.cpp.o: /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Program.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roxane/Documents/linux/Imac_World/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object glimac/CMakeFiles/glimac.dir/src/Program.cpp.o"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/glimac.dir/src/Program.cpp.o -c /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Program.cpp
+glimac/CMakeFiles/glimac.dir/src/Program.cpp.o: /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Program.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object glimac/CMakeFiles/glimac.dir/src/Program.cpp.o"
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/glimac.dir/src/Program.cpp.o -c /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Program.cpp
 
 glimac/CMakeFiles/glimac.dir/src/Program.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/glimac.dir/src/Program.cpp.i"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Program.cpp > CMakeFiles/glimac.dir/src/Program.cpp.i
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Program.cpp > CMakeFiles/glimac.dir/src/Program.cpp.i
 
 glimac/CMakeFiles/glimac.dir/src/Program.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/glimac.dir/src/Program.cpp.s"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Program.cpp -o CMakeFiles/glimac.dir/src/Program.cpp.s
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Program.cpp -o CMakeFiles/glimac.dir/src/Program.cpp.s
 
 glimac/CMakeFiles/glimac.dir/src/Program.cpp.o.requires:
 
@@ -178,17 +178,17 @@ glimac/CMakeFiles/glimac.dir/src/Program.cpp.o.provides.build: glimac/CMakeFiles
 
 
 glimac/CMakeFiles/glimac.dir/src/SDLWindowManager.cpp.o: glimac/CMakeFiles/glimac.dir/flags.make
-glimac/CMakeFiles/glimac.dir/src/SDLWindowManager.cpp.o: /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/SDLWindowManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roxane/Documents/linux/Imac_World/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object glimac/CMakeFiles/glimac.dir/src/SDLWindowManager.cpp.o"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/glimac.dir/src/SDLWindowManager.cpp.o -c /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/SDLWindowManager.cpp
+glimac/CMakeFiles/glimac.dir/src/SDLWindowManager.cpp.o: /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/SDLWindowManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object glimac/CMakeFiles/glimac.dir/src/SDLWindowManager.cpp.o"
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/glimac.dir/src/SDLWindowManager.cpp.o -c /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/SDLWindowManager.cpp
 
 glimac/CMakeFiles/glimac.dir/src/SDLWindowManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/glimac.dir/src/SDLWindowManager.cpp.i"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/SDLWindowManager.cpp > CMakeFiles/glimac.dir/src/SDLWindowManager.cpp.i
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/SDLWindowManager.cpp > CMakeFiles/glimac.dir/src/SDLWindowManager.cpp.i
 
 glimac/CMakeFiles/glimac.dir/src/SDLWindowManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/glimac.dir/src/SDLWindowManager.cpp.s"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/SDLWindowManager.cpp -o CMakeFiles/glimac.dir/src/SDLWindowManager.cpp.s
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/SDLWindowManager.cpp -o CMakeFiles/glimac.dir/src/SDLWindowManager.cpp.s
 
 glimac/CMakeFiles/glimac.dir/src/SDLWindowManager.cpp.o.requires:
 
@@ -202,17 +202,17 @@ glimac/CMakeFiles/glimac.dir/src/SDLWindowManager.cpp.o.provides.build: glimac/C
 
 
 glimac/CMakeFiles/glimac.dir/src/Shader.cpp.o: glimac/CMakeFiles/glimac.dir/flags.make
-glimac/CMakeFiles/glimac.dir/src/Shader.cpp.o: /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Shader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roxane/Documents/linux/Imac_World/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object glimac/CMakeFiles/glimac.dir/src/Shader.cpp.o"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/glimac.dir/src/Shader.cpp.o -c /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Shader.cpp
+glimac/CMakeFiles/glimac.dir/src/Shader.cpp.o: /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Shader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object glimac/CMakeFiles/glimac.dir/src/Shader.cpp.o"
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/glimac.dir/src/Shader.cpp.o -c /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Shader.cpp
 
 glimac/CMakeFiles/glimac.dir/src/Shader.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/glimac.dir/src/Shader.cpp.i"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Shader.cpp > CMakeFiles/glimac.dir/src/Shader.cpp.i
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Shader.cpp > CMakeFiles/glimac.dir/src/Shader.cpp.i
 
 glimac/CMakeFiles/glimac.dir/src/Shader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/glimac.dir/src/Shader.cpp.s"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Shader.cpp -o CMakeFiles/glimac.dir/src/Shader.cpp.s
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Shader.cpp -o CMakeFiles/glimac.dir/src/Shader.cpp.s
 
 glimac/CMakeFiles/glimac.dir/src/Shader.cpp.o.requires:
 
@@ -226,17 +226,17 @@ glimac/CMakeFiles/glimac.dir/src/Shader.cpp.o.provides.build: glimac/CMakeFiles/
 
 
 glimac/CMakeFiles/glimac.dir/src/Sphere.cpp.o: glimac/CMakeFiles/glimac.dir/flags.make
-glimac/CMakeFiles/glimac.dir/src/Sphere.cpp.o: /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Sphere.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roxane/Documents/linux/Imac_World/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object glimac/CMakeFiles/glimac.dir/src/Sphere.cpp.o"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/glimac.dir/src/Sphere.cpp.o -c /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Sphere.cpp
+glimac/CMakeFiles/glimac.dir/src/Sphere.cpp.o: /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Sphere.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object glimac/CMakeFiles/glimac.dir/src/Sphere.cpp.o"
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/glimac.dir/src/Sphere.cpp.o -c /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Sphere.cpp
 
 glimac/CMakeFiles/glimac.dir/src/Sphere.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/glimac.dir/src/Sphere.cpp.i"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Sphere.cpp > CMakeFiles/glimac.dir/src/Sphere.cpp.i
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Sphere.cpp > CMakeFiles/glimac.dir/src/Sphere.cpp.i
 
 glimac/CMakeFiles/glimac.dir/src/Sphere.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/glimac.dir/src/Sphere.cpp.s"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/Sphere.cpp -o CMakeFiles/glimac.dir/src/Sphere.cpp.s
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/Sphere.cpp -o CMakeFiles/glimac.dir/src/Sphere.cpp.s
 
 glimac/CMakeFiles/glimac.dir/src/Sphere.cpp.o.requires:
 
@@ -250,17 +250,17 @@ glimac/CMakeFiles/glimac.dir/src/Sphere.cpp.o.provides.build: glimac/CMakeFiles/
 
 
 glimac/CMakeFiles/glimac.dir/src/tiny_obj_loader.cpp.o: glimac/CMakeFiles/glimac.dir/flags.make
-glimac/CMakeFiles/glimac.dir/src/tiny_obj_loader.cpp.o: /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/tiny_obj_loader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roxane/Documents/linux/Imac_World/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object glimac/CMakeFiles/glimac.dir/src/tiny_obj_loader.cpp.o"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/glimac.dir/src/tiny_obj_loader.cpp.o -c /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/tiny_obj_loader.cpp
+glimac/CMakeFiles/glimac.dir/src/tiny_obj_loader.cpp.o: /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/tiny_obj_loader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object glimac/CMakeFiles/glimac.dir/src/tiny_obj_loader.cpp.o"
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/glimac.dir/src/tiny_obj_loader.cpp.o -c /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/tiny_obj_loader.cpp
 
 glimac/CMakeFiles/glimac.dir/src/tiny_obj_loader.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/glimac.dir/src/tiny_obj_loader.cpp.i"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/tiny_obj_loader.cpp > CMakeFiles/glimac.dir/src/tiny_obj_loader.cpp.i
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/tiny_obj_loader.cpp > CMakeFiles/glimac.dir/src/tiny_obj_loader.cpp.i
 
 glimac/CMakeFiles/glimac.dir/src/tiny_obj_loader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/glimac.dir/src/tiny_obj_loader.cpp.s"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roxane/Documents/linux/Imac_World/Imac_World/glimac/src/tiny_obj_loader.cpp -o CMakeFiles/glimac.dir/src/tiny_obj_loader.cpp.s
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/src/tiny_obj_loader.cpp -o CMakeFiles/glimac.dir/src/tiny_obj_loader.cpp.s
 
 glimac/CMakeFiles/glimac.dir/src/tiny_obj_loader.cpp.o.requires:
 
@@ -299,9 +299,9 @@ glimac/libglimac.a: glimac/CMakeFiles/glimac.dir/src/Sphere.cpp.o
 glimac/libglimac.a: glimac/CMakeFiles/glimac.dir/src/tiny_obj_loader.cpp.o
 glimac/libglimac.a: glimac/CMakeFiles/glimac.dir/build.make
 glimac/libglimac.a: glimac/CMakeFiles/glimac.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/roxane/Documents/linux/Imac_World/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX static library libglimac.a"
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && $(CMAKE_COMMAND) -P CMakeFiles/glimac.dir/cmake_clean_target.cmake
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/glimac.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX static library libglimac.a"
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && $(CMAKE_COMMAND) -P CMakeFiles/glimac.dir/cmake_clean_target.cmake
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/glimac.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 glimac/CMakeFiles/glimac.dir/build: glimac/libglimac.a
@@ -321,10 +321,10 @@ glimac/CMakeFiles/glimac.dir/requires: glimac/CMakeFiles/glimac.dir/src/tiny_obj
 .PHONY : glimac/CMakeFiles/glimac.dir/requires
 
 glimac/CMakeFiles/glimac.dir/clean:
-	cd /home/roxane/Documents/linux/Imac_World/build/glimac && $(CMAKE_COMMAND) -P CMakeFiles/glimac.dir/cmake_clean.cmake
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac && $(CMAKE_COMMAND) -P CMakeFiles/glimac.dir/cmake_clean.cmake
 .PHONY : glimac/CMakeFiles/glimac.dir/clean
 
 glimac/CMakeFiles/glimac.dir/depend:
-	cd /home/roxane/Documents/linux/Imac_World/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/roxane/Documents/linux/Imac_World/Imac_World /home/roxane/Documents/linux/Imac_World/Imac_World/glimac /home/roxane/Documents/linux/Imac_World/build /home/roxane/Documents/linux/Imac_World/build/glimac /home/roxane/Documents/linux/Imac_World/build/glimac/CMakeFiles/glimac.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac/CMakeFiles/glimac.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : glimac/CMakeFiles/glimac.dir/depend
 

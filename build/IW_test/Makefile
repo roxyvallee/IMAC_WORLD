@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/roxane/Documents/linux/Imac_World/Imac_World
+CMAKE_SOURCE_DIR = /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/roxane/Documents/linux/Imac_World/build
+CMAKE_BINARY_DIR = /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/roxane/Documents/linux/Imac_World/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/roxane/Documents/linux/Imac_World/build/CMakeFiles /home/roxane/Documents/linux/Imac_World/build/IW_test/CMakeFiles/progress.marks
-	cd /home/roxane/Documents/linux/Imac_World/build && $(MAKE) -f CMakeFiles/Makefile2 IW_test/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roxane/Documents/linux/Imac_World/build/CMakeFiles 0
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/CMakeFiles /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/IW_test/CMakeFiles/progress.marks
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f CMakeFiles/Makefile2 IW_test/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/roxane/Documents/linux/Imac_World/build && $(MAKE) -f CMakeFiles/Makefile2 IW_test/clean
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f CMakeFiles/Makefile2 IW_test/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/roxane/Documents/linux/Imac_World/build && $(MAKE) -f CMakeFiles/Makefile2 IW_test/preinstall
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f CMakeFiles/Makefile2 IW_test/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/roxane/Documents/linux/Imac_World/build && $(MAKE) -f CMakeFiles/Makefile2 IW_test/preinstall
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f CMakeFiles/Makefile2 IW_test/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/roxane/Documents/linux/Imac_World/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 IW_test/CMakeFiles/IW_test_cube_test.dir/rule:
-	cd /home/roxane/Documents/linux/Imac_World/build && $(MAKE) -f CMakeFiles/Makefile2 IW_test/CMakeFiles/IW_test_cube_test.dir/rule
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f CMakeFiles/Makefile2 IW_test/CMakeFiles/IW_test_cube_test.dir/rule
 .PHONY : IW_test/CMakeFiles/IW_test_cube_test.dir/rule
 
 # Convenience name for target.
@@ -122,23 +122,8 @@ IW_test_cube_test: IW_test/CMakeFiles/IW_test_cube_test.dir/rule
 
 # fast build rule for target.
 IW_test_cube_test/fast:
-	cd /home/roxane/Documents/linux/Imac_World/build && $(MAKE) -f IW_test/CMakeFiles/IW_test_cube_test.dir/build.make IW_test/CMakeFiles/IW_test_cube_test.dir/build
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f IW_test/CMakeFiles/IW_test_cube_test.dir/build.make IW_test/CMakeFiles/IW_test_cube_test.dir/build
 .PHONY : IW_test_cube_test/fast
-
-# Convenience name for target.
-IW_test/CMakeFiles/IW_test_exo1_triangle_couleurs.dir/rule:
-	cd /home/roxane/Documents/linux/Imac_World/build && $(MAKE) -f CMakeFiles/Makefile2 IW_test/CMakeFiles/IW_test_exo1_triangle_couleurs.dir/rule
-.PHONY : IW_test/CMakeFiles/IW_test_exo1_triangle_couleurs.dir/rule
-
-# Convenience name for target.
-IW_test_exo1_triangle_couleurs: IW_test/CMakeFiles/IW_test_exo1_triangle_couleurs.dir/rule
-
-.PHONY : IW_test_exo1_triangle_couleurs
-
-# fast build rule for target.
-IW_test_exo1_triangle_couleurs/fast:
-	cd /home/roxane/Documents/linux/Imac_World/build && $(MAKE) -f IW_test/CMakeFiles/IW_test_exo1_triangle_couleurs.dir/build.make IW_test/CMakeFiles/IW_test_exo1_triangle_couleurs.dir/build
-.PHONY : IW_test_exo1_triangle_couleurs/fast
 
 cube_test.o: cube_test.cpp.o
 
@@ -146,7 +131,7 @@ cube_test.o: cube_test.cpp.o
 
 # target to build an object file
 cube_test.cpp.o:
-	cd /home/roxane/Documents/linux/Imac_World/build && $(MAKE) -f IW_test/CMakeFiles/IW_test_cube_test.dir/build.make IW_test/CMakeFiles/IW_test_cube_test.dir/cube_test.cpp.o
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f IW_test/CMakeFiles/IW_test_cube_test.dir/build.make IW_test/CMakeFiles/IW_test_cube_test.dir/cube_test.cpp.o
 .PHONY : cube_test.cpp.o
 
 cube_test.i: cube_test.cpp.i
@@ -155,7 +140,7 @@ cube_test.i: cube_test.cpp.i
 
 # target to preprocess a source file
 cube_test.cpp.i:
-	cd /home/roxane/Documents/linux/Imac_World/build && $(MAKE) -f IW_test/CMakeFiles/IW_test_cube_test.dir/build.make IW_test/CMakeFiles/IW_test_cube_test.dir/cube_test.cpp.i
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f IW_test/CMakeFiles/IW_test_cube_test.dir/build.make IW_test/CMakeFiles/IW_test_cube_test.dir/cube_test.cpp.i
 .PHONY : cube_test.cpp.i
 
 cube_test.s: cube_test.cpp.s
@@ -164,35 +149,8 @@ cube_test.s: cube_test.cpp.s
 
 # target to generate assembly for a file
 cube_test.cpp.s:
-	cd /home/roxane/Documents/linux/Imac_World/build && $(MAKE) -f IW_test/CMakeFiles/IW_test_cube_test.dir/build.make IW_test/CMakeFiles/IW_test_cube_test.dir/cube_test.cpp.s
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f IW_test/CMakeFiles/IW_test_cube_test.dir/build.make IW_test/CMakeFiles/IW_test_cube_test.dir/cube_test.cpp.s
 .PHONY : cube_test.cpp.s
-
-exo1_triangle_couleurs.o: exo1_triangle_couleurs.cpp.o
-
-.PHONY : exo1_triangle_couleurs.o
-
-# target to build an object file
-exo1_triangle_couleurs.cpp.o:
-	cd /home/roxane/Documents/linux/Imac_World/build && $(MAKE) -f IW_test/CMakeFiles/IW_test_exo1_triangle_couleurs.dir/build.make IW_test/CMakeFiles/IW_test_exo1_triangle_couleurs.dir/exo1_triangle_couleurs.cpp.o
-.PHONY : exo1_triangle_couleurs.cpp.o
-
-exo1_triangle_couleurs.i: exo1_triangle_couleurs.cpp.i
-
-.PHONY : exo1_triangle_couleurs.i
-
-# target to preprocess a source file
-exo1_triangle_couleurs.cpp.i:
-	cd /home/roxane/Documents/linux/Imac_World/build && $(MAKE) -f IW_test/CMakeFiles/IW_test_exo1_triangle_couleurs.dir/build.make IW_test/CMakeFiles/IW_test_exo1_triangle_couleurs.dir/exo1_triangle_couleurs.cpp.i
-.PHONY : exo1_triangle_couleurs.cpp.i
-
-exo1_triangle_couleurs.s: exo1_triangle_couleurs.cpp.s
-
-.PHONY : exo1_triangle_couleurs.s
-
-# target to generate assembly for a file
-exo1_triangle_couleurs.cpp.s:
-	cd /home/roxane/Documents/linux/Imac_World/build && $(MAKE) -f IW_test/CMakeFiles/IW_test_exo1_triangle_couleurs.dir/build.make IW_test/CMakeFiles/IW_test_exo1_triangle_couleurs.dir/exo1_triangle_couleurs.cpp.s
-.PHONY : exo1_triangle_couleurs.cpp.s
 
 # Help Target
 help:
@@ -201,15 +159,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... edit_cache"
 	@echo "... IW_test_cube_test"
-	@echo "... IW_test_exo1_triangle_couleurs"
+	@echo "... edit_cache"
 	@echo "... cube_test.o"
 	@echo "... cube_test.i"
 	@echo "... cube_test.s"
-	@echo "... exo1_triangle_couleurs.o"
-	@echo "... exo1_triangle_couleurs.i"
-	@echo "... exo1_triangle_couleurs.s"
 .PHONY : help
 
 
@@ -221,6 +175,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/roxane/Documents/linux/Imac_World/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

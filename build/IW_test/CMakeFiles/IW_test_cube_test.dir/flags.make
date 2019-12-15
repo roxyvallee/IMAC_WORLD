@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=c++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/include/SDL2 -I/home/roxane/Documents/linux/Imac_World/Imac_World/glimac/include -I/home/roxane/Documents/linux/Imac_World/Imac_World/third-party/include 
+CXX_INCLUDES = -I/usr/include/SDL2 -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/glimac/include -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/third-party/include 
 

@@ -1,4 +1,4 @@
-# Install script for directory: /home/roxane/Documents/linux/Imac_World/Imac_World
+# Install script for directory: /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,8 +39,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/roxane/Documents/linux/Imac_World/build/glimac/cmake_install.cmake")
-  include("/home/roxane/Documents/linux/Imac_World/build/IW_test/cmake_install.cmake")
+  include("/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac/cmake_install.cmake")
+  include("/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/IW_test/cmake_install.cmake")
 
 endif()
 
@@ -52,5 +52,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/roxane/Documents/linux/Imac_World/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

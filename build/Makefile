@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/roxane/Documents/linux/Imac_World/Imac_World
+CMAKE_SOURCE_DIR = /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/roxane/Documents/linux/Imac_World/build
+CMAKE_BINARY_DIR = /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roxane/Documents/linux/Imac_World/build/CMakeFiles /home/roxane/Documents/linux/Imac_World/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/CMakeFiles /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roxane/Documents/linux/Imac_World/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -136,19 +136,6 @@ IW_test_cube_test/fast:
 	$(MAKE) -f IW_test/CMakeFiles/IW_test_cube_test.dir/build.make IW_test/CMakeFiles/IW_test_cube_test.dir/build
 .PHONY : IW_test_cube_test/fast
 
-#=============================================================================
-# Target rules for targets named IW_test_exo1_triangle_couleurs
-
-# Build rule for target.
-IW_test_exo1_triangle_couleurs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 IW_test_exo1_triangle_couleurs
-.PHONY : IW_test_exo1_triangle_couleurs
-
-# fast build rule for target.
-IW_test_exo1_triangle_couleurs/fast:
-	$(MAKE) -f IW_test/CMakeFiles/IW_test_exo1_triangle_couleurs.dir/build.make IW_test/CMakeFiles/IW_test_exo1_triangle_couleurs.dir/build
-.PHONY : IW_test_exo1_triangle_couleurs/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -159,7 +146,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... glimac"
 	@echo "... IW_test_cube_test"
-	@echo "... IW_test_exo1_triangle_couleurs"
 .PHONY : help
 
 

@@ -1,4 +1,4 @@
-# Install script for directory: /home/roxane/Documents/linux/Imac_World/Imac_World/IW_test
+# Install script for directory: /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/IW_test
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
