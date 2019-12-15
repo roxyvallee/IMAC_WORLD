@@ -13,6 +13,10 @@ find_package(SDL2 REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 
+if (APPLE)
+	include_directories(/usr/local/include)
+endif (APPLE)
+
 include_directories(${SDL2_INCLUDE_DIRS})
 
 # Pour gérer un bug a la fac, a supprimer sur machine perso:

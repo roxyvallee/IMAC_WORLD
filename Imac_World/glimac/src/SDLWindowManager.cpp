@@ -1,6 +1,10 @@
 #include "glimac/SDLWindowManager.hpp"
 #include <iostream>
+#ifdef __APPLE__
+#include <OpenGl/gl.H>
+#else
 #include <GL/gl.h>
+#endif
 
 namespace glimac {
 
