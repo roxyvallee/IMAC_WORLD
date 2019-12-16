@@ -94,7 +94,7 @@ int main(int argc, char** argv) {
 
     /////////////////////////////////////////////////////////////
     //POUR FAIRE UN CUBE
-   /* Cube cube;
+    Cube cube;
     GLuint vbo;
     glGenBuffers(1, &vbo);
 
@@ -117,12 +117,13 @@ int main(int argc, char** argv) {
             glVertexAttribPointer(VERTEX_ATTRIB_TEXCOORDS,2,GL_FLOAT,GL_FALSE,sizeof(ShapeVertex), (const GLvoid*) (offsetof(ShapeVertex, texCoords)));
         glBindBuffer(GL_ARRAY_BUFFER,0);
 
-    glBindVertexArray(0);*/
+    glBindVertexArray(0);
     //POUR FAIRE UN CUBE
     ////////////////////////////////////////////////////////////
 
     ////////////////////////////////////////////////////////////
     //POUR FAIRE UNE SPHERE
+    /* 
       std::vector<glm::vec3> positions;
       for ( int i = 0; i < 32; i++ ) {
         positions.push_back(glm::sphericalRand(2.f));
@@ -167,6 +168,7 @@ int main(int argc, char** argv) {
 
       // Debinder le VAO
       glBindVertexArray(0);
+    */
     //POUR FAIRE UNE SPHERE
     ///////////////////////////////////////////////////////////
 
@@ -227,13 +229,14 @@ int main(int argc, char** argv) {
         ModelMatrix = glm::translate(ModelMatrix, glm::vec3(0.f, 0.f, -5.f) ); // on recule notre caméra
         
         //Sending matrices to shaders
-        const glm::mat4 MVMatrix = ViewMatrix * ModelMatrix;
+        glm::mat4 MVMatrix = ViewMatrix * ModelMatrix;
         const glm::mat4 NormalMatrix;
 
         /* Calcul de la lumiere */
         glm::vec4 lightDir4 =  glm::vec4(1.0f, 1.0f, 1.0f, 0.0f);
         
-        //glm::mat4 MVMatrix = glm::rotate(ViewMatrix, windowManager.getTime(), glm::vec3(0, 0, 1));
+        //le cube et la lumière bougent
+        //MVMatrix = glm::rotate(ViewMatrix, windowManager.getTime(), glm::vec3(1, 1, 1));
         lightDir4 = lightDir4 * ViewMatrix;
         glm::vec3 lightDir = glm::vec3(lightDir.x, lightDir.y, lightDir.z);
         
@@ -253,8 +256,8 @@ int main(int argc, char** argv) {
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture_grass);
-            //glDrawArrays(GL_TRIANGLES, 0, cube.getVertexCount());
-            glDrawArrays(GL_TRIANGLES, 0, sphere.getVertexCount());
+            glDrawArrays(GL_TRIANGLES, 0, cube.getVertexCount());
+            //glDrawArrays(GL_TRIANGLES, 0, sphere.getVertexCount());
         glBindTexture(GL_TEXTURE_2D, 0);
         glActiveTexture(GL_TEXTURE0);
 

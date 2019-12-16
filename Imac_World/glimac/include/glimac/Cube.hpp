@@ -24,9 +24,9 @@ namespace glimac{
 				glm::vec3 up_normal = {0.f, y_up, 0.f };
 
 				ShapeVertex left_up_back { glm::vec3(x_left, y_up, z_back), up_normal, glm::vec2(0.f, 0.f) };
-				ShapeVertex right_up_back { glm::vec3(x_right, y_up, z_back), up_normal, glm::vec2(0.f, 0.f) };
-				ShapeVertex left_up_front { glm::vec3(x_left, y_up, z_front), up_normal, glm::vec2(0.f, 0.f) };
-				ShapeVertex right_up_front { glm::vec3(x_right, y_up, z_front), up_normal, glm::vec2(0.f, 0.f) };
+				ShapeVertex right_up_back { glm::vec3(x_right, y_up, z_back), up_normal, glm::vec2(1.f, 0.f) };
+				ShapeVertex left_up_front { glm::vec3(x_left, y_up, z_front), up_normal, glm::vec2(0.f, 1.f) };
+				ShapeVertex right_up_front { glm::vec3(x_right, y_up, z_front), up_normal, glm::vec2(1.f, 1.f) };
 
 				m_Vertices.push_back(left_up_back);
 				m_Vertices.push_back(left_up_front);
@@ -44,9 +44,9 @@ namespace glimac{
 				glm::vec3 down_normal = {0.f, y_down, 0.f };
 
 				ShapeVertex left_down_back { glm::vec3(x_left, y_down, z_back), down_normal, glm::vec2(0.f, 0.f) };
-				ShapeVertex right_down_back { glm::vec3(x_right, y_down, z_back), down_normal, glm::vec2(0.f, 0.f) };
-				ShapeVertex left_down_front { glm::vec3(x_left, y_down, z_front), down_normal, glm::vec2(0.f, 0.f) };
-				ShapeVertex right_down_front { glm::vec3(x_right, y_down, z_front), down_normal, glm::vec2(0.f, 0.f) };
+				ShapeVertex right_down_back { glm::vec3(x_right, y_down, z_back), down_normal, glm::vec2(1.f, 0.f) };
+				ShapeVertex left_down_front { glm::vec3(x_left, y_down, z_front), down_normal, glm::vec2(0.f, 1.f) };
+				ShapeVertex right_down_front { glm::vec3(x_right, y_down, z_front), down_normal, glm::vec2(1.f, 1.f) };
 
 				m_Vertices.push_back(left_down_back);
 				m_Vertices.push_back(left_down_front);
@@ -64,9 +64,9 @@ namespace glimac{
 				glm::vec3 front_normal = {0.f, 0.f, z_front};
 
 				ShapeVertex left_up_front { glm::vec3(x_left, y_up, z_front), front_normal, glm::vec2(0.f, 0.f) };
-				ShapeVertex right_up_front{ glm::vec3(x_right, y_up, z_front), front_normal, glm::vec2(0.f, 0.f) };
-				ShapeVertex left_down_front { glm::vec3(x_left, y_down, z_front), front_normal, glm::vec2(0.f, 0.f) };
-				ShapeVertex right_down_front { glm::vec3(x_right, y_down, z_front), front_normal, glm::vec2(0.f, 0.f) };
+				ShapeVertex right_up_front{ glm::vec3(x_right, y_up, z_front), front_normal, glm::vec2(1.f, 0.f) };
+				ShapeVertex left_down_front { glm::vec3(x_left, y_down, z_front), front_normal, glm::vec2(0.f, 1.f) };
+				ShapeVertex right_down_front { glm::vec3(x_right, y_down, z_front), front_normal, glm::vec2(1.f, 1.f) };
 
 				m_Vertices.push_back(left_up_front);
 				m_Vertices.push_back(right_up_front);
@@ -82,9 +82,9 @@ namespace glimac{
 				glm::vec3 back_normal = {0.f, 0.f, z_back};
 
 				ShapeVertex left_up_back { glm::vec3(x_left, y_up, z_back), back_normal, glm::vec2(0.f, 0.f) };
-				ShapeVertex right_up_back{ glm::vec3(x_right, y_up, z_back), back_normal, glm::vec2(0.f, 0.f) };
-				ShapeVertex left_down_back { glm::vec3(x_left, y_down, z_back), back_normal, glm::vec2(0.f, 0.f) };
-				ShapeVertex right_down_back { glm::vec3(x_right, y_down, z_back), back_normal, glm::vec2(0.f, 0.f) };
+				ShapeVertex right_up_back{ glm::vec3(x_right, y_up, z_back), back_normal, glm::vec2(1.f, 0.f) };
+				ShapeVertex left_down_back { glm::vec3(x_left, y_down, z_back), back_normal, glm::vec2(0.f, 1.f) };
+				ShapeVertex right_down_back { glm::vec3(x_right, y_down, z_back), back_normal, glm::vec2(1.f, 1.f) };
 
 				m_Vertices.push_back(left_up_back);
 				m_Vertices.push_back(right_up_back);
@@ -100,9 +100,9 @@ namespace glimac{
 				glm::vec3 left_normal = {x_left, 0.f, 0.f};
 
 				ShapeVertex left_up_front { glm::vec3(x_left, y_up, z_front), left_normal, glm::vec2(0.f, 0.f) };
-				ShapeVertex left_up_back { glm::vec3(x_left, y_up, z_back), left_normal, glm::vec2(0.f, 0.f) };
-				ShapeVertex left_down_front { glm::vec3(x_left, y_down, z_front), left_normal, glm::vec2(0.f, 0.f) };
-				ShapeVertex left_down_back { glm::vec3(x_left, y_down, z_back), left_normal, glm::vec2(0.f, 0.f) };
+				ShapeVertex left_up_back { glm::vec3(x_left, y_up, z_back), left_normal, glm::vec2(1.f, 0.f) };
+				ShapeVertex left_down_front { glm::vec3(x_left, y_down, z_front), left_normal, glm::vec2(0.f, 1.f) };
+				ShapeVertex left_down_back { glm::vec3(x_left, y_down, z_back), left_normal, glm::vec2(1.f, 1.f) };
 
 				m_Vertices.push_back(left_up_front);
 				m_Vertices.push_back(left_up_back);
@@ -118,9 +118,9 @@ namespace glimac{
 				glm::vec3 right_normal = {x_right, 0.f, 0.f};
 
 				ShapeVertex right_up_front { glm::vec3(x_right, y_up, z_front), right_normal, glm::vec2(0.f, 0.f) };
-				ShapeVertex right_up_back { glm::vec3(x_right, y_up, z_back), right_normal, glm::vec2(0.f, 0.f) };
-				ShapeVertex right_down_front { glm::vec3(x_right, y_down, z_front), right_normal, glm::vec2(0.f, 0.f) };
-				ShapeVertex right_down_back { glm::vec3(x_right, y_down, z_back), right_normal, glm::vec2(0.f, 0.f) };
+				ShapeVertex right_up_back { glm::vec3(x_right, y_up, z_back), right_normal, glm::vec2(1.f, 0.f) };
+				ShapeVertex right_down_front { glm::vec3(x_right, y_down, z_front), right_normal, glm::vec2(0.f, 1.f) };
+				ShapeVertex right_down_back { glm::vec3(x_right, y_down, z_back), right_normal, glm::vec2(1.f, 1.f) };
 
 				m_Vertices.push_back(right_up_front);
 				m_Vertices.push_back(right_up_back);
