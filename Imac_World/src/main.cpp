@@ -6,6 +6,7 @@
 #include <glimac/FilePath.hpp>
 #include <glimac/Image.hpp>
 #include <glimac/TrackballCamera.hpp>
+#include <glimac/FreeflyCamera.hpp>
 #include <iostream>
 #include <imgui/imgui.h>
 #include <imgui/imgui_impl_opengl3.h>
@@ -116,7 +117,7 @@ int main(int argc, char** argv) {
      * HERE SHOULD COME THE INITIALIZATION CODE
      *********************************/
 
-    TrackballCamera camera;
+    FreeflyCamera camera;
 
     const glm::mat4 ProjMatrix = glm::perspective( glm::radians(70.f), WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.1f, 100.f);
 
@@ -194,11 +195,17 @@ int main(int argc, char** argv) {
                 break;
 
             case SDL_KEYDOWN:
-                if (e.key.keysym.sym=='a'){ //up
+                if (e.key.keysym.sym=='z'){ //up
                     camera.moveFront(1);
                 }
-                 if (e.key.keysym.sym=='b'){ //down
+                 if (e.key.keysym.sym=='s'){ //down
                     camera.moveFront(-1);
+                }
+                if (e.key.keysym.sym=='q'){ //up
+                    camera.moveLeft(1);
+                }
+                 if (e.key.keysym.sym=='d'){ //down
+                    camera.moveLeft(-1);
                 }
                 break;
 
