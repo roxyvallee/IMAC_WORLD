@@ -45,6 +45,28 @@ namespace glimac{
 			return m_Grid[i].get_CoordZ();
 		}
 
+		bool isCube(const int x, const int y, const int z)
+		{
+			for(uint i=0; i< m_sizeGrid; i++)
+			{
+				if( x ==  m_Grid[i].get_CoordX())
+				{
+					if(y == m_Grid[i].get_CoordY())
+					{
+						if(z == m_Grid[i].get_CoordZ())
+						{
+							return true;
+						}
+						else
+							return false;
+					}
+					else
+						return false;
+				}else
+					return false;
+			}
+		}
+
 	};
 
 }
@@ -54,7 +76,7 @@ namespace glimac{
 Grid maGrid;
 for(uint i =0; i < maGrid.getGridSize(); i++)
 {
-	glm::vec3(maGrid.getX_Grid(i), maGrid.getY_Grid(i), maGrid.getZ_Grid(i));
+	glm::vec3(2*maGrid.getX_Grid(i), 2*maGrid.getY_Grid(i), 2*maGrid.getZ_Grid(i));
 	--> créer ton cube
 	--> translation avec le vecteur créer si dessus
 }*/
