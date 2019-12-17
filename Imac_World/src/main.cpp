@@ -9,6 +9,7 @@
 #include <glimac/FreeflyCamera.hpp>
 #include <glimac/Texture.hpp>
 #include <glimac/Grid.hpp>
+#include <glimac/Cursor.hpp>
 #include <iostream>
 #include <imgui/imgui.h>
 #include <imgui/imgui_impl_opengl3.h>
@@ -127,6 +128,7 @@ int main(int argc, char** argv) {
 
     FreeflyCamera camera;
     Grid maGrid;
+    Cursor cursor;
 
     const glm::mat4 ProjMatrix = glm::perspective( glm::radians(70.f), WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.1f, 100.f);
 
@@ -215,22 +217,40 @@ int main(int argc, char** argv) {
                 break;
 
             case SDL_KEYDOWN:
-                if (e.key.keysym.sym=='z'){ //up
+                if (e.key.keysym.sym=='z'){ 
                     camera.moveFront(1);
                 }
-                 if (e.key.keysym.sym=='s'){ //down
+                 if (e.key.keysym.sym=='s'){ 
                     camera.moveFront(-1);
                 }
-                if (e.key.keysym.sym=='q'){ //up
+                if (e.key.keysym.sym=='q'){ 
                     camera.moveLeft(1);
                 }
-                 if (e.key.keysym.sym=='d'){ //down
+                 if (e.key.keysym.sym=='d'){ 
                     camera.moveLeft(-1);
+                }
+                if (e.key.keysym.sym=='w'){ 
+                    camera.moveUp(1);
+                }
+                 if (e.key.keysym.sym=='x'){ 
+                    camera.moveUp(-1);
+                }
+                if (e.key.keysym.sym== SDLK_LEFT){ 
+                    cursor.moveLeft();
+                }
+                 if (e.key.keysym.sym==SDLK_RIGHT){ 
+                    cursor.moveRight();
+                }
+                if (e.key.keysym.sym==SDLK_UP){ 
+                    cursor.moveUp();
+                }
+                 if (e.key.keysym.sym==SDLK_DOWN){ 
+                    cursor.moveDown();
                 }
                 break;
 
             case SDL_KEYUP:
-                //std::cout << "touche levée (code = "<< e.key.keysym.sym << ")" << std::endl;
+                std::cout << "la position est : " << cursor.getX_Cursor() << std::endl;
                 break;
             }
         }

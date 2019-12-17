@@ -65,18 +65,9 @@ namespace glimac{
 				}else
 					return false;
 			}
+			return false;
 		}
 
 	};
 
 }
-
-/*
---> dans le main 
-Grid maGrid;
-for(uint i =0; i < maGrid.getGridSize(); i++)
-{
-	glm::vec3(2*maGrid.getX_Grid(i), 2*maGrid.getY_Grid(i), 2*maGrid.getZ_Grid(i));
-	--> créer ton cube
-	--> translation avec le vecteur créer si dessus
-}*/

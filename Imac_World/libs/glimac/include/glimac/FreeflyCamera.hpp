@@ -50,6 +50,10 @@ namespace glimac
 			m_Position += t * m_FrontVector;
 		}
 
+		void moveUp(const float &t) {
+	         m_Position += t * m_UpVector;
+	    }
+
 		void rotateLeft(const float &degrees)
 		{
 			m_fPhi -= glm::radians(degrees);
