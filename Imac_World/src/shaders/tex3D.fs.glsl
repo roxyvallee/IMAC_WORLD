@@ -6,10 +6,10 @@ in vec2 vTexCoords;
 	
 out vec3 fFragColor;
 
-uniform sampler2D uGrassTexture;
+uniform sampler2D uTexture;
 
 void main() {
-	fFragColor = texture(uGrassTexture, vTexCoords).xyz;
+	fFragColor = texture(uTexture, vTexCoords).xyz;
 	//fFragColor = vec3(0.52, 0.39, 0.39);
 }
 		

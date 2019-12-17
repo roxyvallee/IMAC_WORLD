@@ -17,7 +17,7 @@ namespace glimac
 		public :
 		TrackballCamera()
 		{
-			m_fDistance = 1.0;
+			m_fDistance = 5.0;
 			m_fAngleX = 0.0;
 			m_fAngleY = 0.0;
 		}

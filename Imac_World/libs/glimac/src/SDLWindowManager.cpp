@@ -8,7 +8,7 @@
 
 namespace glimac {
 
-SDLWindowManager::SDLWindowManager(uint32_t width, uint32_t height, const char* title) {
+SDLWindowManager::SDLWindowManager(uint32_t width, uint32_t height, const char* title){
     if(0 != SDL_Init(SDL_INIT_VIDEO)) {
         std::cerr << SDL_GetError() << std::endl;
         return;
@@ -18,13 +18,18 @@ SDLWindowManager::SDLWindowManager(uint32_t width, uint32_t height, const char* 
     SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 3 );
     SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 3 );
 
-    window = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_OPENGL);
+    m_window = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_OPENGL);
 
-    SDL_GLContext openglContext = SDL_GL_CreateContext (window);
+    m_glContext = SDL_GL_CreateContext (m_window);
 
     std::cout <<  glGetString (GL_VERSION) << std::endl;
 
-    if(!window) {
+    if(!m_window) {
+        std::cerr << SDL_GetError() << std::endl;
+        return;
+    }
+
+    if(!m_glContext) {
         std::cerr << SDL_GetError() << std::endl;
         return;
     }
@@ -54,7 +59,7 @@ glm::ivec2 SDLWindowManager::getMousePosition() const {
 }
 
 void SDLWindowManager::swapBuffers() {
-    SDL_GL_SwapWindow(window);
+    SDL_GL_SwapWindow(m_window);
 }
 
 float SDLWindowManager::getTime() const {

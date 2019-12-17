@@ -7,6 +7,9 @@
 #include <glimac/Image.hpp>
 #include <glimac/TrackballCamera.hpp>
 #include <iostream>
+#include <imgui/imgui.h>
+#include <imgui/imgui_impl_opengl3.h>
+#include <imgui/imgui_impl_sdl.h>
 
 using namespace glimac;
 
@@ -22,7 +25,7 @@ struct CubeProgram{
     GLint uMVPMatrix;
     GLint uMVMatrix;
     GLint uNormalMatrix;
-    GLint uGrassTexture;
+    GLint uTexture;
     GLint uKd;
     GLint uKs;
     GLint uShininess;
@@ -35,7 +38,7 @@ struct CubeProgram{
         uMVPMatrix = glGetUniformLocation(m_Program.getGLId(), "uMVPMatrix");
         uMVMatrix = glGetUniformLocation(m_Program.getGLId(), "uMVMatrix");
         uNormalMatrix = glGetUniformLocation(m_Program.getGLId(), "uNormalMatrix");
-        uGrassTexture = glGetUniformLocation(m_Program.getGLId(), "uGrassTexture");
+        uTexture = glGetUniformLocation(m_Program.getGLId(), "uTexture");
         //lumière 
         uKd = glGetUniformLocation(m_Program.getGLId(), "uKd");
         uKs = glGetUniformLocation(m_Program.getGLId(), "uKs");
@@ -78,6 +81,13 @@ int main(int argc, char** argv) {
         return EXIT_FAILURE;
     }
 
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    ImGui_ImplSDL2_InitForOpenGL(windowManager.m_window, &windowManager.m_glContext);
+    ImGui_ImplOpenGL3_Init("#version 330 core");
+    ImGui::StyleColorsDark();
+
     //création de la lumière et des matériaux
     Light sunLight(glm::vec3(1.777,1.777,1.777), glm::vec3(1,1,1));
     Material cubeMat(glm::vec3(0.7,0.7,0.7), glm::vec3 (0.3,0.3,0.3), 10);
@@ -95,19 +105,9 @@ int main(int argc, char** argv) {
 
     cubeProgram.m_Program.use();
 
-    //background bleu
-    glClearColor(0.137255f, 0.137255f, 0.556863f, 0.0f);
-
     //Indique à OpenGL qu'il doit aller chercher sur l'unité de texture 0 
-    //pour lire dans la texture uGrassTexture:
-    glUniform1i(cubeProgram.uGrassTexture, 0);
-
-
-    //charger un modele 3D
-    std::vector< unsigned int > vertexIndices, uvIndices, normalIndices;
-    std::vector< glm::vec3 > temp_vertices;
-    std::vector< glm::vec2 > temp_uvs;
-    std::vector< glm::vec3 > temp_normals;
+    //pour lire dans la texture uTexture:
+    glUniform1i(cubeProgram.uTexture, 0);
 
     std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
     std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;
@@ -186,8 +186,8 @@ int main(int argc, char** argv) {
         
             case SDL_MOUSEMOTION:                
                 if (mouseDown) {
-                    camera.rotateUp(e.button.x - mouseX);
-                    camera.rotateLeft(e.button.y - mouseY);
+                    camera.rotateLeft(e.button.x - mouseX);
+                    camera.rotateUp(e.button.y - mouseY);
                     mouseX = e.button.x;
                     mouseY = e.button.y;
                 }
@@ -214,7 +214,18 @@ int main(int argc, char** argv) {
          * HERE SHOULD COME THE RENDERING CODE
          *********************************/
 
+        glClearColor(0.439216f, 0.576471f, 0.858824f, 0.0f); //background bleu
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        ///////IMGUI/////////
+        ////////////////////
+
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplSDL2_NewFrame(windowManager.m_window);
+        ImGui::NewFrame();
+
+        ///////IMGUI/////////
+        ////////////////////
 
         glBindVertexArray(vao);
          
@@ -226,7 +237,7 @@ int main(int argc, char** argv) {
         const glm::mat4 NormalMatrix;
         glm::mat4 MVMatrix = camera.getViewMatrix();
         //glm::mat4 MVMatrix = ViewMatrix * ModelMatrix;
-        ModelMatrix = glm::translate(ModelMatrix, glm::vec3(0.f, 0.f, -5.f) ); // on recule notre caméra
+       // ModelMatrix = glm::translate(ModelMatrix, glm::vec3(0.f, 0.f, -5.f) ); // on recule notre caméra
 
         /* Calcul de la lumiere */
         glm::vec4 lightDir4 =  glm::vec4(1.0f, 1.0f, 1.0f, 0.0f);
@@ -258,12 +269,35 @@ int main(int argc, char** argv) {
 
         glBindVertexArray(0);
 
+        ///////IMGUI/////////
+        ////////////////////
+
+        ImGui::Begin("demo");
+        ImGui::Button("hello");
+        ImGui::End();
+
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+       // SDL_GL_SwapWindow(windowManager.m_window);
+
+        ///////IMGUI/////////
+        ////////////////////
+
         // Update the display
         windowManager.swapBuffers();
     }
 
+    // Cleanup imgui
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplSDL2_Shutdown();
+    ImGui::DestroyContext();
+
     glDeleteBuffers(1,&vbo);
     glDeleteVertexArrays(1,&vao);
+
+    SDL_GL_DeleteContext(windowManager.m_glContext);
+    SDL_DestroyWindow(windowManager.m_window);
+    SDL_Quit();
  
     return EXIT_SUCCESS;
 }

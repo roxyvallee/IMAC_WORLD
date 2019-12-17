@@ -8,8 +8,8 @@ namespace glimac {
 
 class SDLWindowManager {
 public:
-  SDL_Window *window;
-
+    SDL_Window *m_window;
+    SDL_GLContext m_glContext;
     SDLWindowManager(uint32_t width, uint32_t height, const char* title);
 
     ~SDLWindowManager();
