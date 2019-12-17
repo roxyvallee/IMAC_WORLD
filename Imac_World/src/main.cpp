@@ -7,6 +7,8 @@
 #include <glimac/Image.hpp>
 #include <glimac/TrackballCamera.hpp>
 #include <glimac/FreeflyCamera.hpp>
+#include <glimac/Texture.hpp>
+#include <glimac/Grid.hpp>
 #include <iostream>
 #include <imgui/imgui.h>
 #include <imgui/imgui_impl_opengl3.h>
@@ -94,7 +96,13 @@ int main(int argc, char** argv) {
     Material cubeMat(glm::vec3(0.7,0.7,0.7), glm::vec3 (0.3,0.3,0.3), 10);
 
     //création de la texture du cube
-    std::unique_ptr<Image> GrassTexture = loadImage("../Imac_World/assets/textures/flower.jpg");
+    std::unique_ptr<Image> flowerTexture = loadImage("../Imac_World/assets/textures/flower.jpg");
+    if(flowerTexture == nullptr){
+        std::cerr << "Erreur load image " << std::endl;
+    }
+
+    //création de la texture du cube
+    std::unique_ptr<Image> GrassTexture = loadImage("../Imac_World/assets/textures/grass.jpg");
     if(GrassTexture == nullptr){
         std::cerr << "Erreur load image " << std::endl;
     }
@@ -118,6 +126,7 @@ int main(int argc, char** argv) {
      *********************************/
 
     FreeflyCamera camera;
+    Grid maGrid;
 
     const glm::mat4 ProjMatrix = glm::perspective( glm::radians(70.f), WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.1f, 100.f);
 
@@ -150,11 +159,22 @@ int main(int argc, char** argv) {
     //POUR FAIRE UN CUBE
     ////////////////////////////////////////////////////////////
 
+    Texture flower;
+
     //application de la texture de l'herbe
     GLuint texture_grass;
     glGenTextures(1, &texture_grass);
     glBindTexture(GL_TEXTURE_2D, texture_grass);
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, GrassTexture->getWidth(), GrassTexture->getHeight(), 0, GL_RGBA, GL_FLOAT, GrassTexture->getPixels());
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    //application de la texture de la feleur
+    GLuint texture_flower;
+    glGenTextures(1, &texture_flower);
+    glBindTexture(GL_TEXTURE_2D, texture_flower);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, flowerTexture->getWidth(), flowerTexture->getHeight(), 0, GL_RGBA, GL_FLOAT, flowerTexture->getPixels());
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glBindTexture(GL_TEXTURE_2D, 0);
@@ -244,11 +264,10 @@ int main(int argc, char** argv) {
         const glm::mat4 NormalMatrix;
         glm::mat4 MVMatrix = camera.getViewMatrix();
         //glm::mat4 MVMatrix = ViewMatrix * ModelMatrix;
-       // ModelMatrix = glm::translate(ModelMatrix, glm::vec3(0.f, 0.f, -5.f) ); // on recule notre caméra
+        //ModelMatrix = glm::translate(ModelMatrix, glm::vec3(0.f, 0.f, -5.f) ); // on recule notre caméra
 
         /* Calcul de la lumiere */
         glm::vec4 lightDir4 =  glm::vec4(1.0f, 1.0f, 1.0f, 0.0f);
-        //MVMatrix = glm::rotate(ViewMatrix, windowManager.getTime(), glm::vec3(1, 1, 1)); //le cube bouge
         lightDir4 = lightDir4 * ViewMatrix;
         glm::vec3 lightDir = glm::vec3(lightDir.x, lightDir.y, lightDir.z);
         
@@ -261,16 +280,22 @@ int main(int argc, char** argv) {
         glUniform3fv(cubeProgram.uLightIntensity, 1, glm::value_ptr(sunLight.intensity));
         glm::vec3 tmpLightDir(glm::mat3(camera.getViewMatrix())*sunLight.direction);
         glUniform3fv(cubeProgram.uLightDir_vs, 1, glm::value_ptr(tmpLightDir));
-        
-        glUniformMatrix4fv(cubeProgram.uMVMatrix, 1, GL_FALSE, glm::value_ptr(NormalMatrix)); // Value
-        glUniformMatrix4fv(cubeProgram.uNormalMatrix, 1, GL_FALSE, glm::value_ptr(glm::transpose(glm::inverse(MVMatrix)))); // Value
-        glUniformMatrix4fv(cubeProgram.uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix * MVMatrix)); // Value  
 
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture_grass);
-            glDrawArrays(GL_TRIANGLES, 0, cube.getVertexCount());
-        glBindTexture(GL_TEXTURE_2D, 0);
-        glActiveTexture(GL_TEXTURE0);
+        for (uint i = 0; i < maGrid.getGridSize(); ++i)
+        {
+            MVMatrix = glm::translate(ViewMatrix, glm::vec3(2*maGrid.getX_Grid(i), 2*maGrid.getY_Grid(i), 2*maGrid.getZ_Grid(i)));
+            //MVMatrix = glm::rotate(ViewMatrix, windowManager.getTime(), glm::vec3(1, 1, 1)); //le cube bouge
+            
+            glUniformMatrix4fv(cubeProgram.uMVMatrix, 1, GL_FALSE, glm::value_ptr(NormalMatrix)); // Value
+            glUniformMatrix4fv(cubeProgram.uNormalMatrix, 1, GL_FALSE, glm::value_ptr(glm::transpose(glm::inverse(MVMatrix)))); // Value
+            glUniformMatrix4fv(cubeProgram.uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix * MVMatrix)); // Value  
+
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, texture_flower);
+                glDrawArrays(GL_TRIANGLES, 0, cube.getVertexCount());
+            glBindTexture(GL_TEXTURE_2D, 0);
+            glActiveTexture(GL_TEXTURE0);  
+        }
 
 #pragma endregion CUBE
 
