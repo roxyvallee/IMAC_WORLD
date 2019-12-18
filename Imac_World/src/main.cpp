@@ -262,7 +262,7 @@ int main(int argc, char** argv) {
         glm::vec3 tmpLightDir(glm::mat3(camera.getViewMatrix())*sunLight.direction);
         glUniform3fv(cubeProgram.uLightDir_vs, 1, glm::value_ptr(tmpLightDir));
 
-        for (uint i = 0; i < maGrid.getGridSize(); ++i)
+        for (int i = 0; i < maGrid.getGridSize(); ++i)
         {
             MVMatrix = glm::translate(ViewMatrix, glm::vec3(2*maGrid.getX_Grid(i), 2*maGrid.getY_Grid(i), 2*maGrid.getZ_Grid(i)));
             //MVMatrix = glm::rotate(ViewMatrix, windowManager.getTime(), glm::vec3(1, 1, 1)); //le cube bouge
@@ -290,7 +290,7 @@ int main(int argc, char** argv) {
         }
         if(above.getClickDeleteCube() &1) {
             //delete notre cube
-            maGrid.deleteCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
+            maGrid.digCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
             std::cout << "test delete cube" << std::endl;
         }
         above.endFrame(windowManager.m_window);

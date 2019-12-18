@@ -11,6 +11,8 @@ namespace glimac{
 		std::vector<ShapeGrid> m_Grid;
 		int m_sizeGrid;
 
+		int UpColumn(const int x, const int y, const int z);
+
 	public:
 		//Grid(){};
 		Grid(); // initialisation de notre univers avec 3 cubes sur la même couche
@@ -23,11 +25,12 @@ namespace glimac{
 
 		inline int getZ_Grid(const int &i) const { return m_Grid[i].get_CoordZ();}
 
-		bool isCube(const int x, const int y, const int z);
+		//bool isCube(const int x, const int y, const int z);
 		int findCube(const int x, const int y, const int z);
 		void createCube(const int x, const int y, const int z);
 		void deleteCube(const int x, const int y, const int z);
-
+		void extrudeCube(const int x, const int y, const int z);
+		void digCube(const int x, const int y, const int z);
 	};
 
 }
