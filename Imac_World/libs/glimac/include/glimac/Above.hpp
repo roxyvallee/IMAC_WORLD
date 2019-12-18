@@ -25,6 +25,8 @@ namespace glimac
     		void endFrame(SDL_Window* window) const;
     		inline int getClickCreateCube(){return clickCreateCube;};
 			inline int getClickDeleteCube(){return clickDeleteCube;};
+			inline int getClickExtrudeCube(){return clickExtrudeCube;};
+			inline int getClickDigCube(){return clickDigCube;};
 
     	private:
     		int clickCreateCube;

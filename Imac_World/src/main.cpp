@@ -35,6 +35,7 @@ struct CubeProgram{
     GLint uShininess;
     GLint uLightDir_vs;
     GLint uLightIntensity;
+    GLint uCubeColor;
 
     CubeProgram(const FilePath& applicationPath):
         m_Program(loadProgram(applicationPath.dirPath() + "shaders/3D.vs.glsl", applicationPath.dirPath() + "shaders/normals.fs.glsl")){
@@ -43,6 +44,7 @@ struct CubeProgram{
         uMVMatrix = glGetUniformLocation(m_Program.getGLId(), "uMVMatrix");
         uNormalMatrix = glGetUniformLocation(m_Program.getGLId(), "uNormalMatrix");
         uTexture = glGetUniformLocation(m_Program.getGLId(), "uTexture");
+        uCubeColor = glGetUniformLocation(m_Program.getGLId(), "uCubeColor");
         //lumière 
         uKd = glGetUniformLocation(m_Program.getGLId(), "uKd");
         uKs = glGetUniformLocation(m_Program.getGLId(), "uKs");
@@ -75,46 +77,56 @@ struct Material {
 };
 
 int main(int argc, char** argv) {
-    // Initialize SDL and open a window
-    SDLWindowManager windowManager(WINDOW_WIDTH, WINDOW_HEIGHT, "GLImac");
 
-    Above above;
-    above.initImgui(windowManager.m_window, &windowManager.m_glContext);
-
-    //création de la lumière et des matériaux
-    Light sunLight(glm::vec3(1.777,1.777,1.777), glm::vec3(1,1,1));
-    Material cubeMat(glm::vec3(0.7,0.7,0.7), glm::vec3 (0.3,0.3,0.3), 10);
-
-    //création de la texture du cube
-    std::unique_ptr<Image> flowerTexture = loadImage("../Imac_World/assets/textures/flower.jpg");
-    if(flowerTexture == nullptr){
-        std::cerr << "Erreur load image " << std::endl;
-    }
-
-    FilePath applicationPath(argv[0]);
-    CubeProgram cubeProgram(applicationPath);
-
-    glEnable(GL_DEPTH_TEST);
-
-    cubeProgram.m_Program.use();
-
-    //Indique à OpenGL qu'il doit aller chercher sur l'unité de texture 0 
-    //pour lire dans la texture uTexture:
-    glUniform1i(cubeProgram.uTexture, 0);
-    
-    /*********************************
+	/*********************************
      * HERE SHOULD COME THE INITIALIZATION CODE
      *********************************/
 
+    // Initialize SDL and open a window
+    SDLWindowManager windowManager(WINDOW_WIDTH, WINDOW_HEIGHT, "GLImac");
+
+    glEnable(GL_DEPTH_TEST);
+
+    Cube cube;
     FreeflyCamera camera;
     Grid maGrid;
     Cursor cursor;
+    Above above;
+    Light sunLight(glm::vec3(1.777,1.777,1.777), glm::vec3(1,1,1));           //création de la lumière
+    Material cubeMat(glm::vec3(0.7,0.7,0.7), glm::vec3 (0.3,0.3,0.3), 10);    //création des matériaux
+
+    // Initialize Imgui window
+    above.initImgui(windowManager.m_window, &windowManager.m_glContext);
+
+    FilePath applicationPath(argv[0]);
+    CubeProgram cubeProgram(applicationPath);
+    cubeProgram.m_Program.use();
+
+    //création de la texture du cube
+    /*std::unique_ptr<Image> flowerTexture = loadImage("../Imac_World/assets/textures/flower.jpg");
+    if(flowerTexture == nullptr){
+        std::cerr << "Erreur load image " << std::endl;
+    }*/
+
+    //Indique à OpenGL qu'il doit aller chercher sur l'unité de texture 0 
+    //pour lire dans la texture uTexture:
+    //glUniform1i(cubeProgram.uTexture, 0);
+
+
+    //application de la texture de la fleur
+    /* GLuint texture_flower;
+    glGenTextures(1, &texture_flower);
+    glBindTexture(GL_TEXTURE_2D, texture_flower);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, flowerTexture->getWidth(), flowerTexture->getHeight(), 0, GL_RGBA, GL_FLOAT, flowerTexture->getPixels());
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glBindTexture(GL_TEXTURE_2D, 0);
+	*/
 
     const glm::mat4 ProjMatrix = glm::perspective( glm::radians(70.f), WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.1f, 100.f);
 
     /////////////////////////////////////////////////////////////
     //POUR FAIRE UN CUBE
-    Cube cube;
     GLuint vbo;
     glGenBuffers(1, &vbo);
 
@@ -141,15 +153,6 @@ int main(int argc, char** argv) {
     //POUR FAIRE UN CUBE
     ////////////////////////////////////////////////////////////
 
-    //application de la texture de la feleur
-   /* GLuint texture_flower;
-    glGenTextures(1, &texture_flower);
-    glBindTexture(GL_TEXTURE_2D, texture_flower);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, flowerTexture->getWidth(), flowerTexture->getHeight(), 0, GL_RGBA, GL_FLOAT, flowerTexture->getPixels());
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glBindTexture(GL_TEXTURE_2D, 0);
-*/
     bool mouseDown = false;
     int mouseX = 0, mouseY = 0;
 
@@ -247,6 +250,10 @@ int main(int argc, char** argv) {
         //glm::mat4 MVMatrix = ViewMatrix * ModelMatrix;
         //ModelMatrix = glm::translate(ModelMatrix, glm::vec3(0.f, 0.f, -5.f) ); // on recule notre caméra
 
+        //couleur
+        glm::vec3 color = glm::vec3(1.f, 0.f, 0.f);
+        glUniform3fv(cubeProgram.uCubeColor, 1, glm::value_ptr(color));
+
         /* Calcul de la lumiere */
         glm::vec4 lightDir4 =  glm::vec4(1.0f, 1.0f, 1.0f, 0.0f);
         lightDir4 = lightDir4 * ViewMatrix;
@@ -286,13 +293,21 @@ int main(int argc, char** argv) {
         if(above.getClickCreateCube() &1) {
             //ajouter notre cube
             maGrid.createCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
-            std::cout << "test create cube" << std::endl;
         }
         if(above.getClickDeleteCube() &1) {
             //delete notre cube
-            maGrid.digCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
-            std::cout << "test delete cube" << std::endl;
+            maGrid.deleteCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
         }
+        if(above.getClickExtrudeCube() &1) {
+            //extruder notre cube
+            maGrid.extrudeCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
+        }
+        if(above.getClickDigCube() &1) {
+            //delete notre cube
+            maGrid.digCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
+        }
+
+
         above.endFrame(windowManager.m_window);
 
         // Update the display

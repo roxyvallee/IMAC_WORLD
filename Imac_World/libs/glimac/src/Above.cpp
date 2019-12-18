@@ -37,25 +37,36 @@ namespace glimac {
 
         ImGui::Begin("Tools");
 
+        // button for create cube
         if (ImGui::Button("CREATE CUBE")){
             changement ^= 1;
             clickCreateCube++;
-            std::cout << "test2 create cube" << std::endl;
         }  
        
+        // button for delete cube
         if (ImGui::Button("DELETE CUBE")){
             changement ^= 1;
             clickDeleteCube++;
-            std::cout << "test2 delete cube" << std::endl;
         }  
 
+        // button for extrude cube
         if (ImGui::Button("EXTRUDE CUBE")){
             changement ^= 1;
+            clickExtrudeCube++;
         }  
 
+        // button for dig cube
         if (ImGui::Button("DIG CUBE")){
             changement = 1;
+            clickDigCube++;
         }  
+
+        // buttons for change color cube
+        static float cubeColor[3] = { 1.0f, 0.0f, 0.2f };
+        ImGui::ColorEdit3("Cube color", cubeColor);
+           /* bgColor.r = static_cast<sf::Uint8>(cubeColor[0] * 255.f);
+            bgColor.g = static_cast<sf::Uint8>(cubeColor[1] * 255.f);
+            bgColor.b = static_cast<sf::Uint8>(cubeColor[2] * 255.f);*/
 
         ImGui::End();
     }
