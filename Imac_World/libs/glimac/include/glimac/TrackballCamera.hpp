@@ -15,43 +15,15 @@ namespace glimac
 		float m_fAngleY;
 
 		public :
-		TrackballCamera()
-		{
-			m_fDistance = 5.0;
-			m_fAngleX = 0.0;
-			m_fAngleY = 0.0;
-		}
+		TrackballCamera();
 
-		void moveFront(float delta)
-		{
-			if(delta >= 0)
-			{
-				m_fDistance --;
-			}
-			else
-			{
-				m_fDistance ++;
-			}
-		}
+		void moveFront(float delta);
 
-		void rotateLeft(float degrees)
-		{
-			m_fAngleY += degrees;
-		}
+		void rotateLeft(float degrees);
 
-		void rotateUp( float degrees)
-		{
-			m_fAngleX += degrees;
-		}
+		void rotateUp( float degrees);
 
-		glm::mat4 getViewMatrix() const
-		{
-			glm::mat4 ViewMatrix = glm::translate(glm::mat4(), glm::vec3(0,0,-m_fDistance));
-			ViewMatrix = glm::rotate(ViewMatrix, glm::radians(m_fAngleX), glm::vec3(1,0,0));
-			ViewMatrix = glm::rotate(ViewMatrix, glm::radians(m_fAngleY), glm::vec3(0,1,0));
-
-			return ViewMatrix;
-		}
+		glm::mat4 getViewMatrix() const;
 
 
 	};

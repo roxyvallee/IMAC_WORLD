@@ -23,53 +23,25 @@ namespace glimac
 
 
 
-		void computeDirectionVectors()
-		{
-			m_FrontVector = glm::vec3(std::cos(m_fTheta)*std::sin(m_fPhi), std::sin(m_fTheta), std::cos(m_fTheta)*std::cos(m_fPhi));
-			m_LeftVector = glm::vec3(std::sin(m_fPhi+HALF_PI), 0, std::cos(m_fPhi+HALF_PI));
-			m_UpVector = glm::cross(m_FrontVector, m_LeftVector); 
-		}
+		void computeDirectionVectors();
+		
 
 	public:
 
-		FreeflyCamera()
-		{
-			m_Position = {0.f,0.f,10.f};
-			m_fPhi = PI; 
-			m_fTheta = 0.f;
-			computeDirectionVectors();
-		}
+		FreeflyCamera();
+		
 
-		void moveLeft(const float &t)
-		{
-			m_Position += t * m_LeftVector; 
-		}
+		void moveLeft(const float &t);
 
-		void moveFront(const float &t)
-		{
-			m_Position += t * m_FrontVector;
-		}
+		void moveFront(const float &t);
 
-		void moveUp(const float &t) {
-	         m_Position += t * m_UpVector;
-	    }
+		void moveUp(const float &t);
 
-		void rotateLeft(const float &degrees)
-		{
-			m_fPhi -= glm::radians(degrees);
-			computeDirectionVectors();
-		}
+		void rotateLeft(const float &degrees);
 
-		void rotateUp(const float &degrees)
-		{
-			m_fTheta -= glm::radians(degrees);
-			computeDirectionVectors();
-		}
+		void rotateUp(const float &degrees);
 
-		glm::mat4 getViewMatrix() const 
-		{
-			return glm::lookAt(m_Position, m_Position + m_FrontVector, m_UpVector);
-		} 
+		inline glm::mat4 getViewMatrix() const { return glm::lookAt(m_Position, m_Position + m_FrontVector, m_UpVector); } 
 
 	};
 }

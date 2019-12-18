@@ -32,8 +32,8 @@ namespace glimac{
 		public:
 		
 			Cube();
-			const ShapeVertex* getDataPointer() const { return &m_Vertices[0];}
-			GLsizei getVertexCount() const { return m_nVertexCount;}
+			inline const ShapeVertex* getDataPointer() const { return &m_Vertices[0];}
+			inline GLsizei getVertexCount() const { return m_nVertexCount;}
 			void initCube();
 			void drawCube();
 
