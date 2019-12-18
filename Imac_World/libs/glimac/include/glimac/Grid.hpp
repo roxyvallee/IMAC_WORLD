@@ -23,8 +23,10 @@ namespace glimac{
 
 		inline int getZ_Grid(const int &i) const { return m_Grid[i].get_CoordZ();}
 
-		bool isCube(const int x, const int y, const int z);
-		
+		//bool isCube(const int x, const int y, const int z);
+		int findCube(const int x, const int y, const int z);
+		void createCube(const int x, const int y, const int z);
+		void deleteCube(const int x, const int y, const int z);
 
 	};
 
