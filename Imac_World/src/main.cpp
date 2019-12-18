@@ -142,14 +142,14 @@ int main(int argc, char** argv) {
     ////////////////////////////////////////////////////////////
 
     //application de la texture de la feleur
-    GLuint texture_flower;
+   /* GLuint texture_flower;
     glGenTextures(1, &texture_flower);
     glBindTexture(GL_TEXTURE_2D, texture_flower);
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, flowerTexture->getWidth(), flowerTexture->getHeight(), 0, GL_RGBA, GL_FLOAT, flowerTexture->getPixels());
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glBindTexture(GL_TEXTURE_2D, 0);
-
+*/
     bool mouseDown = false;
     int mouseX = 0, mouseY = 0;
 
@@ -219,7 +219,7 @@ int main(int argc, char** argv) {
                 break;
 
             case SDL_KEYUP:
-                std::cout << "la position est : " << cursor.getX_Cursor() << std::endl;
+                std::cout << "la position est : " << cursor.getX_Cursor() << "," << cursor.getY_Cursor() << ";" << cursor.getZ_Cursor() << std::endl;
                 break;
             }
         }
