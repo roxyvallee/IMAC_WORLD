@@ -10,6 +10,7 @@
 #include <glimac/Texture.hpp>
 #include <glimac/Grid.hpp>
 #include <glimac/Cursor.hpp>
+#include <glimac/Above.hpp>
 #include <iostream>
 #include <imgui/imgui.h>
 #include <imgui/imgui_impl_opengl3.h>
@@ -37,7 +38,7 @@ struct CubeProgram{
     GLint uLightIntensity;
 
     CubeProgram(const FilePath& applicationPath):
-        m_Program(loadProgram(applicationPath.dirPath() + "shaders/3D.vs.glsl", applicationPath.dirPath() + "shaders/directionallight.fs.glsl")){
+        m_Program(loadProgram(applicationPath.dirPath() + "shaders/3D.vs.glsl", applicationPath.dirPath() + "shaders/normals.fs.glsl")){
         //texture
         uMVPMatrix = glGetUniformLocation(m_Program.getGLId(), "uMVPMatrix");
         uMVMatrix = glGetUniformLocation(m_Program.getGLId(), "uMVMatrix");
@@ -78,19 +79,8 @@ int main(int argc, char** argv) {
     // Initialize SDL and open a window
     SDLWindowManager windowManager(WINDOW_WIDTH, WINDOW_HEIGHT, "GLImac");
 
-    // Initialize glew for OpenGL3+ support
-    GLenum glewInitError = glewInit();
-    if(GLEW_OK != glewInitError) {
-        std::cerr << glewGetErrorString(glewInitError) << std::endl;
-        return EXIT_FAILURE;
-    }
-
-    IMGUI_CHECKVERSION();
-    ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
-    ImGui_ImplSDL2_InitForOpenGL(windowManager.m_window, &windowManager.m_glContext);
-    ImGui_ImplOpenGL3_Init("#version 330 core");
-    ImGui::StyleColorsDark();
+    Above above;
+    above.initImgui(windowManager.m_window, &windowManager.m_glContext);
 
     //création de la lumière et des matériaux
     Light sunLight(glm::vec3(1.777,1.777,1.777), glm::vec3(1,1,1));
@@ -99,12 +89,6 @@ int main(int argc, char** argv) {
     //création de la texture du cube
     std::unique_ptr<Image> flowerTexture = loadImage("../Imac_World/assets/textures/flower.jpg");
     if(flowerTexture == nullptr){
-        std::cerr << "Erreur load image " << std::endl;
-    }
-
-    //création de la texture du cube
-    std::unique_ptr<Image> GrassTexture = loadImage("../Imac_World/assets/textures/grass.jpg");
-    if(GrassTexture == nullptr){
         std::cerr << "Erreur load image " << std::endl;
     }
 
@@ -118,9 +102,6 @@ int main(int argc, char** argv) {
     //Indique à OpenGL qu'il doit aller chercher sur l'unité de texture 0 
     //pour lire dans la texture uTexture:
     glUniform1i(cubeProgram.uTexture, 0);
-
-    std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
-    std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;
     
     /*********************************
      * HERE SHOULD COME THE INITIALIZATION CODE
@@ -162,15 +143,6 @@ int main(int argc, char** argv) {
     ////////////////////////////////////////////////////////////
 
     Texture flower;
-
-    //application de la texture de l'herbe
-    GLuint texture_grass;
-    glGenTextures(1, &texture_grass);
-    glBindTexture(GL_TEXTURE_2D, texture_grass);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, GrassTexture->getWidth(), GrassTexture->getHeight(), 0, GL_RGBA, GL_FLOAT, GrassTexture->getPixels());
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glBindTexture(GL_TEXTURE_2D, 0);
 
     //application de la texture de la feleur
     GLuint texture_flower;
@@ -264,15 +236,7 @@ int main(int argc, char** argv) {
         glClearColor(0.439216f, 0.576471f, 0.858824f, 0.0f); //background bleu
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        ///////IMGUI/////////
-        ////////////////////
-
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplSDL2_NewFrame(windowManager.m_window);
-        ImGui::NewFrame();
-
-        ///////IMGUI/////////
-        ////////////////////
+        above.beginFrame(windowManager.m_window);
 
         glBindVertexArray(vao);
          
@@ -310,46 +274,34 @@ int main(int argc, char** argv) {
             glUniformMatrix4fv(cubeProgram.uNormalMatrix, 1, GL_FALSE, glm::value_ptr(glm::transpose(glm::inverse(MVMatrix)))); // Value
             glUniformMatrix4fv(cubeProgram.uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix * MVMatrix)); // Value  
 
-            glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D, texture_flower);
+            /*glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, texture_flower);*/
                 glDrawArrays(GL_TRIANGLES, 0, cube.getVertexCount());
-            glBindTexture(GL_TEXTURE_2D, 0);
-            glActiveTexture(GL_TEXTURE0);  
+           /* glBindTexture(GL_TEXTURE_2D, 0);
+            glActiveTexture(GL_TEXTURE0); */ 
         }
 
 #pragma endregion CUBE
 
         glBindVertexArray(0);
 
-        ///////IMGUI/////////
-        ////////////////////
-
-        ImGui::Begin("demo");
-        ImGui::Button("hello");
-        ImGui::End();
-
-        ImGui::Render();
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-       // SDL_GL_SwapWindow(windowManager.m_window);
-
-        ///////IMGUI/////////
-        ////////////////////
+        above.drawAbove(WINDOW_WIDTH, WINDOW_HEIGHT);
+        if(above.getClickCreateCube() &1) {
+            //ajouter notre cube
+            std::cout << "test create cube" << std::endl;
+        }
+        if(above.getClickDeleteCube() &1) {
+            //delete notre cube
+            std::cout << "test delete cube" << std::endl;
+        }
+        above.endFrame(windowManager.m_window);
 
         // Update the display
         windowManager.swapBuffers();
     }
 
-    // Cleanup imgui
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplSDL2_Shutdown();
-    ImGui::DestroyContext();
-
     glDeleteBuffers(1,&vbo);
     glDeleteVertexArrays(1,&vao);
-
-    SDL_GL_DeleteContext(windowManager.m_glContext);
-    SDL_DestroyWindow(windowManager.m_window);
-    SDL_Quit();
  
     return EXIT_SUCCESS;
 }

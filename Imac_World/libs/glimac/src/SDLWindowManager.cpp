@@ -33,9 +33,21 @@ SDLWindowManager::SDLWindowManager(uint32_t width, uint32_t height, const char* 
         std::cerr << SDL_GetError() << std::endl;
         return;
     }
+
+    // Initialize glew for OpenGL3+ support
+    GLenum glewInitError = glewInit();
+    if(GLEW_OK != glewInitError) {
+        std::cerr << glewGetErrorString(glewInitError) << std::endl;
+    }
+
+    // OpenGL & GLEW version
+    std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
+    std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;
 }
 
 SDLWindowManager::~SDLWindowManager() {
+    SDL_GL_DeleteContext(m_glContext);
+    SDL_DestroyWindow(m_window);
     SDL_Quit();
 }
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <GL/glew.h>
 #include "SDL.h"
 #include "glm.hpp"
 

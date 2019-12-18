@@ -34,7 +34,7 @@ namespace glimac
 
 		FreeflyCamera()
 		{
-			m_Position = {0.f,0.f,0.f};
+			m_Position = {0.f,0.f,10.f};
 			m_fPhi = PI; 
 			m_fTheta = 0.f;
 			computeDirectionVectors();
