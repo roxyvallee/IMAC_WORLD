@@ -7,7 +7,6 @@
 #include <glimac/Image.hpp>
 #include <glimac/TrackballCamera.hpp>
 #include <glimac/FreeflyCamera.hpp>
-#include <glimac/Texture.hpp>
 #include <glimac/Grid.hpp>
 #include <glimac/Cursor.hpp>
 #include <glimac/Above.hpp>
@@ -141,8 +140,6 @@ int main(int argc, char** argv) {
     glBindVertexArray(0);
     //POUR FAIRE UN CUBE
     ////////////////////////////////////////////////////////////
-
-    Texture flower;
 
     //application de la texture de la feleur
     GLuint texture_flower;
@@ -288,10 +285,12 @@ int main(int argc, char** argv) {
         above.drawAbove(WINDOW_WIDTH, WINDOW_HEIGHT);
         if(above.getClickCreateCube() &1) {
             //ajouter notre cube
+            maGrid.createCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
             std::cout << "test create cube" << std::endl;
         }
         if(above.getClickDeleteCube() &1) {
             //delete notre cube
+            maGrid.deleteCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
             std::cout << "test delete cube" << std::endl;
         }
         above.endFrame(windowManager.m_window);
