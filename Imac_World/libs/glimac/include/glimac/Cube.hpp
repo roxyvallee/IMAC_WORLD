@@ -21,6 +21,8 @@ namespace glimac{
 
 			std::vector<ShapeVertex> m_Vertices;
 			GLsizei m_nVertexCount;
+			GLuint m_vao;
+			GLuint m_vbo;
 
 			void add_up_face();
 			void add_down_face();
@@ -34,8 +36,11 @@ namespace glimac{
 			Cube();
 			inline const ShapeVertex* getDataPointer() const { return &m_Vertices[0];}
 			inline GLsizei getVertexCount() const { return m_nVertexCount;}
-			void initCube();
+			inline GLuint getVAO(){ return m_vao; };
+			inline GLuint getVBO(){ return m_vbo; };
+			void initBufferCube();
 			void drawCube();
+			void deleteBufferCube();
 
 	};
 

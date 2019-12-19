@@ -125,33 +125,7 @@ int main(int argc, char** argv) {
 
     const glm::mat4 ProjMatrix = glm::perspective( glm::radians(70.f), WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.1f, 100.f);
 
-    /////////////////////////////////////////////////////////////
-    //POUR FAIRE UN CUBE
-    GLuint vbo;
-    glGenBuffers(1, &vbo);
-
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-        glBufferData(GL_ARRAY_BUFFER, cube.getVertexCount()*sizeof(ShapeVertex), cube.getDataPointer(), GL_STATIC_DRAW);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-    GLuint vao;
-    glGenVertexArrays(1, &vao);
-
-    glBindVertexArray(vao);     
-
-        glEnableVertexAttribArray(VERTEX_ATTRIB_POSITION);
-        glEnableVertexAttribArray(VERTEX_ATTRIB_NORMAL);
-        glEnableVertexAttribArray(VERTEX_ATTRIB_TEXCOORDS);
-
-        glBindBuffer(GL_ARRAY_BUFFER, vbo);
-            glVertexAttribPointer(VERTEX_ATTRIB_POSITION,3,GL_FLOAT,GL_FALSE,sizeof(ShapeVertex), (const GLvoid*) (offsetof(ShapeVertex, position)));
-            glVertexAttribPointer(VERTEX_ATTRIB_NORMAL,3,GL_FLOAT,GL_FALSE,sizeof(ShapeVertex), (const GLvoid*) (offsetof(ShapeVertex, normal)));
-            glVertexAttribPointer(VERTEX_ATTRIB_TEXCOORDS,2,GL_FLOAT,GL_FALSE,sizeof(ShapeVertex), (const GLvoid*) (offsetof(ShapeVertex, texCoords)));
-        glBindBuffer(GL_ARRAY_BUFFER,0);
-
-    glBindVertexArray(0);
-    //POUR FAIRE UN CUBE
-    ////////////////////////////////////////////////////////////
+    cube.initBufferCube();
 
     bool mouseDown = false;
     int mouseX = 0, mouseY = 0;
@@ -237,8 +211,6 @@ int main(int argc, char** argv) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         above.beginFrame(windowManager.m_window);
-
-        glBindVertexArray(vao);
          
 #pragma region CUBE
 
@@ -249,10 +221,6 @@ int main(int argc, char** argv) {
         glm::mat4 MVMatrix = camera.getViewMatrix();
         //glm::mat4 MVMatrix = ViewMatrix * ModelMatrix;
         //ModelMatrix = glm::translate(ModelMatrix, glm::vec3(0.f, 0.f, -5.f) ); // on recule notre caméra
-
-        //couleur
-        /*glm::vec3 color = glm::vec3(1.f, 0.f, 0.f);
-        glUniform3fv(cubeProgram.uCubeColor, 1, glm::value_ptr(color));*/
 
         /* Calcul de la lumiere */
         glm::vec4 lightDir4 =  glm::vec4(1.0f, 1.0f, 1.0f, 0.0f);
@@ -269,6 +237,7 @@ int main(int argc, char** argv) {
         glm::vec3 tmpLightDir(glm::mat3(camera.getViewMatrix())*sunLight.direction);
         glUniform3fv(cubeProgram.uLightDir_vs, 1, glm::value_ptr(tmpLightDir));
 
+        glBindVertexArray(cube.getVAO());
         for (int i = 0; i < maGrid.getGridSize(); ++i)
         {
             MVMatrix = glm::translate(ViewMatrix, glm::vec3(2*maGrid.getX_Grid(i), 2*maGrid.getY_Grid(i), 2*maGrid.getZ_Grid(i)));
@@ -282,10 +251,12 @@ int main(int argc, char** argv) {
 
             /*glActiveTexture(GL_TEXTURE0);
             glBindTexture(GL_TEXTURE_2D, texture_flower);*/
-                glDrawArrays(GL_TRIANGLES, 0, cube.getVertexCount());
+                cube.drawCube();
            /* glBindTexture(GL_TEXTURE_2D, 0);
             glActiveTexture(GL_TEXTURE0); */ 
         }
+
+        //cursor.drawCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor(), &CubeCursorProgram, &camera);
 
 #pragma endregion CUBE
 
@@ -315,8 +286,7 @@ int main(int argc, char** argv) {
         windowManager.swapBuffers();
     }
 
-    glDeleteBuffers(1,&vbo);
-    glDeleteVertexArrays(1,&vao);
+    cube.deleteBufferCube();
  
     return EXIT_SUCCESS;
 }

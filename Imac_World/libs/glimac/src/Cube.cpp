@@ -124,24 +124,22 @@ namespace glimac{
 		m_nVertexCount = m_Vertices.size();
 	}
 
-	void Cube::initCube(){
-		GLuint vbo;
-	    glGenBuffers(1, &vbo);
+	void Cube::initBufferCube(){
+	    glGenBuffers(1, &m_vbo);
 
-	    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	    glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 	        glBufferData(GL_ARRAY_BUFFER, getVertexCount()*sizeof(ShapeVertex), getDataPointer(), GL_STATIC_DRAW);
 	    glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	    GLuint vao;
-	    glGenVertexArrays(1, &vao);
+	    glGenVertexArrays(1, &m_vao);
 
-	    glBindVertexArray(vao);     
+	    glBindVertexArray(m_vao);     
 
 	        glEnableVertexAttribArray(VERTEX_ATTRIB_POSITION);
 	        glEnableVertexAttribArray(VERTEX_ATTRIB_NORMAL);
 	        glEnableVertexAttribArray(VERTEX_ATTRIB_TEXCOORDS);
 
-	        glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	        glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 	            glVertexAttribPointer(VERTEX_ATTRIB_POSITION,3,GL_FLOAT,GL_FALSE,sizeof(ShapeVertex), (const GLvoid*) (offsetof(ShapeVertex, position)));
 	            glVertexAttribPointer(VERTEX_ATTRIB_NORMAL,3,GL_FLOAT,GL_FALSE,sizeof(ShapeVertex), (const GLvoid*) (offsetof(ShapeVertex, normal)));
 	            glVertexAttribPointer(VERTEX_ATTRIB_TEXCOORDS,2,GL_FLOAT,GL_FALSE,sizeof(ShapeVertex), (const GLvoid*) (offsetof(ShapeVertex, texCoords)));
@@ -152,6 +150,11 @@ namespace glimac{
 
 	void Cube::drawCube(){
 		glDrawArrays(GL_TRIANGLES, 0, getVertexCount());
+	}
+
+	void Cube::deleteBufferCube(){
+		glDeleteBuffers(1,&m_vbo);
+   		glDeleteVertexArrays(1,&m_vao);
 	}
 }
 

@@ -33,5 +33,6 @@ namespace glimac{
 		inline int getY_Cursor() const { return m_cursorY; }
 
 		inline int getZ_Cursor() const { return m_cursorZ; }
+
 	};
 }

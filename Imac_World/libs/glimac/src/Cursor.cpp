@@ -39,7 +39,4 @@ namespace glimac{
 	{
 		m_cursorZ += -1;
 	}
-
-
-
 }
