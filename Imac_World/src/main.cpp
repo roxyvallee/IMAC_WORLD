@@ -251,8 +251,8 @@ int main(int argc, char** argv) {
         //ModelMatrix = glm::translate(ModelMatrix, glm::vec3(0.f, 0.f, -5.f) ); // on recule notre caméra
 
         //couleur
-        glm::vec3 color = glm::vec3(1.f, 0.f, 0.f);
-        glUniform3fv(cubeProgram.uCubeColor, 1, glm::value_ptr(color));
+        /*glm::vec3 color = glm::vec3(1.f, 0.f, 0.f);
+        glUniform3fv(cubeProgram.uCubeColor, 1, glm::value_ptr(color));*/
 
         /* Calcul de la lumiere */
         glm::vec4 lightDir4 =  glm::vec4(1.0f, 1.0f, 1.0f, 0.0f);
@@ -277,6 +277,8 @@ int main(int argc, char** argv) {
             glUniformMatrix4fv(cubeProgram.uMVMatrix, 1, GL_FALSE, glm::value_ptr(NormalMatrix)); // Value
             glUniformMatrix4fv(cubeProgram.uNormalMatrix, 1, GL_FALSE, glm::value_ptr(glm::transpose(glm::inverse(MVMatrix)))); // Value
             glUniformMatrix4fv(cubeProgram.uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix * MVMatrix)); // Value  
+            glUniform3fv(cubeProgram.uCubeColor, 1, glm::value_ptr(maGrid.getColor_Grid(i))); // Value  
+
 
             /*glActiveTexture(GL_TEXTURE0);
             glBindTexture(GL_TEXTURE_2D, texture_flower);*/
@@ -289,7 +291,7 @@ int main(int argc, char** argv) {
 
         glBindVertexArray(0);
 
-        above.drawAbove(WINDOW_WIDTH, WINDOW_HEIGHT);
+        above.drawAbove(WINDOW_WIDTH, WINDOW_HEIGHT, maGrid[maGrid.findCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor())]);
         if(above.getClickCreateCube() &1) {
             //ajouter notre cube
             maGrid.createCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
@@ -306,7 +308,6 @@ int main(int argc, char** argv) {
             //delete notre cube
             maGrid.digCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
         }
-
 
         above.endFrame(windowManager.m_window);
 

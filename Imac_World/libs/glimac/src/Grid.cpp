@@ -6,41 +6,14 @@ namespace glimac{
 	Grid::Grid()
 	{
 		// cube 1 en [0,0,0]
-			m_Grid.push_back(ShapeGrid(0,0,0));
+			m_Grid.push_back(ShapeGrid(0,0,0, glm::vec3(1.f, 0.f, 0.f)));
 			// cube 2 en [1,0,0]
-			m_Grid.push_back(ShapeGrid(1,0,0));
+			m_Grid.push_back(ShapeGrid(1,0,0, glm::vec3(0.f, 1.f, 0.f)));
 			// cube 3 en [-1,0,0]
-			m_Grid.push_back(ShapeGrid(-1,0,0));
+			m_Grid.push_back(ShapeGrid(-1,0,0, glm::vec3(0.f, 0.f, 1.f)));
 
 			m_sizeGrid = m_Grid.size();
 	}
-
-	/*
-	bool Grid::isCube(const int x, const int y, const int z)
-	{
-		for(int i=0; i< m_sizeGrid; i++)
-			{
-				if( x ==  m_Grid[i].get_CoordX())
-				{
-					if(y == m_Grid[i].get_CoordY())
-					{
-						if(z == m_Grid[i].get_CoordZ())
-						{
-							return true;
-						}
-						
-					}
-					
-				}
-
-
-			}
-
-			return false;	
-	}
-	*/
-
-
 
 	int Grid::findCube(const int x, const int y, const int z) // return index of the cube
 	{
@@ -64,13 +37,20 @@ namespace glimac{
 	{
 		if(findCube(x,y,z) == -1 )
 		{
-			m_Grid.push_back(ShapeGrid(x,y,z));
+			m_Grid.push_back(ShapeGrid(x,y,z, glm::vec3(0.f, 0.f, 1.f)));
 			m_sizeGrid = m_Grid.size();
 		}
 		else 
 			std::cerr << "cube already exist" << std::endl;
 	}
 
+	void Grid::changeColor(const int x, const int y, const int z, const glm::vec3 color)
+	{
+		if(findCube(x,y,z) != -1)
+		{
+			m_Grid[findCube(x,y,z)].set_Color(color);
+		}
+	}
 
 	void Grid::deleteCube(const int x, const int y, const int z)
 	{

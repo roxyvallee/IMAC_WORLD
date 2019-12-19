@@ -12,7 +12,7 @@ namespace glimac {
     void Above::initImgui(SDL_Window* window, SDL_GLContext* glContext) const {
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
-        ImGuiIO& io = ImGui::GetIO();(void)io;;
+        ImGuiIO& io = ImGui::GetIO();(void)io;
         ImGui_ImplSDL2_InitForOpenGL(window, &glContext);
         ImGui_ImplOpenGL3_Init("#version 330 core");
         ImGui::StyleColorsDark();
@@ -25,7 +25,7 @@ namespace glimac {
         ImGui::NewFrame();
     }
 
-    void Above::drawAbove(const int WINDOW_WIDTH, const int WINDOW_HEIGHT){
+    void Above::drawAbove(const int WINDOW_WIDTH, const int WINDOW_HEIGHT, ShapeGrid &cubeSelect){
         ImGui::SetNextWindowPos(ImVec2(WINDOW_WIDTH-250, 10));
         ImGui::SetNextWindowSize(ImVec2(240, WINDOW_HEIGHT-(WINDOW_HEIGHT/2)));
 
@@ -57,16 +57,22 @@ namespace glimac {
 
         // button for dig cube
         if (ImGui::Button("DIG CUBE")){
-            changement = 1;
+            changement ^= 1;
             clickDigCube++;
         }  
 
         // buttons for change color cube
-        static float cubeColor[3] = { 1.0f, 0.0f, 0.2f };
-        ImGui::ColorEdit3("Cube color", cubeColor);
-           /* bgColor.r = static_cast<sf::Uint8>(cubeColor[0] * 255.f);
-            bgColor.g = static_cast<sf::Uint8>(cubeColor[1] * 255.f);
-            bgColor.b = static_cast<sf::Uint8>(cubeColor[2] * 255.f);*/
+        // static float cubeColor[3] = { 0.0f, 1.0f, 0.0f };
+        r = 0;
+        g = 0;
+        b = 0;
+        if(ImGui::ColorEdit3("Cube color", (float*)cubeSelect.get_ColorPtr())){
+           /* r = cubeColor[0] * 255.f;
+            g = cubeColor[1] * 255.f;
+            b = cubeColor[2] * 255.f;
+            colorCube = glm::vec3(r, g, b);
+            std::cout << "La couleur du cube est : " << colorCube << std::endl;*/
+        }
 
         ImGui::End();
     }
@@ -77,5 +83,21 @@ namespace glimac {
         //SDL_GL_SwapWindow(window);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
