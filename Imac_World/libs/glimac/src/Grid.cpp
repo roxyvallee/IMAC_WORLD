@@ -1,6 +1,6 @@
 #include <iostream>
 #include "glimac/Grid.hpp"
-#include "glimac/RadialBasicFunction.hpp"
+#include "glimac/RadialBasisFunction.hpp"
 
 namespace glimac{
 	
@@ -20,7 +20,7 @@ namespace glimac{
 	Grid::Grid(int iterator)
 	{
 		//std::cout<< "2/ ça marche jusque ici" << std::endl;
-		RadialBasicFunction test;
+		RadialBasisFunction test;
 		for(int i=0; i<iterator; i++)
 		{
 			for(int j=0; j<iterator; j++)
@@ -28,7 +28,7 @@ namespace glimac{
 				for(int k=0; k<iterator;k++)
 				{
 					glm::vec3 v = {i,j,k};
-					if(test.calculBasicFunction(v) >= 0.0)
+					if(test.calculBasisFunction(v) >= 0.0)
 					{
 						//std::cout<< "8/ ça marche jusque ici : " << test.calculBasicFunction(v) << std::endl;
 						//createCube(i,j,k);

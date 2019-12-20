@@ -8,7 +8,7 @@
 
 namespace glimac{
 
-	class RadialBasicFunction
+	class RadialBasisFunction
 	{
 	private:
 		std::vector<glm::vec3> m_Points;
@@ -21,8 +21,8 @@ namespace glimac{
 
 	public:
 
-		RadialBasicFunction();
-		double calculBasicFunction(glm::vec3 V);
+		RadialBasisFunction();
+		double calculBasisFunction(glm::vec3 V);
 	
 
 	};

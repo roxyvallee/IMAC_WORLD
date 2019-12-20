@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "ShapeGrid.hpp"
+#include "glimac/RadialBasisFunction.hpp"
 
 namespace glimac{
 
