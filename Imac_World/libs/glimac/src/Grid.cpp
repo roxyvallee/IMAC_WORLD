@@ -1,8 +1,9 @@
 #include <iostream>
 #include "glimac/Grid.hpp"
+#include "glimac/RadialBasicFunction.hpp"
 
 namespace glimac{
-
+	
 	Grid::Grid()
 	{
 		// cube 1 en [0,0,0]
@@ -13,6 +14,31 @@ namespace glimac{
 			m_Grid.push_back(ShapeGrid(-1,0,0, glm::vec3(0.f, 0.f, 1.f)));
 
 			m_sizeGrid = m_Grid.size();
+	}
+	
+
+	Grid::Grid(int iterator)
+	{
+		//std::cout<< "2/ ça marche jusque ici" << std::endl;
+		RadialBasicFunction test;
+		for(int i=0; i<iterator; i++)
+		{
+			for(int j=0; j<iterator; j++)
+			{
+				for(int k=0; k<iterator;k++)
+				{
+					glm::vec3 v = {i,j,k};
+					if(test.calculBasicFunction(v) >= 0.0)
+					{
+						//std::cout<< "8/ ça marche jusque ici : " << test.calculBasicFunction(v) << std::endl;
+						//createCube(i,j,k);
+						m_Grid.push_back(ShapeGrid(i,j,k, glm::vec3(0.f, 0.f, 1.f)));
+						m_sizeGrid = m_Grid.size();
+						//std::cout<< "9/ ça marche jusque ici" << std::endl;
+					}
+				}
+			}
+		}
 	}
 
 	int Grid::findCube(const int x, const int y, const int z) // return index of the cube
@@ -106,6 +132,11 @@ namespace glimac{
 			std::cerr << "can't dig " << std::endl;
 		}
 
+	}
+
+	void Grid::resetCube()
+	{
+		m_Grid.clear();
 	}
 
 }

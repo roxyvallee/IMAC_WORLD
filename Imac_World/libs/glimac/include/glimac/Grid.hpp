@@ -17,6 +17,8 @@ namespace glimac{
 		//Grid(){};
 		Grid(); // initialisation de notre univers avec 3 cubes sur la même couche
 
+		Grid(int iterator);
+
 		inline ShapeGrid& operator[](int index) {return m_Grid[index];}
 		
 		inline int getGridSize() const { return m_sizeGrid; }
@@ -36,6 +38,7 @@ namespace glimac{
 		void extrudeCube(const int x, const int y, const int z);
 		void digCube(const int x, const int y, const int z);
 		void changeColor(const int x, const int y, const int z, const glm::vec3 color);
+		void resetCube();
 	};
 
 }
