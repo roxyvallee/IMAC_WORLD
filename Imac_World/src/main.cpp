@@ -240,6 +240,9 @@ int main(int argc, char** argv) {
         glBindVertexArray(cube.getVAO());
 
         //CUBE
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture_flower);
+
         for (int i = 0; i < maGrid.getGridSize(); ++i)
         {
             MVMatrix = glm::translate(ViewMatrix, glm::vec3(2*maGrid.getX_Grid(i), 2*maGrid.getY_Grid(i), 2*maGrid.getZ_Grid(i)));
@@ -249,12 +252,12 @@ int main(int argc, char** argv) {
             glUniformMatrix4fv(cubeProgram.uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix * MVMatrix)); // Value  
             glUniform3fv(cubeProgram.uCubeColor, 1, glm::value_ptr(maGrid.getColor_Grid(i))); // Value  
 
-            glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D, texture_flower);
-                cube.drawCube(); 
-            glBindTexture(GL_TEXTURE_2D, 0);
-            glActiveTexture(GL_TEXTURE0);
+            cube.drawCube(); 
+         
         }
+
+        glBindTexture(GL_TEXTURE_2D, 0);
+        glActiveTexture(GL_TEXTURE0);
 
         //CUBE CURSOR
         const glm::mat4 NormalMatrix2;
