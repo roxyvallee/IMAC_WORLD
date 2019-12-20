@@ -2,10 +2,12 @@
 
 #include <vector>
 #include "Grid.hpp"
+#include "Program.hpp"
+#include "Cube.hpp"
 
 namespace glimac{
 
-	class Cursor
+	class Cursor : public Cube
 	{
 	private:
 		int m_cursorX; 
@@ -33,6 +35,9 @@ namespace glimac{
 		inline int getY_Cursor() const { return m_cursorY; }
 
 		inline int getZ_Cursor() const { return m_cursorZ; }
+
+		//Une surdéfinition ou surcharge (overloading) permet d’utiliser plusieurs méthodes qui portent le même nom au sein d’une même classe avec une signature différente.
+        void drawCube(int m_cursorX, int m_cursorY, int m_cursorZ);
 
 	};
 }

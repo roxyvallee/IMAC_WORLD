@@ -38,7 +38,7 @@ struct CubeProgram{
     GLint uCubeColor;
 
     CubeProgram(const FilePath& applicationPath):
-        m_Program(loadProgram(applicationPath.dirPath() + "shaders/3D.vs.glsl", applicationPath.dirPath() + "shaders/normals.fs.glsl")){
+        m_Program(loadProgram(applicationPath.dirPath() + "shaders/3D.vs.glsl", applicationPath.dirPath() + "shaders/directionallight.fs.glsl")){
         //texture
         uMVPMatrix = glGetUniformLocation(m_Program.getGLId(), "uMVPMatrix");
         uMVMatrix = glGetUniformLocation(m_Program.getGLId(), "uMVMatrix");
@@ -103,29 +103,30 @@ int main(int argc, char** argv) {
     cubeProgram.m_Program.use();
 
     //création de la texture du cube
-    /*std::unique_ptr<Image> flowerTexture = loadImage("../Imac_World/assets/textures/flower.jpg");
+    std::unique_ptr<Image> flowerTexture = loadImage("../Imac_World/assets/textures/flower.jpg");
     if(flowerTexture == nullptr){
         std::cerr << "Erreur load image " << std::endl;
-    }*/
+    }
 
     //Indique à OpenGL qu'il doit aller chercher sur l'unité de texture 0 
     //pour lire dans la texture uTexture:
-    //glUniform1i(cubeProgram.uTexture, 0);
+    glUniform1i(cubeProgram.uTexture, 0);
 
 
     //application de la texture de la fleur
-    /* GLuint texture_flower;
+    GLuint texture_flower;
     glGenTextures(1, &texture_flower);
     glBindTexture(GL_TEXTURE_2D, texture_flower);
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, flowerTexture->getWidth(), flowerTexture->getHeight(), 0, GL_RGBA, GL_FLOAT, flowerTexture->getPixels());
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glBindTexture(GL_TEXTURE_2D, 0);
-	*/
 
     const glm::mat4 ProjMatrix = glm::perspective( glm::radians(70.f), WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.1f, 100.f);
+    const glm::mat4 ProjMatrix2 = glm::perspective( glm::radians(70.f), WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.1f, 100.f);
 
     cube.initBufferCube();
+    cursor.initBufferCube();
 
     bool mouseDown = false;
     int mouseX = 0, mouseY = 0;
@@ -202,6 +203,7 @@ int main(int argc, char** argv) {
         }
 
         const glm::mat4 ViewMatrix = camera.getViewMatrix(); // pour placer notre caméra
+        const glm::mat4 ViewMatrix2 = camera.getViewMatrix(); // pour placer notre caméra
 
         /*********************************
          * HERE SHOULD COME THE RENDERING CODE
@@ -219,10 +221,8 @@ int main(int argc, char** argv) {
         glm::mat4 ModelMatrix;
         const glm::mat4 NormalMatrix;
         glm::mat4 MVMatrix = camera.getViewMatrix();
-        //glm::mat4 MVMatrix = ViewMatrix * ModelMatrix;
-        //ModelMatrix = glm::translate(ModelMatrix, glm::vec3(0.f, 0.f, -5.f) ); // on recule notre caméra
 
-        /* Calcul de la lumiere */
+        // Calcul de la lumiere
         glm::vec4 lightDir4 =  glm::vec4(1.0f, 1.0f, 1.0f, 0.0f);
         lightDir4 = lightDir4 * ViewMatrix;
         glm::vec3 lightDir = glm::vec3(lightDir.x, lightDir.y, lightDir.z);
@@ -232,35 +232,48 @@ int main(int argc, char** argv) {
         glUniform3fv(cubeProgram.uKd,1, glm::value_ptr(glm::vec3(cubeMat.diffuse)));
         glUniform3fv(cubeProgram.uKs,1, glm::value_ptr(glm::vec3(cubeMat.glossy)));
 
-        //light variables
+        // Light variables
         glUniform3fv(cubeProgram.uLightIntensity, 1, glm::value_ptr(sunLight.intensity));
         glm::vec3 tmpLightDir(glm::mat3(camera.getViewMatrix())*sunLight.direction);
         glUniform3fv(cubeProgram.uLightDir_vs, 1, glm::value_ptr(tmpLightDir));
 
         glBindVertexArray(cube.getVAO());
+
+        //CUBE
         for (int i = 0; i < maGrid.getGridSize(); ++i)
         {
             MVMatrix = glm::translate(ViewMatrix, glm::vec3(2*maGrid.getX_Grid(i), 2*maGrid.getY_Grid(i), 2*maGrid.getZ_Grid(i)));
-            //MVMatrix = glm::rotate(ViewMatrix, windowManager.getTime(), glm::vec3(1, 1, 1)); //le cube bouge
             
             glUniformMatrix4fv(cubeProgram.uMVMatrix, 1, GL_FALSE, glm::value_ptr(NormalMatrix)); // Value
             glUniformMatrix4fv(cubeProgram.uNormalMatrix, 1, GL_FALSE, glm::value_ptr(glm::transpose(glm::inverse(MVMatrix)))); // Value
             glUniformMatrix4fv(cubeProgram.uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix * MVMatrix)); // Value  
             glUniform3fv(cubeProgram.uCubeColor, 1, glm::value_ptr(maGrid.getColor_Grid(i))); // Value  
 
-
-            /*glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D, texture_flower);*/
-                cube.drawCube();
-           /* glBindTexture(GL_TEXTURE_2D, 0);
-            glActiveTexture(GL_TEXTURE0); */ 
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D, texture_flower);
+                cube.drawCube(); 
+            glBindTexture(GL_TEXTURE_2D, 0);
+            glActiveTexture(GL_TEXTURE0);
         }
 
-        //cursor.drawCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor(), &CubeCursorProgram, &camera);
+        //CUBE CURSOR
+        const glm::mat4 NormalMatrix2;
+        glm::mat4 MVMatrix2 = camera.getViewMatrix();
+
+        MVMatrix2 = glm::translate(ViewMatrix2, glm::vec3(2*cursor.getX_Cursor(), 2*cursor.getY_Cursor(), 2*cursor.getZ_Cursor()));
+            
+        glUniformMatrix4fv(cubeProgram.uMVMatrix, 1, GL_FALSE, glm::value_ptr(NormalMatrix2)); // Value
+        glUniformMatrix4fv(cubeProgram.uNormalMatrix, 1, GL_FALSE, glm::value_ptr(glm::transpose(glm::inverse(MVMatrix2)))); // Value
+        glUniformMatrix4fv(cubeProgram.uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix2 * MVMatrix2)); // Value  
+        glUniform3fv(cubeProgram.uCubeColor, 1, glm::value_ptr(glm::vec3(0.f, 0.f, 0.f))); // Value  
+
+        cursor.drawCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
+
+        glBindVertexArray(0);
 
 #pragma endregion CUBE
 
-        glBindVertexArray(0);
+#pragma region IMGUI
 
         above.drawAbove(WINDOW_WIDTH, WINDOW_HEIGHT, maGrid[maGrid.findCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor())]);
         if(above.getClickCreateCube() &1) {
@@ -281,6 +294,8 @@ int main(int argc, char** argv) {
         }
 
         above.endFrame(windowManager.m_window);
+
+#pragma endregion IMGUI
 
         // Update the display
         windowManager.swapBuffers();
