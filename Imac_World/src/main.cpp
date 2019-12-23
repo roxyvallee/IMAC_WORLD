@@ -10,6 +10,8 @@
 #include <glimac/Grid.hpp>
 #include <glimac/Cursor.hpp>
 #include <glimac/Above.hpp>
+#include <glimac/Structure.hpp>
+#include <glimac/Texture.hpp>
 #include <iostream>
 #include <imgui/imgui.h>
 #include <imgui/imgui_impl_opengl3.h>
@@ -19,62 +21,6 @@ using namespace glimac;
 
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
-const GLuint VERTEX_ATTRIB_POSITION = 0;
-const GLuint VERTEX_ATTRIB_NORMAL = 1;
-const GLuint VERTEX_ATTRIB_TEXCOORDS = 2;
-
-struct CubeProgram{
-    Program m_Program;
-
-    GLint uMVPMatrix;
-    GLint uMVMatrix;
-    GLint uNormalMatrix;
-    GLint uTexture;
-    GLint uKd;
-    GLint uKs;
-    GLint uShininess;
-    GLint uLightDir_vs;
-    GLint uLightIntensity;
-    GLint uCubeColor;
-
-    CubeProgram(const FilePath& applicationPath):
-        m_Program(loadProgram(applicationPath.dirPath() + "shaders/3D.vs.glsl", applicationPath.dirPath() + "shaders/directionallight.fs.glsl")){
-        //texture
-        uMVPMatrix = glGetUniformLocation(m_Program.getGLId(), "uMVPMatrix");
-        uMVMatrix = glGetUniformLocation(m_Program.getGLId(), "uMVMatrix");
-        uNormalMatrix = glGetUniformLocation(m_Program.getGLId(), "uNormalMatrix");
-        uTexture = glGetUniformLocation(m_Program.getGLId(), "uTexture");
-        uCubeColor = glGetUniformLocation(m_Program.getGLId(), "uCubeColor");
-        //lumière 
-        uKd = glGetUniformLocation(m_Program.getGLId(), "uKd");
-        uKs = glGetUniformLocation(m_Program.getGLId(), "uKs");
-        uShininess = glGetUniformLocation(m_Program.getGLId(), "uShininess");
-        uLightDir_vs = glGetUniformLocation(m_Program.getGLId(), "uLightDir_vs");
-        uLightIntensity = glGetUniformLocation(m_Program.getGLId(), "uLightIntensity");
-    }
-};
-
-struct Light {
-    glm::vec3 intensity;
-    glm::vec3 direction;
-
-    Light(glm::vec3 inIntensity, glm::vec3 inDirection) {
-        intensity = inIntensity;
-        direction = inDirection;
-    }
-};
-
-struct Material {
-    glm::vec3 diffuse;
-    glm::vec3 glossy;
-    float shininess;
-
-    Material (glm::vec3 inDiffuse, glm::vec3 inGlossy, float inShininess) {
-        diffuse = inDiffuse;
-        glossy = inGlossy;
-        shininess = inShininess;
-    }
-};
 
 int main(int argc, char** argv) {
 
@@ -92,38 +38,13 @@ int main(int argc, char** argv) {
     Grid maGrid;
     Cursor cursor;
     Above above;
-    Light sunLight(glm::vec3(1.777,1.777,1.777), glm::vec3(1,1,1));           //création de la lumière
-    Material cubeMat(glm::vec3(0.7,0.7,0.7), glm::vec3 (0.3,0.3,0.3), 10);    //création des matériaux
+    Texture flower("../Imac_World/assets/textures/flower.jpg");
 
     // Initialize Imgui window
     above.initImgui(windowManager.m_window, &windowManager.m_glContext);
 
     FilePath applicationPath(argv[0]);
     CubeProgram cubeProgram(applicationPath);
-    cubeProgram.m_Program.use();
-
-    //création de la texture du cube
-    std::unique_ptr<Image> flowerTexture = loadImage("../Imac_World/assets/textures/flower.jpg");
-    if(flowerTexture == nullptr){
-        std::cerr << "Erreur load image " << std::endl;
-    }
-
-    //Indique à OpenGL qu'il doit aller chercher sur l'unité de texture 0 
-    //pour lire dans la texture uTexture:
-    glUniform1i(cubeProgram.uTexture, 0);
-
-
-    //application de la texture de la fleur
-    GLuint texture_flower;
-    glGenTextures(1, &texture_flower);
-    glBindTexture(GL_TEXTURE_2D, texture_flower);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, flowerTexture->getWidth(), flowerTexture->getHeight(), 0, GL_RGBA, GL_FLOAT, flowerTexture->getPixels());
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glBindTexture(GL_TEXTURE_2D, 0);
-
-    const glm::mat4 ProjMatrix = glm::perspective( glm::radians(70.f), WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.1f, 100.f);
-    const glm::mat4 ProjMatrix2 = glm::perspective( glm::radians(70.f), WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.1f, 100.f);
 
     cube.initBufferCube();
     cursor.initBufferCube();
@@ -209,7 +130,6 @@ int main(int argc, char** argv) {
         }
 
         const glm::mat4 ViewMatrix = camera.getViewMatrix(); // pour placer notre caméra
-        const glm::mat4 ViewMatrix2 = camera.getViewMatrix(); // pour placer notre caméra
 
         /*********************************
          * HERE SHOULD COME THE RENDERING CODE
@@ -224,59 +144,17 @@ int main(int argc, char** argv) {
 
         cubeProgram.m_Program.use();
 
-        glm::mat4 ModelMatrix;
-        const glm::mat4 NormalMatrix;
-        glm::mat4 MVMatrix = camera.getViewMatrix();
-
-        // Calcul de la lumiere
-        glm::vec4 lightDir4 =  glm::vec4(1.0f, 1.0f, 1.0f, 0.0f);
-        lightDir4 = lightDir4 * ViewMatrix;
-        glm::vec3 lightDir = glm::vec3(lightDir.x, lightDir.y, lightDir.z);
-        
-        // Shininess
-        glUniform1f(cubeProgram.uShininess, cubeMat.shininess);
-        glUniform3fv(cubeProgram.uKd,1, glm::value_ptr(glm::vec3(cubeMat.diffuse)));
-        glUniform3fv(cubeProgram.uKs,1, glm::value_ptr(glm::vec3(cubeMat.glossy)));
-
-        // Light variables
-        glUniform3fv(cubeProgram.uLightIntensity, 1, glm::value_ptr(sunLight.intensity));
-        glm::vec3 tmpLightDir(glm::mat3(camera.getViewMatrix())*sunLight.direction);
-        glUniform3fv(cubeProgram.uLightDir_vs, 1, glm::value_ptr(tmpLightDir));
-
         glBindVertexArray(cube.getVAO());
 
         //CUBE
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture_flower);
-
-        for (int i = 0; i < maGrid.getGridSize(); ++i)
-        {
-            MVMatrix = glm::translate(ViewMatrix, glm::vec3(2*maGrid.getX_Grid(i), 2*maGrid.getY_Grid(i), 2*maGrid.getZ_Grid(i)));
-            
-            glUniformMatrix4fv(cubeProgram.uMVMatrix, 1, GL_FALSE, glm::value_ptr(NormalMatrix)); // Value
-            glUniformMatrix4fv(cubeProgram.uNormalMatrix, 1, GL_FALSE, glm::value_ptr(glm::transpose(glm::inverse(MVMatrix)))); // Value
-            glUniformMatrix4fv(cubeProgram.uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix * MVMatrix)); // Value  
-            glUniform3fv(cubeProgram.uCubeColor, 1, glm::value_ptr(maGrid.getColor_Grid(i))); // Value  
-
-            cube.drawCube(); 
-         
-        }
-
+        glBindTexture(GL_TEXTURE_2D, flower.getId());
+            cube.drawCube(maGrid, camera, argv[0]); 
         glBindTexture(GL_TEXTURE_2D, 0);
         glActiveTexture(GL_TEXTURE0);
 
         //CUBE CURSOR
-        const glm::mat4 NormalMatrix2;
-        glm::mat4 MVMatrix2 = camera.getViewMatrix();
-
-        MVMatrix2 = glm::translate(ViewMatrix2, glm::vec3(2*cursor.getX_Cursor(), 2*cursor.getY_Cursor(), 2*cursor.getZ_Cursor()));
-            
-        glUniformMatrix4fv(cubeProgram.uMVMatrix, 1, GL_FALSE, glm::value_ptr(NormalMatrix2)); // Value
-        glUniformMatrix4fv(cubeProgram.uNormalMatrix, 1, GL_FALSE, glm::value_ptr(glm::transpose(glm::inverse(MVMatrix2)))); // Value
-        glUniformMatrix4fv(cubeProgram.uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix2 * MVMatrix2)); // Value  
-        glUniform3fv(cubeProgram.uCubeColor, 1, glm::value_ptr(glm::vec3(0.f, 0.f, 0.f))); // Value  
-
-        cursor.drawCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
+        cursor.drawCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor(), maGrid, camera, argv[0]);
 
         glBindVertexArray(0);
 

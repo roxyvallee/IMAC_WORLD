@@ -2,6 +2,11 @@
 
 #include <vector>
 #include "common.hpp"
+#include "Grid.hpp"
+#include "Structure.hpp"
+#include "FreeflyCamera.hpp"
+#include "FilePath.hpp"
+#include "Program.hpp"
 
 namespace glimac{
 
@@ -18,6 +23,8 @@ namespace glimac{
 			const GLuint VERTEX_ATTRIB_POSITION = 0;
 			const GLuint VERTEX_ATTRIB_NORMAL = 1;
 			const GLuint VERTEX_ATTRIB_TEXCOORDS = 2;
+			const int WINDOW_WIDTH = 800;
+			const int WINDOW_HEIGHT = 600;
 
 			std::vector<ShapeVertex> m_Vertices;
 			GLsizei m_nVertexCount;
@@ -39,8 +46,9 @@ namespace glimac{
 			inline GLuint getVAO(){ return m_vao; };
 			inline GLuint getVBO(){ return m_vbo; };
 			void initBufferCube();
-			void drawCube();
+			void drawCube(Grid maGrid, FreeflyCamera camera, const std::string& filepath);
 			void deleteBufferCube();
+			void addLight(CubeProgram &cubeprogram(FilePath));
 
 	};
 
