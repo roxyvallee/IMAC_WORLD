@@ -15,8 +15,20 @@ namespace glimac{
         //return glm::exp(-std::pow(glm::distance(A,B),2));
     }
 
-    //double RadialBasisFunction::radialFunction
+    double RadialBasisFunction::radialFunctionInverseQuadra( glm::vec3 A, glm::vec3 B)
+    {
+        return 1.0/(1.0+(pow(distance(A,B), 2)));
+    }
 
+    double RadialBasisFunction::radialFunctionMultiQuadra( glm::vec3 A, glm::vec3 B)
+    {
+        return sqrt(1.0+(pow(distance(A,B), 2)));
+    }
+
+    double RadialBasisFunction::radialFunctionInverseMultiQuadra( glm::vec3 A, glm::vec3 B)
+    {
+        return 1.0/radialFunctionMultiQuadra(A,B);
+    }
 
     Eigen::VectorXd RadialBasisFunction::findOmega()
     {
@@ -57,7 +69,7 @@ namespace glimac{
         //std::cout<< "6/ ça marche jusque ici" << std::endl;
         for(int i = 0; i < m_Omega.size(); i++)
         {
-            sum += m_Omega[i] * radialFunctionGauss(m_Points[i], V);
+            sum += m_Omega[i] * radialFunctionInverseMultiQuadra(m_Points[i], V);
         }
         //std::cout<< "7/ ça marche jusque ici" << std::endl;
         return sum;

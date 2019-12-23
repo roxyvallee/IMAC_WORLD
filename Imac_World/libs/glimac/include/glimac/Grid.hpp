@@ -2,7 +2,7 @@
 
 #include <vector>
 #include "ShapeGrid.hpp"
-#include "glimac/RadialBasisFunction.hpp"
+#include "RadialBasisFunction.hpp"
 
 namespace glimac{
 
@@ -33,8 +33,8 @@ namespace glimac{
 		inline glm::vec3 getColor_Grid(const int &i) {return m_Grid[i].get_Color();}
 
 		//bool isCube(const int x, const int y, const int z);
-		int findCube(const int x, const int y, const int z);
-		void createCube(const int x, const int y, const int z);
+		int findCube(const int &x, const int &y, const int &z);
+		void createCube(const int &x, const int &y, const int &z);
 		void deleteCube(const int x, const int y, const int z);
 		void extrudeCube(const int x, const int y, const int z);
 		void digCube(const int x, const int y, const int z);

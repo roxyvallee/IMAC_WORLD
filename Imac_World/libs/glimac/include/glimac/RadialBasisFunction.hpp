@@ -17,6 +17,9 @@ namespace glimac{
 
 		double distance(glm::vec3 A, glm::vec3 B);
 		double radialFunctionGauss( glm::vec3 A, glm::vec3 B);
+		double radialFunctionInverseQuadra( glm::vec3 A, glm::vec3 B);
+		double radialFunctionMultiQuadra( glm::vec3 A, glm::vec3 B);
+		double radialFunctionInverseMultiQuadra( glm::vec3 A, glm::vec3 B);
 		Eigen::VectorXd findOmega();
 
 	public:

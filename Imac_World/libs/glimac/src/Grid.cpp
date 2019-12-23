@@ -7,11 +7,19 @@ namespace glimac{
 	Grid::Grid()
 	{
 		// cube 1 en [0,0,0]
-			m_Grid.push_back(ShapeGrid(0,0,0, glm::vec3(1.f, 0.f, 0.f)));
-			// cube 2 en [1,0,0]
-			m_Grid.push_back(ShapeGrid(1,0,0, glm::vec3(0.f, 1.f, 0.f)));
-			// cube 3 en [-1,0,0]
-			m_Grid.push_back(ShapeGrid(-1,0,0, glm::vec3(0.f, 0.f, 1.f)));
+			for(int i=0; i < 10; i++)
+			{
+				for(int j=0; j<10; j++)
+				{
+					for(int k=0; k<3; k++)
+					{
+						m_Grid.push_back(ShapeGrid(i,k,j, glm::vec3(1.f, 0.f, 0.f)));
+					}
+			
+				
+				}
+			}
+		
 
 			m_sizeGrid = m_Grid.size();
 	}
@@ -32,7 +40,7 @@ namespace glimac{
 					{
 						//std::cout<< "8/ ça marche jusque ici : " << test.calculBasicFunction(v) << std::endl;
 						//createCube(i,j,k);
-						m_Grid.push_back(ShapeGrid(i,j,k, glm::vec3(0.f, 0.f, 1.f)));
+						m_Grid.push_back(ShapeGrid(i,j,k, glm::vec3(i, j, k)));
 						m_sizeGrid = m_Grid.size();
 						//std::cout<< "9/ ça marche jusque ici" << std::endl;
 					}
@@ -41,7 +49,7 @@ namespace glimac{
 		}
 	}
 
-	int Grid::findCube(const int x, const int y, const int z) // return index of the cube
+	int Grid::findCube(const int &x, const int &y, const int &z) // return index of the cube
 	{
 		for(int i=0; i< m_sizeGrid; i++)
 		{
@@ -59,8 +67,9 @@ namespace glimac{
 		return -1;	
 	}
 
-	void Grid::createCube(const int x, const int y, const int z)
+	void Grid::createCube(const int &x, const int &y, const int &z)
 	{
+		std::cout << "tu construis le cube ? " << std::endl;
 		if(findCube(x,y,z) == -1 )
 		{
 			m_Grid.push_back(ShapeGrid(x,y,z, glm::vec3(0.f, 0.f, 1.f)));
