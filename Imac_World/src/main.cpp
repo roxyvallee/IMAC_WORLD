@@ -194,6 +194,12 @@ int main(int argc, char** argv) {
                  if (e.key.keysym.sym==SDLK_DOWN){ 
                     cursor.moveDown();
                 }
+                if (e.key.keysym.sym=='l'){ 
+                    cursor.moveFront();
+                }
+                 if (e.key.keysym.sym=='m'){ 
+                    cursor.moveBack();
+                }
                 break;
 
             case SDL_KEYUP:
@@ -294,6 +300,27 @@ int main(int argc, char** argv) {
         if(above.getClickDigCube() &1) {
             //delete notre cube
             maGrid.digCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
+        }
+        if(above.getClickGenerateWorld() &1) {
+            //save our file
+            ///////////////////////
+            ////////ICI////////////
+            ///////////////////////
+            std::cout << "test generate world" << std::endl;
+        }
+        if(above.getClickSaveFile() &1) {
+            //save our file
+            ///////////////////////
+            ////////ICI////////////
+            ///////////////////////
+            std::cout << "test save file" << std::endl;
+        }
+        if(above.getClickOpenFile() &1) {
+            //open our file
+            ///////////////////////
+            ////////ICI////////////
+            ///////////////////////
+           std::cout << "test open file" << std::endl;
         }
 
         above.endFrame(windowManager.m_window);

@@ -28,17 +28,18 @@ namespace glimac
 			inline int getClickDeleteCube(){return clickDeleteCube;};
 			inline int getClickExtrudeCube(){return clickExtrudeCube;};
 			inline int getClickDigCube(){return clickDigCube;};
-			inline glm::vec3 getClickCubeColor(){return colorCube;};
+			inline int getClickGenerateWorld(){return clickGenerateWorld;};
+			inline int getClickSaveFile(){return clickSaveFile;};
+			inline int getClickOpenFile(){return clickOpenFile;};
 
     	private:
     		int clickCreateCube;
 			int clickDeleteCube;
 			int clickExtrudeCube;
         	int clickDigCube;
-        	float r;
-        	float g;
-        	float b;
-        	glm::vec3 colorCube;
+        	int clickGenerateWorld;
+        	int clickSaveFile;
+        	int clickOpenFile;
 	};
 }
 

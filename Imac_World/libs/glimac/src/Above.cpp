@@ -34,6 +34,9 @@ namespace glimac {
         clickDeleteCube = 0;
         clickExtrudeCube = 0;
         clickDigCube = 0;
+        clickGenerateWorld = 0;
+        clickSaveFile = 0;
+        clickOpenFile = 0;
 
         ImGui::Begin("Tools");
 
@@ -61,17 +64,28 @@ namespace glimac {
             clickDigCube++;
         }  
 
-        // buttons for change color cube
-        // static float cubeColor[3] = { 0.0f, 1.0f, 0.0f };
-        r = 0;
-        g = 0;
-        b = 0;
-        if(ImGui::ColorEdit3("Cube color", (float*)cubeSelect.get_ColorPtr())){
-           /* r = cubeColor[0] * 255.f;
-            g = cubeColor[1] * 255.f;
-            b = cubeColor[2] * 255.f;
-            colorCube = glm::vec3(r, g, b);
-            std::cout << "La couleur du cube est : " << colorCube << std::endl;*/
+        // button for generate world
+        if (ImGui::Button("GENERATE WORLD")){
+            changement ^= 1;
+            clickGenerateWorld++;
+        }  
+
+        // button for change color cube
+        if(ImGui::ColorEdit3("Cube color", (float*)cubeSelect.get_ColorPtr())){}
+
+        if (ImGui::BeginMenu("File"))
+        {
+            if (ImGui::MenuItem("Open..", "Ctrl+O")) 
+            { 
+                changement ^= 1; 
+                clickOpenFile++;
+            }
+            if (ImGui::MenuItem("Save", "Ctrl+S"))   
+            { 
+                changement ^= 1; 
+                clickSaveFile++;
+            }
+            ImGui::EndMenu();
         }
 
         ImGui::End();
