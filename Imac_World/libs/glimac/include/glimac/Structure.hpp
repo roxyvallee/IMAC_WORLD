@@ -19,6 +19,7 @@ struct CubeProgram{
     GLint uLightDir_vs;
     GLint uLightIntensity;
     GLint uCubeColor;
+    GLint uAmbiantLightIntensity;
 
     CubeProgram(const FilePath& applicationPath):
         m_Program(loadProgram(applicationPath.dirPath() + "shaders/3D.vs.glsl", applicationPath.dirPath() + "shaders/directionallight.fs.glsl")){
@@ -34,6 +35,7 @@ struct CubeProgram{
         uShininess = glGetUniformLocation(m_Program.getGLId(), "uShininess");
         uLightDir_vs = glGetUniformLocation(m_Program.getGLId(), "uLightDir_vs");
         uLightIntensity = glGetUniformLocation(m_Program.getGLId(), "uLightIntensity");
+        uAmbiantLightIntensity = glGetUniformLocation(m_Program.getGLId(), "uAmbiantLightIntensity");
     }
 };
 
@@ -67,27 +69,5 @@ struct CubeProgramTexture{
         uLightIntensity = glGetUniformLocation(m_Program.getGLId(), "uLightIntensity");
     }
 };
-
-/*struct Light {
-    glm::vec3 intensity;
-    glm::vec3 direction;
-
-    Light(glm::vec3 inIntensity, glm::vec3 inDirection) {
-        intensity = inIntensity;
-        direction = inDirection;
-    }
-};
-
-struct Material {
-    glm::vec3 diffuse;
-    glm::vec3 glossy;
-    float shininess;
-
-    Material (glm::vec3 inDiffuse, glm::vec3 inGlossy, float inShininess) {
-        diffuse = inDiffuse;
-        glossy = inGlossy;
-        shininess = inShininess;
-    }
-};*/
 
 }

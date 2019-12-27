@@ -41,11 +41,7 @@ namespace glimac{
 		m_cursorZ += -1;
 	}
 
-	void Cursor::drawCube(int m_cursorX, int m_cursorY, int m_cursorZ, Grid maGrid, FreeflyCamera camera, const std::string& filepath){
-		FilePath applicationPath(filepath);
-		CubeProgram cubeProgram(applicationPath);
-		cubeProgram.m_Program.use();
-
+	void Cursor::drawCube(int m_cursorX, int m_cursorY, int m_cursorZ, Grid maGrid, FreeflyCamera camera, const CubeProgram &program){
 		const glm::mat4 ProjMatrix2 = glm::perspective( glm::radians(70.f), WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.1f, 100.f);
 		const glm::mat4 ViewMatrix2 = camera.getViewMatrix(); // pour placer notre caméra
 		const glm::mat4 NormalMatrix2;
@@ -53,10 +49,10 @@ namespace glimac{
 
         MVMatrix2 = glm::translate(ViewMatrix2, glm::vec3(2*getX_Cursor(), 2*getY_Cursor(), 2*getZ_Cursor()));
             
-        glUniformMatrix4fv(cubeProgram.uMVMatrix, 1, GL_FALSE, glm::value_ptr(NormalMatrix2)); // Value
-        glUniformMatrix4fv(cubeProgram.uNormalMatrix, 1, GL_FALSE, glm::value_ptr(glm::transpose(glm::inverse(MVMatrix2)))); // Value
-        glUniformMatrix4fv(cubeProgram.uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix2 * MVMatrix2)); // Value  
-        glUniform3fv(cubeProgram.uCubeColor, 1, glm::value_ptr(glm::vec3(0.f, 0.f, 0.f))); // Value 
+        glUniformMatrix4fv(program.uMVMatrix, 1, GL_FALSE, glm::value_ptr(NormalMatrix2)); // Value
+        glUniformMatrix4fv(program.uNormalMatrix, 1, GL_FALSE, glm::value_ptr(glm::transpose(glm::inverse(MVMatrix2)))); // Value
+        glUniformMatrix4fv(program.uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix2 * MVMatrix2)); // Value  
+        glUniform3fv(program.uCubeColor, 1, glm::value_ptr(glm::vec3(0.f, 0.f, 0.f))); // Value 
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         glDisable(GL_DEPTH_TEST);

@@ -39,7 +39,7 @@ namespace glimac{
 		inline int getZ_Cursor() const { return m_cursorZ; }
 
 		//Une surdéfinition ou surcharge (overloading) permet d’utiliser plusieurs méthodes qui portent le même nom au sein d’une même classe avec une signature différente.
-        void drawCube(int m_cursorX, int m_cursorY, int m_cursorZ, Grid maGrid, FreeflyCamera camera, const std::string& filepath);
+        void drawCube(int m_cursorX, int m_cursorY, int m_cursorZ, Grid maGrid, FreeflyCamera camera, const CubeProgram &program);
 
 	};
 }

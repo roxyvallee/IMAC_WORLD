@@ -37,6 +37,8 @@ namespace glimac {
         clickGenerateWorld = 0;
         clickSaveFile = 0;
         clickOpenFile = 0;
+        clickDay = 0;
+        clickNight = 0;
 
         ImGui::Begin("Tools");
 
@@ -87,6 +89,18 @@ namespace glimac {
             }
             ImGui::EndMenu();
         }
+
+        // button for day light
+        if (ImGui::Button("DAY")){
+            changement ^= 1;
+            clickDay++;
+        }  
+
+        // button for night light
+        if (ImGui::Button("NIGHT")){
+            changement ^= 1;
+            clickNight++;
+        } 
 
         ImGui::End();
     }

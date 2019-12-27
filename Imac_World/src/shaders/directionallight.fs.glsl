@@ -16,6 +16,9 @@ uniform float uShininess;
 uniform vec3 uLightDir_vs;
 uniform vec3 uLightIntensity;
 
+// lumière ambiante
+uniform float uAmbiantLightIntensity;
+
 uniform sampler2D uTexture;
 
 vec3 blinnPhong() {
@@ -24,7 +27,7 @@ vec3 blinnPhong() {
   vec3 halfVector = normalize(-vPosition_vs);
   vec3 p1 = uKd*(dot(wi, vNormal_vs));
   vec3 p2 = uKs*pow((dot(halfVector, vNormal_vs)), uShininess);
-  vec3 color = uLightIntensity*(p1+p2);
+  vec3 color = uLightIntensity*(p1+p2+uAmbiantLightIntensity);
   return color;
 }
 

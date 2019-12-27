@@ -142,19 +142,19 @@ int main(int argc, char** argv) {
          
 #pragma region CUBE
 
-        cubeProgram.m_Program.use();
-
         glBindVertexArray(cube.getVAO());
+
+        cubeProgram.m_Program.use();
 
         //CUBE
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, flower.getId());
-            cube.drawCube(maGrid, camera, argv[0]); 
+            cube.drawCube(maGrid, camera, cubeProgram, above.getClickDay(), above.getClickNight()); 
         glBindTexture(GL_TEXTURE_2D, 0);
         glActiveTexture(GL_TEXTURE0);
 
         //CUBE CURSOR
-        cursor.drawCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor(), maGrid, camera, argv[0]);
+        cursor.drawCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor(), maGrid, camera, cubeProgram);
 
         glBindVertexArray(0);
 

@@ -31,6 +31,8 @@ namespace glimac
 			inline int getClickGenerateWorld(){return clickGenerateWorld;};
 			inline int getClickSaveFile(){return clickSaveFile;};
 			inline int getClickOpenFile(){return clickOpenFile;};
+			inline int getClickDay(){return clickDay;};
+			inline int getClickNight(){return clickNight;};
 
     	private:
     		int clickCreateCube;
@@ -40,6 +42,8 @@ namespace glimac
         	int clickGenerateWorld;
         	int clickSaveFile;
         	int clickOpenFile;
+        	int clickDay;
+        	int clickNight;
 	};
 }
 

@@ -46,9 +46,10 @@ namespace glimac{
 			inline GLuint getVAO(){ return m_vao; };
 			inline GLuint getVBO(){ return m_vbo; };
 			void initBufferCube();
-			void drawCube(Grid maGrid, FreeflyCamera camera, const std::string& filepath);
+			void drawCube(Grid maGrid, FreeflyCamera camera, const CubeProgram &program, int clickDay, int clickNight);
 			void deleteBufferCube();
-			void addLight(CubeProgram &cubeprogram(FilePath));
+			void addLight(const CubeProgram &program, const glm::mat4 ViewMatrix);
+			void removeLight(const CubeProgram &program, const glm::mat4 ViewMatrix);
 
 	};
 
