@@ -166,12 +166,10 @@ namespace glimac{
 
 		if(monFlux)
 		{
-
 			for(int i=0; i< getGridSize(); i++)
 			{
 				monFlux << getX_Grid(i)<<" " << getY_Grid(i) <<" " <<getZ_Grid(i) << std::endl; 
 			}
-
 		}
 		else
 		{
@@ -195,23 +193,16 @@ namespace glimac{
 			
 			while(getline(myFile, ligne) )
 			{
-				
-
 				myFile >> ValueX;
 				myFile >> ValueY;
 				myFile >> ValueZ;
 				createCube(ValueX,ValueY,ValueZ);
-
 			}
 			myFile.close();
-			//std::cout << "la taille est : " << getGridSize() << std::endl;
-
 		}
 		else
 		{
 			std::cout << "ERREUR : Impossible d'ouvrir le fichier" << std::endl;
 		}
 	}
-
-
 }

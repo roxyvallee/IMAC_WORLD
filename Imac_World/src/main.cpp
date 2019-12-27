@@ -57,75 +57,93 @@ int main(int argc, char** argv) {
     while(!done) {
         // Event loop:
         SDL_Event e;
-        while(windowManager.pollEvent(e)) {
+
+        while(SDL_PollEvent(&e)) {
+            // Send event to ImGui
+            ImGui_ImplSDL2_ProcessEvent(&e);
+
+            // Pas de SDL event quand on touche à la fenêtre ImGui
+            above.getIO() = ImGui::GetIO();
+            if(above.getIO().WantCaptureMouse){
+                ImGui::CaptureKeyboardFromApp(true);
+            }
+            else{
+                ImGui::CaptureKeyboardFromApp(false);
+            }
+
+            if(e.type == SDL_KEYDOWN && (e.key.keysym.sym == SDLK_ESCAPE)){
+                done = true;
+                break;
+            }
+
             switch(e.type) {
 
-            case SDL_QUIT:
-                done = true; // Leave the loop after this iteration
-                break;
+                case SDL_QUIT:
+                    done = true; // Leave the loop after this iteration
+                    break;
 
-            /* Clic souris */
-            case SDL_MOUSEBUTTONDOWN:
-                mouseY = e.button.y;
-                mouseX = e.button.x;
-                mouseDown = true;
-                break;
-            
-            case SDL_MOUSEBUTTONUP:
-                mouseDown = false;
-                break;
-        
-            case SDL_MOUSEMOTION:                
-                if (mouseDown) {
-                    camera.rotateLeft(e.button.x - mouseX);
-                    camera.rotateUp(e.button.y - mouseY);
-                    mouseX = e.button.x;
+                /* Clic souris */
+                case SDL_MOUSEBUTTONDOWN:
                     mouseY = e.button.y;
-                }
-                break;
+                    mouseX = e.button.x;
+                    mouseDown = true;
+                    break;
+                
+                case SDL_MOUSEBUTTONUP:
+                    mouseDown = false;
+                    break;
+            
+                case SDL_MOUSEMOTION:                
+                    if (mouseDown) {
+                        camera.rotateLeft(e.button.x - mouseX);
+                        camera.rotateUp(e.button.y - mouseY);
+                        mouseX = e.button.x;
+                        mouseY = e.button.y;
+                    }
+                    break;
 
-            case SDL_KEYDOWN:
-                if (e.key.keysym.sym=='z'){ 
-                    camera.moveFront(1);
-                }
-                 if (e.key.keysym.sym=='s'){ 
-                    camera.moveFront(-1);
-                }
-                if (e.key.keysym.sym=='q'){ 
-                    camera.moveLeft(1);
-                }
-                 if (e.key.keysym.sym=='d'){ 
-                    camera.moveLeft(-1);
-                }
-                if (e.key.keysym.sym=='w'){ 
-                    camera.moveUp(1);
-                }
-                 if (e.key.keysym.sym=='x'){ 
-                    camera.moveUp(-1);
-                }
-                if (e.key.keysym.sym== SDLK_LEFT){ 
-                    cursor.moveLeft();
-                }
-                 if (e.key.keysym.sym==SDLK_RIGHT){ 
-                    cursor.moveRight();
-                }
-                if (e.key.keysym.sym==SDLK_UP){ 
-                    cursor.moveUp();
-                }
-                 if (e.key.keysym.sym==SDLK_DOWN){ 
-                    cursor.moveDown();
-                }
-                if (e.key.keysym.sym=='l'){ 
-                    cursor.moveFront();
-                }
-                 if (e.key.keysym.sym=='m'){ 
-                    cursor.moveBack();
-                }
-                break;
+                case SDL_KEYDOWN:
+                    if (e.key.keysym.sym=='z'){ 
+                        camera.moveFront(1);
+                    }
+                     if (e.key.keysym.sym=='s'){ 
+                        camera.moveFront(-1);
+                    }
+                    if (e.key.keysym.sym=='q'){ 
+                        camera.moveLeft(1);
+                    }
+                     if (e.key.keysym.sym=='d'){ 
+                        camera.moveLeft(-1);
+                    }
+                    if (e.key.keysym.sym=='w'){ 
+                        camera.moveUp(1);
+                    }
+                     if (e.key.keysym.sym=='x'){ 
+                        camera.moveUp(-1);
+                    }
+                    if (e.key.keysym.sym== SDLK_LEFT){ 
+                        cursor.moveLeft();
+                    }
+                     if (e.key.keysym.sym==SDLK_RIGHT){ 
+                        cursor.moveRight();
+                    }
+                    if (e.key.keysym.sym==SDLK_UP){ 
+                        cursor.moveUp();
+                    }
+                     if (e.key.keysym.sym==SDLK_DOWN){ 
+                        cursor.moveDown();
+                    }
+                    if (e.key.keysym.sym=='l'){ 
+                        cursor.moveFront();
+                    }
+                     if (e.key.keysym.sym=='m'){ 
+                        cursor.moveBack();
+                    }
+                    break;
 
-            case SDL_KEYUP:
-                std::cout << "la position est : " << cursor.getX_Cursor() << "," << cursor.getY_Cursor() << ";" << cursor.getZ_Cursor() << std::endl;
-                break;
+                case SDL_KEYUP:
+                    std::cout << "la position est : " << cursor.getX_Cursor() << "," << cursor.getY_Cursor() << ";" << cursor.getZ_Cursor() << std::endl;
+                    break;
             }
         }
 
@@ -162,7 +180,7 @@ int main(int argc, char** argv) {
 
 #pragma region IMGUI
 
-        above.drawAbove(WINDOW_WIDTH, WINDOW_HEIGHT, maGrid[maGrid.findCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor())]);
+        above.drawAbove(WINDOW_WIDTH, WINDOW_HEIGHT, maGrid[maGrid.findCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor())], maGrid);
         if(above.getClickCreateCube() &1) {
             //ajouter notre cube
             maGrid.createCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
@@ -180,23 +198,13 @@ int main(int argc, char** argv) {
             maGrid.digCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
         }
         if(above.getClickGenerateWorld() &1) {
-            // generate a world thanks to radial basis functions
+            //generate a world thanks to radial basis functions
             maGrid.generateWorld(10);
-            std::cout << "test generate world" << std::endl;
         }
-        if(above.getClickSaveFile() &1) {
-            //save our file
-            // faudrait changer "test2.txt" par le nom d'un fichier qu'on écrit 
-            maGrid.writeFile("test2.txt");
-            std::cout << "test save file" << std::endl;
+        if(above.getClickResetAll() &1) {
+            //reset all cubes
+            maGrid.resetCube();
         }
-        if(above.getClickOpenFile() &1) {
-            //open our file
-            // faudrait changer "test2.txt" par le nom d'un fichier qu'on veut charger
-            maGrid.readFile("test2.txt");
-           std::cout << "test open file" << std::endl;
-        }
-
         above.endFrame(windowManager.m_window);
 
 #pragma endregion IMGUI

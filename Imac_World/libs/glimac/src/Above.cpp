@@ -12,10 +12,14 @@ namespace glimac {
     void Above::initImgui(SDL_Window* window, SDL_GLContext* glContext) const {
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
-        ImGuiIO& io = ImGui::GetIO();(void)io;
         ImGui_ImplSDL2_InitForOpenGL(window, &glContext);
         ImGui_ImplOpenGL3_Init("#version 330 core");
         ImGui::StyleColorsDark();
+    }
+
+    ImGuiIO Above::getIO(){
+        ImGuiIO& io = ImGui::GetIO();(void)io;
+        return io;
     }
 
     void Above::beginFrame(SDL_Window* window) const {
@@ -25,7 +29,7 @@ namespace glimac {
         ImGui::NewFrame();
     }
 
-    void Above::drawAbove(const int WINDOW_WIDTH, const int WINDOW_HEIGHT, ShapeGrid &cubeSelect){
+    void Above::drawAbove(const int WINDOW_WIDTH, const int WINDOW_HEIGHT, ShapeGrid &cubeSelect, Grid maGrid){
         ImGui::SetNextWindowPos(ImVec2(WINDOW_WIDTH-250, 10));
         ImGui::SetNextWindowSize(ImVec2(240, WINDOW_HEIGHT-(WINDOW_HEIGHT/2)));
 
@@ -35,72 +39,96 @@ namespace glimac {
         clickExtrudeCube = 0;
         clickDigCube = 0;
         clickGenerateWorld = 0;
-        clickSaveFile = 0;
-        clickOpenFile = 0;
         clickDay = 0;
         clickNight = 0;
+        clickResetAll = 0;
 
-        ImGui::Begin("Tools");
+        ImGui::Begin("Menu", &p_open);
 
-        // button for create cube
-        if (ImGui::Button("CREATE CUBE")){
-            changement ^= 1;
-            clickCreateCube++;
-        }  
-       
-        // button for delete cube
-        if (ImGui::Button("DELETE CUBE")){
-            changement ^= 1;
-            clickDeleteCube++;
-        }  
-
-        // button for extrude cube
-        if (ImGui::Button("EXTRUDE CUBE")){
-            changement ^= 1;
-            clickExtrudeCube++;
-        }  
-
-        // button for dig cube
-        if (ImGui::Button("DIG CUBE")){
-            changement ^= 1;
-            clickDigCube++;
-        }  
-
-        // button for generate world
-        if (ImGui::Button("GENERATE WORLD")){
-            changement ^= 1;
-            clickGenerateWorld++;
-        }  
-
-        // button for change color cube
-        if(ImGui::ColorEdit3("Cube color", (float*)cubeSelect.get_ColorPtr())){}
-
-        if (ImGui::BeginMenu("File"))
+        if (ImGui::BeginMenu("Tools"))
         {
-            if (ImGui::MenuItem("Open..", "Ctrl+O")) 
-            { 
-                changement ^= 1; 
-                clickOpenFile++;
-            }
-            if (ImGui::MenuItem("Save", "Ctrl+S"))   
-            { 
-                changement ^= 1; 
-                clickSaveFile++;
-            }
+            // button for create cube
+            if (ImGui::Button("CREATE CUBE")){
+                changement ^= 1;
+                clickCreateCube++;
+            }  
+           
+            // button for delete cube
+            if (ImGui::Button("DELETE CUBE")){
+                changement ^= 1;
+                clickDeleteCube++;
+            }  
+
+            // button for extrude cube
+            if (ImGui::Button("EXTRUDE CUBE")){
+                changement ^= 1;
+                clickExtrudeCube++;
+            }  
+
+            // button for dig cube
+            if (ImGui::Button("DIG CUBE")){
+                changement ^= 1;
+                clickDigCube++;
+            }  
+
+            // button for generate world
+            if (ImGui::Button("GENERATE WORLD")){
+                changement ^= 1;
+                clickGenerateWorld++;
+            }  
+
+            // button for all reset
+            if (ImGui::Button("RESET")){
+                changement ^= 1;
+                clickResetAll++;
+            }  
             ImGui::EndMenu();
         }
 
-        // button for day light
-        if (ImGui::Button("DAY")){
-            changement ^= 1;
-            clickDay++;
-        }  
+        if (ImGui::BeginMenu("Color"))
+        {
+            // button for change color cube
+            if(ImGui::ColorEdit3("Cube color", (float*)cubeSelect.get_ColorPtr())){}
+            ImGui::EndMenu();
+        }
 
-        // button for night light
-        if (ImGui::Button("NIGHT")){
-            changement ^= 1;
-            clickNight++;
-        } 
+        if (ImGui::BeginMenu("Light"))
+        {
+            // button for day light
+            if (ImGui::Button("DAY")){
+                changement ^= 1;
+                clickDay++;
+            }  
+
+            // button for night light
+            if (ImGui::Button("NIGHT")){
+                changement ^= 1;
+                clickNight++;
+            } 
+            ImGui::EndMenu();
+        }
+
+
+        if (ImGui::BeginMenu("File", &p_open))
+        {
+            static std::string name = "scene.txt";
+
+            ImGui::Text("Save file :");
+            ImGui::InputText("Filename", &name);
+
+            if (ImGui::Button("Save"))
+            {
+                maGrid.writeFile(name);
+                std::cout << "click ok save" << std::endl;
+            }
+
+            if (ImGui::Button("Open"))
+            {
+                maGrid.readFile(name);
+                std::cout << "click ok open" << std::endl;
+            }
+            ImGui::EndMenu();
+        }
 
         ImGui::End();
     }
@@ -108,7 +136,6 @@ namespace glimac {
     void Above::endFrame(SDL_Window* window) const {
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-        //SDL_GL_SwapWindow(window);
     }
 }
 
