@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 #include "glimac/Grid.hpp"
 #include "glimac/RadialBasisFunction.hpp"
 
@@ -7,27 +9,31 @@ namespace glimac{
 	Grid::Grid()
 	{
 		// cube 1 en [0,0,0]
+		
 			for(int i=0; i < 10; i++)
 			{
 				for(int j=0; j<10; j++)
 				{
 					for(int k=0; k<3; k++)
 					{
-						m_Grid.push_back(ShapeGrid(i,k,j, glm::vec3(1.f, 0.f, 0.f)));
+						//createCube(i,k,j);
+						m_Grid.push_back(ShapeGrid(i,-k,j, glm::vec3(1.f, 0.f, 0.f)));
 					}
 			
 				
 				}
 			}
 		
-
+	
+			//m_Grid.push_back(ShapeGrid(0,0,0, glm::vec3(1.f, 0.f, 0.f)));
 			m_sizeGrid = m_Grid.size();
 	}
 	
 
-	Grid::Grid(int iterator)
+	void Grid::generateWorld(int iterator)
 	{
 		//std::cout<< "2/ ça marche jusque ici" << std::endl;
+		resetCube();
 		RadialBasisFunction test;
 		for(int i=0; i<iterator; i++)
 		{
@@ -72,7 +78,8 @@ namespace glimac{
 		std::cout << "tu construis le cube ? " << std::endl;
 		if(findCube(x,y,z) == -1 )
 		{
-			m_Grid.push_back(ShapeGrid(x,y,z, glm::vec3(0.f, 0.f, 1.f)));
+			std::cout << x << " " << y << " " << z << std::endl;
+			m_Grid.push_back(ShapeGrid(x,y,z, glm::vec3(x, y, z)));
 			m_sizeGrid = m_Grid.size();
 		}
 		else 
@@ -145,7 +152,66 @@ namespace glimac{
 
 	void Grid::resetCube()
 	{
+		std::cout << "tout effacer" << std::endl;
 		m_Grid.clear();
+		std::cout << "la taille du vector est " << m_Grid.size() << std::endl;
+		m_sizeGrid = 0;
 	}
+
+	
+	void Grid::writeFile(std::string name)
+	{
+		std::string const nomFichier("../Imac_World/save/" + name);
+		std::ofstream monFlux(nomFichier.c_str());
+
+		if(monFlux)
+		{
+
+			for(int i=0; i< getGridSize(); i++)
+			{
+				monFlux << getX_Grid(i)<<" " << getY_Grid(i) <<" " <<getZ_Grid(i) << std::endl; 
+			}
+
+		}
+		else
+		{
+			std::cout << "ERREUR : Impossible d'ouvrir le fichier" << std::endl;
+		}
+	}
+	
+
+	void Grid::readFile(std::string name)
+	{
+		std::ifstream myFile("../Imac_World/save/" + name);
+
+		if(myFile)
+		{
+			std::string ligne;
+			int ValueX;
+			int ValueY;
+			int ValueZ;
+			resetCube();
+			std::cout << "la taille est : " << getGridSize() << std::endl;
+			
+			while(getline(myFile, ligne) )
+			{
+				
+
+				myFile >> ValueX;
+				myFile >> ValueY;
+				myFile >> ValueZ;
+				createCube(ValueX,ValueY,ValueZ);
+
+			}
+			myFile.close();
+			//std::cout << "la taille est : " << getGridSize() << std::endl;
+
+		}
+		else
+		{
+			std::cout << "ERREUR : Impossible d'ouvrir le fichier" << std::endl;
+		}
+	}
+
 
 }

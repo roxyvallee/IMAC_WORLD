@@ -180,24 +180,20 @@ int main(int argc, char** argv) {
             maGrid.digCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
         }
         if(above.getClickGenerateWorld() &1) {
-            //save our file
-            ///////////////////////
-            ////////ICI////////////
-            ///////////////////////
+            // generate a world thanks to radial basis functions
+            maGrid.generateWorld(10);
             std::cout << "test generate world" << std::endl;
         }
         if(above.getClickSaveFile() &1) {
             //save our file
-            ///////////////////////
-            ////////ICI////////////
-            ///////////////////////
+            // faudrait changer "test2.txt" par le nom d'un fichier qu'on écrit 
+            maGrid.writeFile("test2.txt");
             std::cout << "test save file" << std::endl;
         }
         if(above.getClickOpenFile() &1) {
             //open our file
-            ///////////////////////
-            ////////ICI////////////
-            ///////////////////////
+            // faudrait changer "test2.txt" par le nom d'un fichier qu'on veut charger
+            maGrid.readFile("test2.txt");
            std::cout << "test open file" << std::endl;
         }
 

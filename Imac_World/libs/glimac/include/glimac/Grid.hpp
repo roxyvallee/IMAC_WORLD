@@ -1,6 +1,9 @@
 #pragma once
 
 #include <vector>
+#include <iostream>
+#include <fstream>
+#include <string>
 #include "ShapeGrid.hpp"
 #include "RadialBasisFunction.hpp"
 
@@ -18,7 +21,7 @@ namespace glimac{
 		//Grid(){};
 		Grid(); // initialisation de notre univers avec 3 cubes sur la même couche
 
-		Grid(int iterator);
+		void generateWorld(int iterator);
 
 		inline ShapeGrid& operator[](int index) {return m_Grid[index];}
 		
@@ -40,6 +43,8 @@ namespace glimac{
 		void digCube(const int x, const int y, const int z);
 		void changeColor(const int x, const int y, const int z, const glm::vec3 color);
 		void resetCube();
+		void writeFile(std::string name);
+		void readFile(std::string name);
 	};
 
 }
