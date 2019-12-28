@@ -165,11 +165,11 @@ int main(int argc, char** argv) {
         cubeProgram.m_Program.use();
 
         //CUBE
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, flower.getId());
+        /*glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, flower.getId());*/
             cube.drawCube(maGrid, camera, cubeProgram, above.getClickDay(), above.getClickNight()); 
-        glBindTexture(GL_TEXTURE_2D, 0);
-        glActiveTexture(GL_TEXTURE0);
+        /*glBindTexture(GL_TEXTURE_2D, 0);
+        glActiveTexture(GL_TEXTURE0);*/
 
         //CUBE CURSOR
         cursor.drawCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor(), maGrid, camera, cubeProgram);
