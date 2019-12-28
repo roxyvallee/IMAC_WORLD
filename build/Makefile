@@ -120,21 +120,34 @@ glimac: cmake_check_build_system
 
 # fast build rule for target.
 glimac/fast:
-	$(MAKE) -f glimac/CMakeFiles/glimac.dir/build.make glimac/CMakeFiles/glimac.dir/build
+	$(MAKE) -f libs/glimac/CMakeFiles/glimac.dir/build.make libs/glimac/CMakeFiles/glimac.dir/build
 .PHONY : glimac/fast
 
 #=============================================================================
-# Target rules for targets named IW_test_cube_test
+# Target rules for targets named imgui
 
 # Build rule for target.
-IW_test_cube_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 IW_test_cube_test
-.PHONY : IW_test_cube_test
+imgui: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 imgui
+.PHONY : imgui
 
 # fast build rule for target.
-IW_test_cube_test/fast:
-	$(MAKE) -f IW_test/CMakeFiles/IW_test_cube_test.dir/build.make IW_test/CMakeFiles/IW_test_cube_test.dir/build
-.PHONY : IW_test_cube_test/fast
+imgui/fast:
+	$(MAKE) -f libs/imgui/CMakeFiles/imgui.dir/build.make libs/imgui/CMakeFiles/imgui.dir/build
+.PHONY : imgui/fast
+
+#=============================================================================
+# Target rules for targets named src_main
+
+# Build rule for target.
+src_main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 src_main
+.PHONY : src_main
+
+# fast build rule for target.
+src_main/fast:
+	$(MAKE) -f src/CMakeFiles/src_main.dir/build.make src/CMakeFiles/src_main.dir/build
+.PHONY : src_main/fast
 
 # Help Target
 help:
@@ -145,7 +158,8 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... glimac"
-	@echo "... IW_test_cube_test"
+	@echo "... imgui"
+	@echo "... src_main"
 .PHONY : help
 
 

@@ -183,7 +183,7 @@ namespace glimac{
         glUniform3fv(program.uAmbiantLightIntensity, 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));	
 	}
 
-	void Cube::drawCube(Grid maGrid, FreeflyCamera camera, const CubeProgram &program, int clickDay, int clickNight){
+	void Cube::drawCube(Grid &maGrid, FreeflyCamera camera, const CubeProgram &program, int clickDay, int clickNight){
 		//Indique à OpenGL qu'il doit aller chercher sur l'unité de texture 0 
     	//pour lire dans la texture uTexture:
     	glUniform1i(program.uTexture, 0);

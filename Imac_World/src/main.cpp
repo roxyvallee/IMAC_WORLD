@@ -157,17 +157,23 @@ int main(int argc, char** argv) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         above.beginFrame(windowManager.m_window);
-         
+        
+
+
 #pragma region CUBE
+
 
         glBindVertexArray(cube.getVAO());
 
+       
+
         cubeProgram.m_Program.use();
 
+        //std::cout << "erreur de segmentation ici ? #2" << std::endl;
         //CUBE
         /*glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, flower.getId());*/
-            cube.drawCube(maGrid, camera, cubeProgram, above.getClickDay(), above.getClickNight()); 
+        cube.drawCube(maGrid, camera, cubeProgram, above.getClickDay(), above.getClickNight()); 
         /*glBindTexture(GL_TEXTURE_2D, 0);
         glActiveTexture(GL_TEXTURE0);*/
 
@@ -178,9 +184,12 @@ int main(int argc, char** argv) {
 
 #pragma endregion CUBE
 
+
+
 #pragma region IMGUI
 
         above.drawAbove(WINDOW_WIDTH, WINDOW_HEIGHT, maGrid[maGrid.findCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor())], maGrid);
+        //std::cout << "erreur de segmentation ici ? #1" << std::endl;
         if(above.getClickCreateCube() &1) {
             //ajouter notre cube
             maGrid.createCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
@@ -205,13 +214,28 @@ int main(int argc, char** argv) {
             //reset all cubes
             maGrid.resetCube();
         }
+        if(!above.getSaveName().empty())
+        {
+            std::cout << "le texte enregistré est " << above.getSaveName() << std::endl;
+            maGrid.writeFile(above.getSaveName());
+            above.getSaveName().clear();
+        }
+        if(!above.getOpenName().empty())
+        {
+            maGrid.readFile(above.getOpenName());
+            above.getOpenName().clear();
+            std::cout << above.getOpenName().length() << "la taille est " << std::endl;
+        }
+        above.clearString();
         above.endFrame(windowManager.m_window);
-
+        //std::cout << "la taille de mon cube" << maGrid.getGridSize() << std::endl;
 #pragma endregion IMGUI
 
         // Update the display
         windowManager.swapBuffers();
+
     }
+
 
     cube.deleteBufferCube();
  

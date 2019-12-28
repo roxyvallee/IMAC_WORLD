@@ -39,8 +39,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/glimac/cmake_install.cmake")
-  include("/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/IW_test/cmake_install.cmake")
+  include("/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/libs/glimac/cmake_install.cmake")
+  include("/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/libs/imgui/cmake_install.cmake")
+  include("/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/src/cmake_install.cmake")
 
 endif()
 

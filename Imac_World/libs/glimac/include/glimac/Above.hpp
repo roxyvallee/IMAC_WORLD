@@ -25,8 +25,9 @@ namespace glimac
 			void initImgui(SDL_Window* window,SDL_GLContext* glContext) const;
 			ImGuiIO getIO();
 			void beginFrame(SDL_Window* window) const;
-			void drawAbove(const int WINDOW_WIDTH, const int WINDOW_HEIGHT, ShapeGrid &cubeSelect, Grid maGrid);
+			void drawAbove(const int WINDOW_WIDTH, const int WINDOW_HEIGHT, ShapeGrid &cubeSelect, Grid &maGrid);
     		void endFrame(SDL_Window* window) const;
+    		void clearString();
     		inline int getClickCreateCube(){return clickCreateCube;};
 			inline int getClickDeleteCube(){return clickDeleteCube;};
 			inline int getClickExtrudeCube(){return clickExtrudeCube;};
@@ -35,6 +36,8 @@ namespace glimac
 			inline int getClickResetAll(){return clickResetAll;};
 			inline int getClickDay(){return clickDay;};
 			inline int getClickNight(){return clickNight;};
+			inline std::string getSaveName(){return saveName;};
+			inline std::string getOpenName(){return openName;};
 
     	private:
     		bool p_open;
@@ -46,6 +49,8 @@ namespace glimac
         	int clickResetAll;
         	int clickDay;
         	int clickNight;
+        	std::string saveName;
+        	std::string openName;
 
 	};
 }

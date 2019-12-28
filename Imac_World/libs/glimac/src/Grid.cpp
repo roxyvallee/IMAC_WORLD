@@ -55,6 +55,7 @@ namespace glimac{
 		}
 	}
 
+
 	int Grid::findCube(const int &x, const int &y, const int &z) // return index of the cube
 	{
 		for(int i=0; i< m_sizeGrid; i++)
@@ -80,6 +81,20 @@ namespace glimac{
 		{
 			std::cout << x << " " << y << " " << z << std::endl;
 			m_Grid.push_back(ShapeGrid(x,y,z, glm::vec3(x, y, z)));
+			m_sizeGrid = m_Grid.size();
+		}
+		else 
+			std::cerr << "cube already exist" << std::endl;
+	}
+
+
+	void Grid::createCube(const int &x, const int &y, const int &z, const int &r, const int &g, const int &b)
+	{
+		std::cout << "tu construis le cube ? " << std::endl;
+		if(findCube(x,y,z) == -1 )
+		{
+			std::cout << x << " " << y << " " << z << std::endl;
+			m_Grid.push_back(ShapeGrid(x,y,z, glm::vec3(r, g, b)));
 			m_sizeGrid = m_Grid.size();
 		}
 		else 
@@ -154,8 +169,6 @@ namespace glimac{
 	{
 		std::cout << "tout effacer" << std::endl;
 		m_Grid.clear();
-		std::cout << "la taille du vector est " << m_Grid.size() << std::endl;
-		m_sizeGrid = 0;
 	}
 
 	
@@ -166,10 +179,16 @@ namespace glimac{
 
 		if(monFlux)
 		{
+
+			//monFlux << "test sauvegarde " << endl;
+			//monFlux << maGrid.getX_Grid(0) << endl;
+
 			for(int i=0; i< getGridSize(); i++)
 			{
-				monFlux << getX_Grid(i)<<" " << getY_Grid(i) <<" " <<getZ_Grid(i) << std::endl; 
+				glm::vec3 color = getColor_Grid(i); 
+				monFlux << getX_Grid(i)<<" " << getY_Grid(i) <<" " <<getZ_Grid(i) << " " << color[0] << " " << color[1] << " " << color[2] << std::endl; 
 			}
+
 		}
 		else
 		{
@@ -188,21 +207,36 @@ namespace glimac{
 			int ValueX;
 			int ValueY;
 			int ValueZ;
+			int ValueR, ValueG, ValueB; 
 			resetCube();
-			std::cout << "la taille est : " << getGridSize() << std::endl;
-			
+			//std::cout << "la taille est : " << getGridSize() << std::endl;
+			//while(!myFile.eof())
+			//while(getline(myFile,ligne))
 			while(getline(myFile, ligne) )
 			{
+				
+
 				myFile >> ValueX;
 				myFile >> ValueY;
 				myFile >> ValueZ;
-				createCube(ValueX,ValueY,ValueZ);
+				myFile >> ValueR;
+				myFile >> ValueG;
+				myFile >> ValueB;
+				//m_Grid.push_back(ShapeGrid(ValueX,ValueY,ValueZ, glm::vec3(0.f, 1.f, 0.f)));
+				//maGrid.push_back()
+				createCube(ValueX,ValueY,ValueZ,ValueR,ValueG,ValueB);
+				//std::cout << ValueX<< " " << ValueY << " "<< ValueZ << std::endl;
+
 			}
 			myFile.close();
+			//std::cout << "la taille est : " << getGridSize() << std::endl;
+
 		}
 		else
 		{
 			std::cout << "ERREUR : Impossible d'ouvrir le fichier" << std::endl;
 		}
 	}
+
+
 }

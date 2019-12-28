@@ -29,7 +29,7 @@ namespace glimac {
         ImGui::NewFrame();
     }
 
-    void Above::drawAbove(const int WINDOW_WIDTH, const int WINDOW_HEIGHT, ShapeGrid &cubeSelect, Grid maGrid){
+    void Above::drawAbove(const int WINDOW_WIDTH, const int WINDOW_HEIGHT, ShapeGrid &cubeSelect, Grid &maGrid){
         ImGui::SetNextWindowPos(ImVec2(WINDOW_WIDTH-250, 10));
         ImGui::SetNextWindowSize(ImVec2(240, WINDOW_HEIGHT-(WINDOW_HEIGHT/2)));
 
@@ -42,6 +42,7 @@ namespace glimac {
         clickDay = 0;
         clickNight = 0;
         clickResetAll = 0;
+     
 
         ImGui::Begin("Menu", &p_open);
 
@@ -116,15 +117,20 @@ namespace glimac {
             ImGui::Text("Save file :");
             ImGui::InputText("Filename", &name);
 
+
+
             if (ImGui::Button("Save"))
             {
-                maGrid.writeFile(name);
+            	saveName = name;
+            	//std::cout << name << std::endl;
+                //maGrid.writeFile(name);
                 std::cout << "click ok save" << std::endl;
             }
 
             if (ImGui::Button("Open"))
             {
-                maGrid.readFile(name);
+            	openName = name;
+                //maGrid.readFile(name);
                 std::cout << "click ok open" << std::endl;
             }
             ImGui::EndMenu();
@@ -133,10 +139,18 @@ namespace glimac {
         ImGui::End();
     }
 
+    void Above::clearString()
+    {
+    	saveName.clear();
+    	openName.clear();
+    	
+    }
+
     void Above::endFrame(SDL_Window* window) const {
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     }
+
 }
 
 
