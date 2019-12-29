@@ -42,7 +42,8 @@ namespace glimac {
         clickDay = 0;
         clickNight = 0;
         clickResetAll = 0;
-     
+        clickTextureFlower = 0;
+        clickColor = 0;
 
         ImGui::Begin("Menu", &p_open);
 
@@ -109,6 +110,20 @@ namespace glimac {
             ImGui::EndMenu();
         }
 
+        if (ImGui::BeginMenu("Texture"))
+        {
+            // button for texture flower
+            if (ImGui::Button("FLOWER")){
+                changement ^= 1;
+                clickTextureFlower++;
+            }  
+            // button for color
+            if (ImGui::Button("COLOR")){
+                changement ^= 1;
+                clickColor++;
+            }  
+            ImGui::EndMenu();
+        }
 
         if (ImGui::BeginMenu("File", &p_open))
         {
@@ -125,6 +140,10 @@ namespace glimac {
             	//std::cout << name << std::endl;
                 //maGrid.writeFile(name);
                 std::cout << "click ok save" << std::endl;
+                //changement ^= 1;
+                //clickSave++;
+                //maGrid.writeFile(name);
+               //std::cout << "click ok save" << std::endl;
             }
 
             if (ImGui::Button("Open"))
@@ -132,6 +151,8 @@ namespace glimac {
             	openName = name;
                 //maGrid.readFile(name);
                 std::cout << "click ok open" << std::endl;
+                //maGrid.readFile(name);
+               // std::cout << "click ok open" << std::endl;
             }
             ImGui::EndMenu();
         }

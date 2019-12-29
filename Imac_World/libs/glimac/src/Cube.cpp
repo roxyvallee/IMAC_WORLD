@@ -114,7 +114,7 @@ namespace glimac{
 		m_Vertices.push_back(right_down_back);
 	}
 
-	Cube::Cube(){
+	Cube::Cube() : m_type(0){
 		add_up_face();
 		add_down_face();
 		add_front_face();
@@ -149,7 +149,7 @@ namespace glimac{
 	    glBindVertexArray(0);
 	}
 
-	void Cube::addLight(const CubeProgram &program, const glm::mat4 ViewMatrix){
+	/*void Cube::addLight(const CubeProgram &program, const glm::mat4 ViewMatrix){
     	glm::vec4 lightDir4 =  glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 		lightDir4 = lightDir4 * ViewMatrix;
         glm::vec3 lightDir = glm::vec3(lightDir.x, lightDir.y, lightDir.z);
@@ -218,7 +218,7 @@ namespace glimac{
 
             glDrawArrays(GL_TRIANGLES, 0, getVertexCount());
         }
-	}
+	}*/
 
 	void Cube::deleteBufferCube(){
 		glDeleteBuffers(1,&m_vbo);

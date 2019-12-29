@@ -45,6 +45,7 @@ int main(int argc, char** argv) {
 
     FilePath applicationPath(argv[0]);
     CubeProgram cubeProgram(applicationPath);
+    CubeProgramTexture cubeProgramTexture(applicationPath);
 
     cube.initBufferCube();
     cursor.initBufferCube();
@@ -165,15 +166,21 @@ int main(int argc, char** argv) {
 
         glBindVertexArray(cube.getVAO());
 
-       
 
-        cubeProgram.m_Program.use();
+       //cubeProgramTexture.m_Program.use();
 
         //std::cout << "erreur de segmentation ici ? #2" << std::endl;
         //CUBE
+        //cube.m_type = 1;
+        if(cube.m_type == 0){
+             cube.drawCube(maGrid, camera, cubeProgram, above.getClickDay(), above.getClickNight(), flower); 
+        }
+        else{
+             cube.drawCube(maGrid, camera, cubeProgramTexture, above.getClickDay(), above.getClickNight(), flower); 
+        }
         /*glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, flower.getId());*/
-        cube.drawCube(maGrid, camera, cubeProgram, above.getClickDay(), above.getClickNight()); 
+       //cube.drawCube(maGrid, camera, cubeProgramTexture, above.getClickDay(), above.getClickNight(), flower); 
         /*glBindTexture(GL_TEXTURE_2D, 0);
         glActiveTexture(GL_TEXTURE0);*/
 
@@ -213,6 +220,14 @@ int main(int argc, char** argv) {
         if(above.getClickResetAll() &1) {
             //reset all cubes
             maGrid.resetCube();
+        }
+        if(above.getClickTextureFlower() &1) {
+            //active texture flower
+            cube.m_type = 1;
+        }
+        if(above.getClickColor() &1) {
+            //active color
+            cube.m_type = 0;
         }
         if(!above.getSaveName().empty())
         {

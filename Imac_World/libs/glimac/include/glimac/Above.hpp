@@ -36,6 +36,8 @@ namespace glimac
 			inline int getClickResetAll(){return clickResetAll;};
 			inline int getClickDay(){return clickDay;};
 			inline int getClickNight(){return clickNight;};
+			inline int getClickTextureFlower(){return clickTextureFlower;};
+			inline int getClickColor(){return clickColor;};
 			inline std::string getSaveName(){return saveName;};
 			inline std::string getOpenName(){return openName;};
 
@@ -49,6 +51,8 @@ namespace glimac
         	int clickResetAll;
         	int clickDay;
         	int clickNight;
+        	int clickTextureFlower;
+        	int clickColor;
         	std::string saveName;
         	std::string openName;
 
