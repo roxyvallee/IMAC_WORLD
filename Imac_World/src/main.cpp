@@ -160,32 +160,17 @@ int main(int argc, char** argv) {
         above.beginFrame(windowManager.m_window);
         
 
-
 #pragma region CUBE
 
 
         glBindVertexArray(cube.getVAO());
 
 
-       //cubeProgramTexture.m_Program.use();
-
-        //std::cout << "erreur de segmentation ici ? #2" << std::endl;
-        //CUBE
-        //cube.m_type = 1;
-        /*
-        if(cube.m_type == 0){
-             cube.drawCube(maGrid, camera, cubeProgram, above.getClickDay(), above.getClickNight(), flower); 
-        }
-        else{
-             cube.drawCube(maGrid, camera, cubeProgramTexture, above.getClickDay(), above.getClickNight(), flower); 
-        }
-        */
         for(int i=0; i < maGrid.getGridSize(); i++)
         {
             if( maGrid.getType_Grid(i) == 0)
             {
                 cube.drawCube(maGrid, i, camera, cubeProgram, above.getClickDay(), above.getClickNight(), flower); 
-
             }
             else
             {
@@ -193,12 +178,6 @@ int main(int argc, char** argv) {
             }
         }
         
-        /*glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, flower.getId());*/
-       //cube.drawCube(maGrid, camera, cubeProgramTexture, above.getClickDay(), above.getClickNight(), flower); 
-        /*glBindTexture(GL_TEXTURE_2D, 0);
-        glActiveTexture(GL_TEXTURE0);*/
-
         //CUBE CURSOR
         cursor.drawCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor(), maGrid, camera, cubeProgram);
 
@@ -238,37 +217,33 @@ int main(int argc, char** argv) {
         }
         if(above.getClickTextureFlower() &1) {
             //active texture flower
-            //cube.m_type = 1;
             maGrid.changeType(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor(), 1);
-
         }
         if(above.getClickColor() &1) {
             //active color
-            //cube.m_type = 0;
             maGrid.changeType(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor(), 0);
         }
         if(!above.getSaveName().empty())
         {
-            //std::cout << "le texte enregistré est " << above.getSaveName() << std::endl;
+            //save file
             maGrid.writeFile(above.getSaveName());
             above.getSaveName().clear();
         }
         if(!above.getOpenName().empty())
         {
+            //open file
             maGrid.readFile(above.getOpenName());
             above.getOpenName().clear();
-            //std::cout << above.getOpenName().length() << "la taille est " << std::endl;
         }
         above.clearString();
         above.endFrame(windowManager.m_window);
-        //std::cout << "la taille de mon cube" << maGrid.getGridSize() << std::endl;
+
 #pragma endregion IMGUI
 
         // Update the display
         windowManager.swapBuffers();
 
     }
-
 
     cube.deleteBufferCube();
  

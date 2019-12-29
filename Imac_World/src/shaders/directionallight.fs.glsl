@@ -1,37 +1,54 @@
 #version 330
 
-// Entrées du shader
-in vec3 vPosition_vs; // Position du sommet transformé dans l'espace View
-in vec3 vNormal_vs; // Normale du sommet transformé dans l'espace View
-in vec2 vTexCoords; // Coordonnées de texture du sommet
+// Shader inputs
+in vec3 vPosition_vs; // Position of the transformed vertex in the View space
+in vec3 vNormal_vs; // Normal of the transformed top in the View space
 
 uniform vec3 uCubeColor;
-
-out vec3 fFragColor;
-
 uniform vec3 uKd;
 uniform vec3 uKs;
 uniform float uShininess;
 
+// directional light
 uniform vec3 uLightDir_vs;
-uniform vec3 uLightIntensity;
+uniform vec3 uLightIntensityD;
 
-// lumière ambiante
+// point of light
+uniform vec3 uLightPos_vs;
+uniform vec3 uLightIntensityP;
+
+// surrounding light
 uniform float uAmbiantLightIntensity;
 
-uniform sampler2D uTexture;
+out vec3 fFragColor;
 
-vec3 blinnPhong() {
-  // Couleur=Li(Kd(wi˙N)+Ks(halfVector˙N)shininess)
-  vec3 wi = normalize(uLightDir_vs);
-  vec3 halfVector = normalize(-vPosition_vs);
-  vec3 p1 = uKd*(dot(wi, vNormal_vs));
-  vec3 p2 = uKs*pow((dot(halfVector, vNormal_vs)), uShininess);
-  vec3 color = uLightIntensity*(p1+p2+uAmbiantLightIntensity);
-  return color;
+vec3 blinnPhongD() {
+
+    vec3 w_zero = normalize(-vPosition_vs);
+    vec3 wi = normalize(-uLightDir_vs);
+    vec3 halfVector = (w_zero + wi)/2;
+
+    vec3 p1 = uKd*(dot(wi, vNormal_vs));
+    vec3 p2 = uKs*pow((dot(halfVector, vNormal_vs)), uShininess);
+    vec3 lightD = uLightIntensityD*(p1+p2);
+
+    return lightD;
+}
+
+vec3 blinnPhongP() {
+	float d = distance(uLightPos_vs, vPosition_vs);
+  	vec3 w_zero = normalize(-vPosition_vs);
+  	vec3 wi = normalize(uLightDir_vs - vPosition_vs);
+  	vec3 halfVector = (w_zero + wi)/2;
+
+  	vec3 p1 = uKd*(dot(wi, vNormal_vs));
+  	vec3 p2 = uKs*pow((dot(halfVector, vNormal_vs)), uShininess);
+  	vec3 lightP = (uLightIntensityP / (d*d)) *(p1+p2);
+
+    return lightP;
 }
 
 void main() {
-  //fFragColor = blinnPhong() * texture(uTexture, vTexCoords).xyz;
-  fFragColor = blinnPhong() * uCubeColor;
+	vec3 finalLight = min(blinnPhongD() + blinnPhongP() + uAmbiantLightIntensity, 1.);
+    fFragColor = finalLight * uCubeColor;
 }

@@ -9,23 +9,16 @@ namespace glimac{
 	Grid::Grid()
 	{
 		// cube 1 en [0,0,0]
-		
 			for(int i=0; i < 10; i++)
 			{
 				for(int j=0; j<10; j++)
 				{
 					for(int k=0; k<3; k++)
 					{
-						//createCube(i,k,j);
 						m_Grid.push_back(ShapeGrid(i,-k,j, glm::vec3(1.f, 0.f, 0.f)));
 					}
-			
-				
 				}
 			}
-		
-	
-			//m_Grid.push_back(ShapeGrid(0,0,0, glm::vec3(1.f, 0.f, 0.f)));
 			m_sizeGrid = m_Grid.size();
 	}
 	
@@ -44,11 +37,8 @@ namespace glimac{
 					glm::vec3 v = {i,j,k};
 					if(test.calculBasisFunction(v) >= 0.0)
 					{
-						//std::cout<< "8/ ça marche jusque ici : " << test.calculBasicFunction(v) << std::endl;
-						//createCube(i,j,k);
 						m_Grid.push_back(ShapeGrid(i,j,k, glm::vec3(i, j, k)));
 						m_sizeGrid = m_Grid.size();
-						//std::cout<< "9/ ça marche jusque ici" << std::endl;
 					}
 				}
 			}
@@ -76,7 +66,6 @@ namespace glimac{
 
 	void Grid::createCube(const int &x, const int &y, const int &z)
 	{
-		//std::cout << "tu construis le cube ? " << std::endl;
 		if(findCube(x,y,z) == -1 )
 		{
 			std::cout << x << " " << y << " " << z << std::endl;
@@ -90,7 +79,6 @@ namespace glimac{
 
 	void Grid::createCube(const int &x, const int &y, const int &z, const int &r, const int &g, const int &b)
 	{
-		//std::cout << "tu construis le cube ? " << std::endl;
 		if(findCube(x,y,z) == -1 )
 		{
 			std::cout << x << " " << y << " " << z << std::endl;
@@ -175,11 +163,9 @@ namespace glimac{
 
 	void Grid::resetCube()
 	{
-		//std::cout << "tout effacer" << std::endl;
 		m_Grid.clear();
 	}
 
-	
 	void Grid::writeFile(std::string name)
 	{
 		std::string const nomFichier("../Imac_World/save/" + name);
@@ -187,7 +173,6 @@ namespace glimac{
 
 		if(monFlux)
 		{
-
 			//monFlux << "test sauvegarde " << endl;
 			//monFlux << maGrid.getX_Grid(0) << endl;
 
@@ -196,7 +181,6 @@ namespace glimac{
 				glm::vec3 color = getColor_Grid(i); 
 				monFlux << getX_Grid(i)<<" " << getY_Grid(i) <<" " <<getZ_Grid(i) << " " << color[0] << " " << color[1] << " " << color[2] << std::endl; 
 			}
-
 		}
 		else
 		{
@@ -204,7 +188,6 @@ namespace glimac{
 		}
 	}
 	
-
 	void Grid::readFile(std::string name)
 	{
 		std::ifstream myFile("../Imac_World/save/" + name);
@@ -222,8 +205,6 @@ namespace glimac{
 			//while(getline(myFile,ligne))
 			while(getline(myFile, ligne) )
 			{
-				
-
 				myFile >> ValueX;
 				myFile >> ValueY;
 				myFile >> ValueZ;
@@ -234,17 +215,13 @@ namespace glimac{
 				//maGrid.push_back()
 				createCube(ValueX,ValueY,ValueZ,ValueR,ValueG,ValueB);
 				//std::cout << ValueX<< " " << ValueY << " "<< ValueZ << std::endl;
-
 			}
 			myFile.close();
 			//std::cout << "la taille est : " << getGridSize() << std::endl;
-
 		}
 		else
 		{
 			std::cout << "ERREUR : Impossible d'ouvrir le fichier" << std::endl;
 		}
 	}
-
-
 }

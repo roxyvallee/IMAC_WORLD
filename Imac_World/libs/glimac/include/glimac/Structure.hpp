@@ -17,7 +17,9 @@ struct CubeProgram{
     GLint uKs;
     GLint uShininess;
     GLint uLightDir_vs;
-    GLint uLightIntensity;
+    GLint uLightIntensityD;
+    GLint uLightPos_vs;
+    GLint uLightIntensityP;
     GLint uCubeColor;
     GLint uAmbiantLightIntensity;
 
@@ -34,7 +36,9 @@ struct CubeProgram{
         uKs = glGetUniformLocation(m_Program.getGLId(), "uKs");
         uShininess = glGetUniformLocation(m_Program.getGLId(), "uShininess");
         uLightDir_vs = glGetUniformLocation(m_Program.getGLId(), "uLightDir_vs");
-        uLightIntensity = glGetUniformLocation(m_Program.getGLId(), "uLightIntensity");
+        uLightIntensityD = glGetUniformLocation(m_Program.getGLId(), "uLightIntensityD");
+        uLightPos_vs = glGetUniformLocation(m_Program.getGLId(), "uLightPos_vs");
+        uLightIntensityP = glGetUniformLocation(m_Program.getGLId(), "uLightIntensityP");
         uAmbiantLightIntensity = glGetUniformLocation(m_Program.getGLId(), "uAmbiantLightIntensity");
     }
 };
@@ -50,7 +54,9 @@ struct CubeProgramTexture{
     GLint uKs;
     GLint uShininess;
     GLint uLightDir_vs;
-    GLint uLightIntensity;
+    GLint uLightIntensityD;
+    GLint uLightPos_vs;
+    GLint uLightIntensityP;
     GLint uCubeColor;
     GLint uAmbiantLightIntensity;
 
@@ -67,7 +73,9 @@ struct CubeProgramTexture{
         uKs = glGetUniformLocation(m_Program.getGLId(), "uKs");
         uShininess = glGetUniformLocation(m_Program.getGLId(), "uShininess");
         uLightDir_vs = glGetUniformLocation(m_Program.getGLId(), "uLightDir_vs");
-        uLightIntensity = glGetUniformLocation(m_Program.getGLId(), "uLightIntensity");
+        uLightIntensityD = glGetUniformLocation(m_Program.getGLId(), "uLightIntensityD");
+        uLightPos_vs = glGetUniformLocation(m_Program.getGLId(), "uLightPos_vs");
+        uLightIntensityP = glGetUniformLocation(m_Program.getGLId(), "uLightIntensityP");
         uAmbiantLightIntensity = glGetUniformLocation(m_Program.getGLId(), "uAmbiantLightIntensity");
     }
 };

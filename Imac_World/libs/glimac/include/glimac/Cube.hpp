@@ -54,7 +54,6 @@ namespace glimac{
 				program.m_Program.use();
 				//Indique à OpenGL qu'il doit aller chercher sur l'unité de texture 0 
 		    	//pour lire dans la texture uTexture:
-		    	//glUniform1i(program.uIsThereTexture, 0);
 		    	glUniform1i(program.uTexture, 0);
 
 				const glm::mat4 ProjMatrix = glm::perspective( glm::radians(70.f), WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.1f, 100.f);
@@ -65,81 +64,58 @@ namespace glimac{
 		        const glm::mat4 NormalMatrix;
 		        glm::mat4 MVMatrix = camera.getViewMatrix();
 
-		        // Calcul de la lumiere
-		        if(clickDay &1){
-		        	addLight(program, ViewMatrix);
-			        //std::cout << "day" << std::endl;
-		        }
 
-		        if(clickNight &1){
-		        	removeLight(program, ViewMatrix);
-			        //std::cout << "night" << std::endl;
-		        }
-		        
-			
-		            MVMatrix = glm::translate(ViewMatrix, glm::vec3(2*maGrid.getX_Grid(i), 2*maGrid.getY_Grid(i), 2*maGrid.getZ_Grid(i)));
-		           
-		            glUniformMatrix4fv(program.uMVMatrix, 1, GL_FALSE, glm::value_ptr(NormalMatrix)); // Value
-		            glUniformMatrix4fv(program.uNormalMatrix, 1, GL_FALSE, glm::value_ptr(glm::transpose(glm::inverse(MVMatrix)))); // Value
-		            glUniformMatrix4fv(program.uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix * MVMatrix)); // Value  
-		            glUniform3fv(program.uCubeColor, 1, glm::value_ptr(maGrid.getColor_Grid(i))); // Value  
-
-		           /* if(m_type == 0)
-		            {*/
-		            glActiveTexture(GL_TEXTURE0);
-			        glBindTexture(GL_TEXTURE_2D, flower.getId());
-			            glDrawArrays(GL_TRIANGLES, 0, getVertexCount());
-			            //std::cout << "type couleur" << std::endl; 
-			        glBindTexture(GL_TEXTURE_2D, 0);
-			       	glActiveTexture(GL_TEXTURE0);  
-		           /* }
-		            else
-		            {
-		            	glActiveTexture(GL_TEXTURE0);
-			        	glBindTexture(GL_TEXTURE_2D, flower.getId());
-			            	glDrawArrays(GL_TRIANGLES, 0, getVertexCount());
-			            glBindTexture(GL_TEXTURE_2D, 0);
-			        	glActiveTexture(GL_TEXTURE0);
-			        	std::cout << "type texture" << std::endl;    
-		            }*/
-		        
-
-			}
-
-			template <typename T>
-			void addLight(const T &program, const glm::mat4 ViewMatrix){
-				glm::vec4 lightDir4 =  glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-				lightDir4 = lightDir4 * ViewMatrix;
-		        glm::vec3 lightDir = glm::vec3(lightDir.x, lightDir.y, lightDir.z);
-		        
 		        // Shininess
 		        glUniform1f(program.uShininess, 50.0f);
 		        glUniform3fv(program.uKd,1, glm::value_ptr(glm::vec3(0.4f, 0.4f, 0.4f)));
 		        glUniform3fv(program.uKs,1, glm::value_ptr(glm::vec3(0.4f, 0.4f, 0.4f)));
 
-		        // Light variables
-		        glUniform3fv(program.uLightIntensity, 1, glm::value_ptr(glm::vec3(5.f, 5.f, 5.f)));
-		        //glm::vec3 tmpLightDir(glm::mat3(camera.getViewMatrix())*glm::vec3(1.f, 1.f, 1.f));
-		        glUniform3fv(program.uLightDir_vs, 1, glm::value_ptr(glm::vec3(1.f, 1.f, 1.f)));
-				glUniform3fv(program.uAmbiantLightIntensity, 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));	
+		    	glm::vec4 lightDir =  ViewMatrix * glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+		        glUniform3f(program.uLightDir_vs, lightDir.x, lightDir.y, lightDir.z);
+		        glm::vec4 lightPos =  ViewMatrix * glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
+		        glUniform3f(program.uLightPos_vs, lightPos.x, lightPos.y, lightPos.z);
+		        
+		        glUniform3fv(program.uAmbiantLightIntensity, 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));	
+
+		        if(clickDay &1){
+		        	addLight(program, ViewMatrix);
+			        std::cout << "day" << std::endl;
+		        }
+
+		        if(clickNight &1){
+		        	removeLight(program, ViewMatrix);
+			        std::cout << "night" << std::endl;
+		        }
+		       
+	            MVMatrix = glm::translate(ViewMatrix, glm::vec3(2*maGrid.getX_Grid(i), 2*maGrid.getY_Grid(i), 2*maGrid.getZ_Grid(i)));
+	           
+	            glUniformMatrix4fv(program.uMVMatrix, 1, GL_FALSE, glm::value_ptr(NormalMatrix)); // Value
+	            glUniformMatrix4fv(program.uNormalMatrix, 1, GL_FALSE, glm::value_ptr(glm::transpose(glm::inverse(MVMatrix)))); // Value
+	            glUniformMatrix4fv(program.uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix * MVMatrix)); // Value  
+	            glUniform3fv(program.uCubeColor, 1, glm::value_ptr(maGrid.getColor_Grid(i))); // Value  
+
+	            glActiveTexture(GL_TEXTURE0);
+		        glBindTexture(GL_TEXTURE_2D, flower.getId());
+		            glDrawArrays(GL_TRIANGLES, 0, getVertexCount());
+		        glBindTexture(GL_TEXTURE_2D, 0);
+		       	glActiveTexture(GL_TEXTURE0); 
 			}
 
 			template <typename T>
-			void removeLight(const T &program, const glm::mat4 ViewMatrix){
-				glm::vec4 lightDir4 =  glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
-			    lightDir4 = lightDir4 * ViewMatrix;
-		        glm::vec3 lightDir = glm::vec3(lightDir.x, lightDir.y, lightDir.z);
-		        
-		        // Shininess
-		        glUniform1f(program.uShininess, 0.0f);
-		        glUniform3fv(program.uKd,1, glm::value_ptr(glm::vec3(0.f, 0.f, 0.f)));
-		        glUniform3fv(program.uKs,1, glm::value_ptr(glm::vec3(0.f, 0.f, 0.f)));
-
+			void addLight(const T &program, const glm::mat4 ViewMatrix){
 		        // Light variables
-		        glUniform3fv(program.uLightIntensity, 1, glm::value_ptr(glm::vec3(0.f, 0.f, 0.f)));
-		        //glm::vec3 tmpLightDir(glm::mat3(camera.getViewMatrix())*glm::vec3(0.f, 0.f, 0.f));
-		        glUniform3fv(program.uLightDir_vs, 1, glm::value_ptr(glm::vec3(0.f, 0.f, 0.f)));
-		        glUniform3fv(program.uAmbiantLightIntensity, 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));	
+		        glUniform3fv(program.uLightIntensityD, 1, glm::value_ptr(glm::vec3(5.f, 5.f, 5.f)));
+		        glUniform3fv(program.uLightIntensityP, 1, glm::value_ptr(glm::vec3(0.f, 0.f, 0.f)));
+		         std::cout << "add light" << std::endl;
+			}
+			
+			template <typename T>
+			void removeLight(const T &program, const glm::mat4 ViewMatrix){
+		        // Light variables
+		        glUniform3fv(program.uLightIntensityP, 1, glm::value_ptr(glm::vec3(5.f, 5.f, 5.f)));
+		        glUniform3fv(program.uLightIntensityD, 1, glm::value_ptr(glm::vec3(0.f, 0.f, 0.f)));
+		        std::cout << "remove light" << std::endl;
+
 			}
 			void deleteBufferCube();
 	};

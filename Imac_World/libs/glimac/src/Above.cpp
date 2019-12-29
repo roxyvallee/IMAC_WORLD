@@ -132,27 +132,16 @@ namespace glimac {
             ImGui::Text("Save file :");
             ImGui::InputText("Filename", &name);
 
-
-
             if (ImGui::Button("Save"))
             {
             	saveName = name;
-            	//std::cout << name << std::endl;
-                //maGrid.writeFile(name);
                 std::cout << "click ok save" << std::endl;
-                //changement ^= 1;
-                //clickSave++;
-                //maGrid.writeFile(name);
-               //std::cout << "click ok save" << std::endl;
             }
 
             if (ImGui::Button("Open"))
             {
             	openName = name;
-                //maGrid.readFile(name);
                 std::cout << "click ok open" << std::endl;
-                //maGrid.readFile(name);
-               // std::cout << "click ok open" << std::endl;
             }
             ImGui::EndMenu();
         }
