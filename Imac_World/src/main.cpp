@@ -143,7 +143,7 @@ int main(int argc, char** argv) {
                     break;
 
                 case SDL_KEYUP:
-                    std::cout << "la position est : " << cursor.getX_Cursor() << "," << cursor.getY_Cursor() << ";" << cursor.getZ_Cursor() << std::endl;
+                    //std::cout << "la position est : " << cursor.getX_Cursor() << "," << cursor.getY_Cursor() << ";" << cursor.getZ_Cursor() << std::endl;
                     break;
             }
         }
@@ -172,12 +172,27 @@ int main(int argc, char** argv) {
         //std::cout << "erreur de segmentation ici ? #2" << std::endl;
         //CUBE
         //cube.m_type = 1;
+        /*
         if(cube.m_type == 0){
              cube.drawCube(maGrid, camera, cubeProgram, above.getClickDay(), above.getClickNight(), flower); 
         }
         else{
              cube.drawCube(maGrid, camera, cubeProgramTexture, above.getClickDay(), above.getClickNight(), flower); 
         }
+        */
+        for(int i=0; i < maGrid.getGridSize(); i++)
+        {
+            if( maGrid.getType_Grid(i) == 0)
+            {
+                cube.drawCube(maGrid, i, camera, cubeProgram, above.getClickDay(), above.getClickNight(), flower); 
+
+            }
+            else
+            {
+                cube.drawCube(maGrid, i, camera, cubeProgramTexture, above.getClickDay(), above.getClickNight(), flower);    
+            }
+        }
+        
         /*glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, flower.getId());*/
        //cube.drawCube(maGrid, camera, cubeProgramTexture, above.getClickDay(), above.getClickNight(), flower); 
@@ -223,15 +238,18 @@ int main(int argc, char** argv) {
         }
         if(above.getClickTextureFlower() &1) {
             //active texture flower
-            cube.m_type = 1;
+            //cube.m_type = 1;
+            maGrid.changeType(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor(), 1);
+
         }
         if(above.getClickColor() &1) {
             //active color
-            cube.m_type = 0;
+            //cube.m_type = 0;
+            maGrid.changeType(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor(), 0);
         }
         if(!above.getSaveName().empty())
         {
-            std::cout << "le texte enregistré est " << above.getSaveName() << std::endl;
+            //std::cout << "le texte enregistré est " << above.getSaveName() << std::endl;
             maGrid.writeFile(above.getSaveName());
             above.getSaveName().clear();
         }
@@ -239,7 +257,7 @@ int main(int argc, char** argv) {
         {
             maGrid.readFile(above.getOpenName());
             above.getOpenName().clear();
-            std::cout << above.getOpenName().length() << "la taille est " << std::endl;
+            //std::cout << above.getOpenName().length() << "la taille est " << std::endl;
         }
         above.clearString();
         above.endFrame(windowManager.m_window);

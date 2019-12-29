@@ -48,8 +48,9 @@ namespace glimac{
 			inline GLuint getVAO(){ return m_vao; };
 			inline GLuint getVBO(){ return m_vbo; };
 			void initBufferCube();
+
 			template <typename T>
-			void drawCube(Grid &maGrid, FreeflyCamera camera, const T &program, int clickDay, int clickNight, Texture &flower){
+			void drawCube(Grid &maGrid, const int i, FreeflyCamera camera, const T &program, int clickDay, int clickNight, Texture &flower){
 				program.m_Program.use();
 				//Indique à OpenGL qu'il doit aller chercher sur l'unité de texture 0 
 		    	//pour lire dans la texture uTexture:
@@ -67,16 +68,15 @@ namespace glimac{
 		        // Calcul de la lumiere
 		        if(clickDay &1){
 		        	addLight(program, ViewMatrix);
-			        std::cout << "day" << std::endl;
+			        //std::cout << "day" << std::endl;
 		        }
 
 		        if(clickNight &1){
 		        	removeLight(program, ViewMatrix);
-			        std::cout << "night" << std::endl;
+			        //std::cout << "night" << std::endl;
 		        }
 		        
-				for (int i = 0; i < maGrid.getGridSize(); ++i)
-		        {
+			
 		            MVMatrix = glm::translate(ViewMatrix, glm::vec3(2*maGrid.getX_Grid(i), 2*maGrid.getY_Grid(i), 2*maGrid.getZ_Grid(i)));
 		           
 		            glUniformMatrix4fv(program.uMVMatrix, 1, GL_FALSE, glm::value_ptr(NormalMatrix)); // Value
@@ -89,7 +89,7 @@ namespace glimac{
 		            glActiveTexture(GL_TEXTURE0);
 			        glBindTexture(GL_TEXTURE_2D, flower.getId());
 			            glDrawArrays(GL_TRIANGLES, 0, getVertexCount());
-			            std::cout << "type couleur" << std::endl; 
+			            //std::cout << "type couleur" << std::endl; 
 			        glBindTexture(GL_TEXTURE_2D, 0);
 			       	glActiveTexture(GL_TEXTURE0);  
 		           /* }
@@ -102,9 +102,10 @@ namespace glimac{
 			        	glActiveTexture(GL_TEXTURE0);
 			        	std::cout << "type texture" << std::endl;    
 		            }*/
-		        }
+		        
 
 			}
+
 			template <typename T>
 			void addLight(const T &program, const glm::mat4 ViewMatrix){
 				glm::vec4 lightDir4 =  glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -122,6 +123,7 @@ namespace glimac{
 		        glUniform3fv(program.uLightDir_vs, 1, glm::value_ptr(glm::vec3(1.f, 1.f, 1.f)));
 				glUniform3fv(program.uAmbiantLightIntensity, 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));	
 			}
+
 			template <typename T>
 			void removeLight(const T &program, const glm::mat4 ViewMatrix){
 				glm::vec4 lightDir4 =  glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);

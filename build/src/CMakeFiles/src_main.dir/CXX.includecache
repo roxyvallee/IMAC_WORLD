@@ -45,6 +45,8 @@ FilePath.hpp
 /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/FilePath.hpp
 Program.hpp
 /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/Program.hpp
+Texture.hpp
+/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/Texture.hpp
 
 /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/Cursor.hpp
 vector

@@ -76,7 +76,7 @@ namespace glimac{
 
 	void Grid::createCube(const int &x, const int &y, const int &z)
 	{
-		std::cout << "tu construis le cube ? " << std::endl;
+		//std::cout << "tu construis le cube ? " << std::endl;
 		if(findCube(x,y,z) == -1 )
 		{
 			std::cout << x << " " << y << " " << z << std::endl;
@@ -90,7 +90,7 @@ namespace glimac{
 
 	void Grid::createCube(const int &x, const int &y, const int &z, const int &r, const int &g, const int &b)
 	{
-		std::cout << "tu construis le cube ? " << std::endl;
+		//std::cout << "tu construis le cube ? " << std::endl;
 		if(findCube(x,y,z) == -1 )
 		{
 			std::cout << x << " " << y << " " << z << std::endl;
@@ -106,6 +106,14 @@ namespace glimac{
 		if(findCube(x,y,z) != -1)
 		{
 			m_Grid[findCube(x,y,z)].set_Color(color);
+		}
+	}
+
+	void Grid::changeType(const int x, const int y, const int z, const int type)
+	{
+		if(findCube(x,y,z) != -1)
+		{
+			m_Grid[findCube(x,y,z)].set_Type(type);
 		}
 	}
 
@@ -167,7 +175,7 @@ namespace glimac{
 
 	void Grid::resetCube()
 	{
-		std::cout << "tout effacer" << std::endl;
+		//std::cout << "tout effacer" << std::endl;
 		m_Grid.clear();
 	}
 

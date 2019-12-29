@@ -31,6 +31,8 @@ namespace glimac{
 
 		inline int getZ_Grid(const int &i) const { return m_Grid[i].get_CoordZ();}
 
+		inline int getType_Grid(const int &i) const {return m_Grid[i].get_Type();}
+
 		inline glm::vec3 getColor_Grid(const int &i) {return m_Grid[i].get_Color();}
 
 		//bool isCube(const int x, const int y, const int z);
@@ -42,6 +44,7 @@ namespace glimac{
 		void extrudeCube(const int x, const int y, const int z);
 		void digCube(const int x, const int y, const int z);
 		void changeColor(const int x, const int y, const int z, const glm::vec3 color);
+		void changeType(const int x, const int y, const int z, const int type);
 		void resetCube();
 		void writeFile(std::string name);
 		void readFile(std::string name);
