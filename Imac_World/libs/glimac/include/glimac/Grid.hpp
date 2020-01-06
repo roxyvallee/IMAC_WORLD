@@ -39,7 +39,7 @@ namespace glimac{
 		void generateWorld(int iterator);
 		int findCube(const int &x, const int &y, const int &z);
 		void createCube(const int &x, const int &y, const int &z);
-		void createCube(const int &x, const int &y, const int &z, const int &r, const int &g, const int &b);
+		void createCubeColor(const int &x, const int &y, const int &z, const int type,const int &r, const int &g, const int &b);
 		void deleteCube(const int x, const int y, const int z);
 		void extrudeCube(const int x, const int y, const int z);
 		void digCube(const int x, const int y, const int z);

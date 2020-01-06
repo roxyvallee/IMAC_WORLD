@@ -77,13 +77,19 @@ namespace glimac{
 	}
 
 
-	void Grid::createCube(const int &x, const int &y, const int &z, const int &r, const int &g, const int &b)
+	void Grid::createCubeColor(const int &x, const int &y, const int &z, const int type, const int &r, const int &g, const int &b)
 	{
 		if(findCube(x,y,z) == -1 )
 		{
-			std::cout << x << " " << y << " " << z << std::endl;
+			//std::cout << x << " " << y << " " << z << std::endl;
 			m_Grid.push_back(ShapeGrid(x,y,z, glm::vec3(r, g, b)));
 			m_sizeGrid = m_Grid.size();
+
+			if(type != 0 )
+			{
+				changeType(x,y,z,type);
+			}
+			
 		}
 		else 
 			std::cerr << "cube already exist" << std::endl;
@@ -179,7 +185,7 @@ namespace glimac{
 			for(int i=0; i< getGridSize(); i++)
 			{
 				glm::vec3 color = getColor_Grid(i); 
-				monFlux << getX_Grid(i)<<" " << getY_Grid(i) <<" " <<getZ_Grid(i) << " " << color[0] << " " << color[1] << " " << color[2] << std::endl; 
+				monFlux << getX_Grid(i)<<" " << getY_Grid(i) <<" " <<getZ_Grid(i) << " " << getType_Grid(i) << " " << color[0] << " " << color[1] << " " << color[2] << std::endl; 
 			}
 		}
 		else
@@ -198,6 +204,7 @@ namespace glimac{
 			int ValueX;
 			int ValueY;
 			int ValueZ;
+			int ValueType;
 			int ValueR, ValueG, ValueB; 
 			resetCube();
 			//std::cout << "la taille est : " << getGridSize() << std::endl;
@@ -208,12 +215,13 @@ namespace glimac{
 				myFile >> ValueX;
 				myFile >> ValueY;
 				myFile >> ValueZ;
+				myFile >> ValueType;
 				myFile >> ValueR;
 				myFile >> ValueG;
 				myFile >> ValueB;
 				//m_Grid.push_back(ShapeGrid(ValueX,ValueY,ValueZ, glm::vec3(0.f, 1.f, 0.f)));
 				//maGrid.push_back()
-				createCube(ValueX,ValueY,ValueZ,ValueR,ValueG,ValueB);
+				createCubeColor(ValueX,ValueY,ValueZ,ValueType,ValueR,ValueG,ValueB);
 				//std::cout << ValueX<< " " << ValueY << " "<< ValueZ << std::endl;
 			}
 			myFile.close();
