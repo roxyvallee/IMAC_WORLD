@@ -23,22 +23,12 @@ imgui/imgui_impl_opengl3.h
 -
 imgui/imgui_impl_sdl.h
 -
-glimac/glm.hpp
--
-glimac/ShapeGrid.hpp
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/glimac/ShapeGrid.hpp
-glimac/Grid.hpp
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/glimac/Grid.hpp
-
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/BBox.hpp
 glm.hpp
 /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/glm.hpp
-
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/Cone.hpp
-vector
--
-common.hpp
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/common.hpp
+ShapeGrid.hpp
+/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/ShapeGrid.hpp
+Grid.hpp
+/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/Grid.hpp
 
 /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/Cube.hpp
 vector
@@ -81,20 +71,6 @@ iostream
 -
 glm.hpp
 /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/glm.hpp
-
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/Geometry.hpp
-glm/glm.hpp
--
-vector
--
-string
--
-Image.hpp
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/Image.hpp
-FilePath.hpp
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/FilePath.hpp
-BBox.hpp
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/BBox.hpp
 
 /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/Grid.hpp
 vector
@@ -164,12 +140,6 @@ FilePath.hpp
 glm/glm.hpp
 -
 
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/Sphere.hpp
-vector
--
-common.hpp
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/common.hpp
-
 /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/Structure.hpp
 vector
 -
@@ -210,25 +180,11 @@ glm/gtx/io.hpp
 glm/gtc/random.hpp
 -
 
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/objloader.hpp
-
 /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/Above.cpp
 glimac/Above.hpp
 /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/glimac/Above.hpp
 iostream
 -
-
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/Cone.cpp
-cmath
--
-vector
--
-iostream
--
-glimac/common.hpp
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/glimac/common.hpp
-glimac/Cone.hpp
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/glimac/Cone.hpp
 
 /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/Cube.cpp
 iostream
@@ -251,16 +207,6 @@ iostream
 -
 glimac/FreeflyCamera.hpp
 /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/glimac/FreeflyCamera.hpp
-
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/Geometry.cpp
-glimac/Geometry.hpp
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/glimac/Geometry.hpp
-tiny_obj_loader.h
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/tiny_obj_loader.h
-iostream
--
-algorithm
--
 
 /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/Grid.cpp
 iostream
@@ -324,18 +270,6 @@ string
 sstream
 -
 
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/Sphere.cpp
-cmath
--
-vector
--
-iostream
--
-glimac/common.hpp
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/glimac/common.hpp
-glimac/Sphere.hpp
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/glimac/Sphere.hpp
-
 /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/Texture.cpp
 iostream
 -
@@ -344,26 +278,6 @@ string
 glimac/Texture.hpp
 /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/glimac/Texture.hpp
 GL/glew.h
--
-
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/objloader.cpp
-vector
--
-stdio.h
--
-string
--
-cstring
--
-glm/glm.hpp
--
-glimac/objloader.hpp
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/glimac/objloader.hpp
-assimp/Importer.hpp
--
-assimp/scene.h
--
-assimp/postprocess.h
 -
 
 /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/stb_image.h

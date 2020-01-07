@@ -23,12 +23,12 @@ imgui/imgui_impl_opengl3.h
 -
 imgui/imgui_impl_sdl.h
 -
-glimac/glm.hpp
--
-glimac/ShapeGrid.hpp
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/glimac/ShapeGrid.hpp
-glimac/Grid.hpp
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/glimac/Grid.hpp
+glm.hpp
+/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/glm.hpp
+ShapeGrid.hpp
+/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/ShapeGrid.hpp
+Grid.hpp
+/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/Grid.hpp
 
 /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/Cube.hpp
 vector
@@ -160,14 +160,6 @@ glimac/FilePath.hpp
 GL/glew.h
 -
 
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/TrackballCamera.hpp
-GL/glew.h
--
-cmath
--
-glm.hpp
-/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/glm.hpp
-
 /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/glm.hpp
 glm/glm.hpp
 -
@@ -226,8 +218,6 @@ glimac/Cube.hpp
 glimac/FilePath.hpp
 -
 glimac/Image.hpp
--
-glimac/TrackballCamera.hpp
 -
 glimac/FreeflyCamera.hpp
 -

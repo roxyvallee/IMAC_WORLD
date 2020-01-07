@@ -47,18 +47,16 @@ namespace glimac{
     RadialBasisFunction::RadialBasisFunction()
         : m_ValuePoint(3), m_Omega(3)
     {
+        // we choose the position
         m_Points.push_back(glm::vec3(0.f, 0.f, 0.f));
         m_Points.push_back(glm::vec3(10.f, 0.f, 0.f));
         m_Points.push_back(glm::vec3(0.f,5.f, 5.f));
-        //std::cout<< "3/ ça marche jusque ici" << std::endl;
         
-        //m_ValuePoint << 30.0, 8.0, 4.0;
+        // we create the value
         m_ValuePoint[0] = 30.0;
         m_ValuePoint[1] = -8.0;
-        //std::cout<< "4/ ça marche jusque ici" << std::endl;
         m_ValuePoint[2] = -4.0;
 
-        //std::cout<< "5/ ça marche jusque ici" << std::endl;
         m_Omega = findOmega();
     }
 
@@ -66,12 +64,10 @@ namespace glimac{
     double RadialBasisFunction::calculBasisFunction(glm::vec3 V)
     {
         double sum = 0.0;
-        //std::cout<< "6/ ça marche jusque ici" << std::endl;
         for(int i = 0; i < m_Omega.size(); i++)
         {
-            sum += m_Omega[i] * radialFunctionGauss(m_Points[i], V);
+            sum += m_Omega[i] * radialFunctionInverseQuadra(m_Points[i], V);
         }
-        //std::cout<< "7/ ça marche jusque ici" << std::endl;
         return sum;
     }
 

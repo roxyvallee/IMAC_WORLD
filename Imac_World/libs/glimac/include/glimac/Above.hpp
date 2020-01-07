@@ -9,9 +9,9 @@
 #include <imgui/imgui.h>
 #include <imgui/imgui_impl_opengl3.h>
 #include <imgui/imgui_impl_sdl.h>
-#include <glimac/glm.hpp>
-#include "glimac/ShapeGrid.hpp"
-#include "glimac/Grid.hpp"
+#include "glm.hpp"
+#include "ShapeGrid.hpp"
+#include "Grid.hpp"
 
 namespace glimac
 {

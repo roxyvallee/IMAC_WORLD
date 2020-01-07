@@ -6,11 +6,6 @@
 },
 {
   "directory": "/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/libs/glimac",
-  "command": "/usr/bin/c++   -I/usr/include/SDL2 -I/usr/include/eigen3 -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/imgui/include -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/third-party/include   -Wall -O2 -lSDL2 -std=c++11   -std=c++11 -o CMakeFiles/glimac.dir/src/Cone.cpp.o -c /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/Cone.cpp",
-  "file": "/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/Cone.cpp"
-},
-{
-  "directory": "/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/libs/glimac",
   "command": "/usr/bin/c++   -I/usr/include/SDL2 -I/usr/include/eigen3 -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/imgui/include -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/third-party/include   -Wall -O2 -lSDL2 -std=c++11   -std=c++11 -o CMakeFiles/glimac.dir/src/Cube.cpp.o -c /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/Cube.cpp",
   "file": "/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/Cube.cpp"
 },
@@ -23,11 +18,6 @@
   "directory": "/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/libs/glimac",
   "command": "/usr/bin/c++   -I/usr/include/SDL2 -I/usr/include/eigen3 -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/imgui/include -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/third-party/include   -Wall -O2 -lSDL2 -std=c++11   -std=c++11 -o CMakeFiles/glimac.dir/src/FreeflyCamera.cpp.o -c /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/FreeflyCamera.cpp",
   "file": "/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/FreeflyCamera.cpp"
-},
-{
-  "directory": "/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/libs/glimac",
-  "command": "/usr/bin/c++   -I/usr/include/SDL2 -I/usr/include/eigen3 -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/imgui/include -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/third-party/include   -Wall -O2 -lSDL2 -std=c++11   -std=c++11 -o CMakeFiles/glimac.dir/src/Geometry.cpp.o -c /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/Geometry.cpp",
-  "file": "/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/Geometry.cpp"
 },
 {
   "directory": "/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/libs/glimac",
@@ -66,18 +56,8 @@
 },
 {
   "directory": "/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/libs/glimac",
-  "command": "/usr/bin/c++   -I/usr/include/SDL2 -I/usr/include/eigen3 -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/imgui/include -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/third-party/include   -Wall -O2 -lSDL2 -std=c++11   -std=c++11 -o CMakeFiles/glimac.dir/src/Sphere.cpp.o -c /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/Sphere.cpp",
-  "file": "/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/Sphere.cpp"
-},
-{
-  "directory": "/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/libs/glimac",
   "command": "/usr/bin/c++   -I/usr/include/SDL2 -I/usr/include/eigen3 -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/imgui/include -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/third-party/include   -Wall -O2 -lSDL2 -std=c++11   -std=c++11 -o CMakeFiles/glimac.dir/src/Texture.cpp.o -c /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/Texture.cpp",
   "file": "/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/Texture.cpp"
-},
-{
-  "directory": "/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/libs/glimac",
-  "command": "/usr/bin/c++   -I/usr/include/SDL2 -I/usr/include/eigen3 -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/imgui/include -I/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/third-party/include   -Wall -O2 -lSDL2 -std=c++11   -std=c++11 -o CMakeFiles/glimac.dir/src/objloader.cpp.o -c /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/objloader.cpp",
-  "file": "/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/src/objloader.cpp"
 },
 {
   "directory": "/home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build/libs/glimac",

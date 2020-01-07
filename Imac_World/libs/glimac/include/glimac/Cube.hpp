@@ -84,7 +84,7 @@ namespace glimac{
 
 		        if(clickNight &1){
 		        	removeLight(program, ViewMatrix);
-			        std::cout << "night" << std::endl;
+			        std::cout << "night" << clickNight << "et day " << clickDay << std::endl;
 		        }
 		       
 	            MVMatrix = glm::translate(ViewMatrix, glm::vec3(2*maGrid.getX_Grid(i), 2*maGrid.getY_Grid(i), 2*maGrid.getZ_Grid(i)));
@@ -112,7 +112,7 @@ namespace glimac{
 			template <typename T>
 			void removeLight(const T &program, const glm::mat4 ViewMatrix){
 		        // Light variables
-		        glUniform3fv(program.uLightIntensityP, 1, glm::value_ptr(glm::vec3(5.f, 5.f, 5.f)));
+		        glUniform3fv(program.uLightIntensityP, 1, glm::value_ptr(glm::vec3(2.f, 2.f, 2.f)));
 		        glUniform3fv(program.uLightIntensityD, 1, glm::value_ptr(glm::vec3(0.f, 0.f, 0.f)));
 		        std::cout << "remove light" << std::endl;
 

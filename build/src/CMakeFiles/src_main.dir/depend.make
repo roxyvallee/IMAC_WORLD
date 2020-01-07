@@ -15,7 +15,6 @@ src/CMakeFiles/src_main.dir/main.cpp.o: /home/roxane/Documents/linux/Imac_World/
 src/CMakeFiles/src_main.dir/main.cpp.o: /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/ShapeGrid.hpp
 src/CMakeFiles/src_main.dir/main.cpp.o: /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/Structure.hpp
 src/CMakeFiles/src_main.dir/main.cpp.o: /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/Texture.hpp
-src/CMakeFiles/src_main.dir/main.cpp.o: /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/TrackballCamera.hpp
 src/CMakeFiles/src_main.dir/main.cpp.o: /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/glimac/include/glimac/glm.hpp
 src/CMakeFiles/src_main.dir/main.cpp.o: /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/imgui/include/imgui/imconfig.h
 src/CMakeFiles/src_main.dir/main.cpp.o: /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/Imac_World/libs/imgui/include/imgui/imgui.h

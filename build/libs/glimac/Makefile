@@ -152,33 +152,6 @@ src/Above.cpp.s:
 	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f libs/glimac/CMakeFiles/glimac.dir/build.make libs/glimac/CMakeFiles/glimac.dir/src/Above.cpp.s
 .PHONY : src/Above.cpp.s
 
-src/Cone.o: src/Cone.cpp.o
-
-.PHONY : src/Cone.o
-
-# target to build an object file
-src/Cone.cpp.o:
-	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f libs/glimac/CMakeFiles/glimac.dir/build.make libs/glimac/CMakeFiles/glimac.dir/src/Cone.cpp.o
-.PHONY : src/Cone.cpp.o
-
-src/Cone.i: src/Cone.cpp.i
-
-.PHONY : src/Cone.i
-
-# target to preprocess a source file
-src/Cone.cpp.i:
-	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f libs/glimac/CMakeFiles/glimac.dir/build.make libs/glimac/CMakeFiles/glimac.dir/src/Cone.cpp.i
-.PHONY : src/Cone.cpp.i
-
-src/Cone.s: src/Cone.cpp.s
-
-.PHONY : src/Cone.s
-
-# target to generate assembly for a file
-src/Cone.cpp.s:
-	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f libs/glimac/CMakeFiles/glimac.dir/build.make libs/glimac/CMakeFiles/glimac.dir/src/Cone.cpp.s
-.PHONY : src/Cone.cpp.s
-
 src/Cube.o: src/Cube.cpp.o
 
 .PHONY : src/Cube.o
@@ -259,33 +232,6 @@ src/FreeflyCamera.s: src/FreeflyCamera.cpp.s
 src/FreeflyCamera.cpp.s:
 	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f libs/glimac/CMakeFiles/glimac.dir/build.make libs/glimac/CMakeFiles/glimac.dir/src/FreeflyCamera.cpp.s
 .PHONY : src/FreeflyCamera.cpp.s
-
-src/Geometry.o: src/Geometry.cpp.o
-
-.PHONY : src/Geometry.o
-
-# target to build an object file
-src/Geometry.cpp.o:
-	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f libs/glimac/CMakeFiles/glimac.dir/build.make libs/glimac/CMakeFiles/glimac.dir/src/Geometry.cpp.o
-.PHONY : src/Geometry.cpp.o
-
-src/Geometry.i: src/Geometry.cpp.i
-
-.PHONY : src/Geometry.i
-
-# target to preprocess a source file
-src/Geometry.cpp.i:
-	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f libs/glimac/CMakeFiles/glimac.dir/build.make libs/glimac/CMakeFiles/glimac.dir/src/Geometry.cpp.i
-.PHONY : src/Geometry.cpp.i
-
-src/Geometry.s: src/Geometry.cpp.s
-
-.PHONY : src/Geometry.s
-
-# target to generate assembly for a file
-src/Geometry.cpp.s:
-	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f libs/glimac/CMakeFiles/glimac.dir/build.make libs/glimac/CMakeFiles/glimac.dir/src/Geometry.cpp.s
-.PHONY : src/Geometry.cpp.s
 
 src/Grid.o: src/Grid.cpp.o
 
@@ -476,33 +422,6 @@ src/Shader.cpp.s:
 	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f libs/glimac/CMakeFiles/glimac.dir/build.make libs/glimac/CMakeFiles/glimac.dir/src/Shader.cpp.s
 .PHONY : src/Shader.cpp.s
 
-src/Sphere.o: src/Sphere.cpp.o
-
-.PHONY : src/Sphere.o
-
-# target to build an object file
-src/Sphere.cpp.o:
-	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f libs/glimac/CMakeFiles/glimac.dir/build.make libs/glimac/CMakeFiles/glimac.dir/src/Sphere.cpp.o
-.PHONY : src/Sphere.cpp.o
-
-src/Sphere.i: src/Sphere.cpp.i
-
-.PHONY : src/Sphere.i
-
-# target to preprocess a source file
-src/Sphere.cpp.i:
-	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f libs/glimac/CMakeFiles/glimac.dir/build.make libs/glimac/CMakeFiles/glimac.dir/src/Sphere.cpp.i
-.PHONY : src/Sphere.cpp.i
-
-src/Sphere.s: src/Sphere.cpp.s
-
-.PHONY : src/Sphere.s
-
-# target to generate assembly for a file
-src/Sphere.cpp.s:
-	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f libs/glimac/CMakeFiles/glimac.dir/build.make libs/glimac/CMakeFiles/glimac.dir/src/Sphere.cpp.s
-.PHONY : src/Sphere.cpp.s
-
 src/Texture.o: src/Texture.cpp.o
 
 .PHONY : src/Texture.o
@@ -529,33 +448,6 @@ src/Texture.s: src/Texture.cpp.s
 src/Texture.cpp.s:
 	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f libs/glimac/CMakeFiles/glimac.dir/build.make libs/glimac/CMakeFiles/glimac.dir/src/Texture.cpp.s
 .PHONY : src/Texture.cpp.s
-
-src/objloader.o: src/objloader.cpp.o
-
-.PHONY : src/objloader.o
-
-# target to build an object file
-src/objloader.cpp.o:
-	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f libs/glimac/CMakeFiles/glimac.dir/build.make libs/glimac/CMakeFiles/glimac.dir/src/objloader.cpp.o
-.PHONY : src/objloader.cpp.o
-
-src/objloader.i: src/objloader.cpp.i
-
-.PHONY : src/objloader.i
-
-# target to preprocess a source file
-src/objloader.cpp.i:
-	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f libs/glimac/CMakeFiles/glimac.dir/build.make libs/glimac/CMakeFiles/glimac.dir/src/objloader.cpp.i
-.PHONY : src/objloader.cpp.i
-
-src/objloader.s: src/objloader.cpp.s
-
-.PHONY : src/objloader.s
-
-# target to generate assembly for a file
-src/objloader.cpp.s:
-	cd /home/roxane/Documents/linux/Imac_World/IMAC_WORLD/build && $(MAKE) -f libs/glimac/CMakeFiles/glimac.dir/build.make libs/glimac/CMakeFiles/glimac.dir/src/objloader.cpp.s
-.PHONY : src/objloader.cpp.s
 
 src/tiny_obj_loader.o: src/tiny_obj_loader.cpp.o
 
@@ -596,9 +488,6 @@ help:
 	@echo "... src/Above.o"
 	@echo "... src/Above.i"
 	@echo "... src/Above.s"
-	@echo "... src/Cone.o"
-	@echo "... src/Cone.i"
-	@echo "... src/Cone.s"
 	@echo "... src/Cube.o"
 	@echo "... src/Cube.i"
 	@echo "... src/Cube.s"
@@ -608,9 +497,6 @@ help:
 	@echo "... src/FreeflyCamera.o"
 	@echo "... src/FreeflyCamera.i"
 	@echo "... src/FreeflyCamera.s"
-	@echo "... src/Geometry.o"
-	@echo "... src/Geometry.i"
-	@echo "... src/Geometry.s"
 	@echo "... src/Grid.o"
 	@echo "... src/Grid.i"
 	@echo "... src/Grid.s"
@@ -632,15 +518,9 @@ help:
 	@echo "... src/Shader.o"
 	@echo "... src/Shader.i"
 	@echo "... src/Shader.s"
-	@echo "... src/Sphere.o"
-	@echo "... src/Sphere.i"
-	@echo "... src/Sphere.s"
 	@echo "... src/Texture.o"
 	@echo "... src/Texture.i"
 	@echo "... src/Texture.s"
-	@echo "... src/objloader.o"
-	@echo "... src/objloader.i"
-	@echo "... src/objloader.s"
 	@echo "... src/tiny_obj_loader.o"
 	@echo "... src/tiny_obj_loader.i"
 	@echo "... src/tiny_obj_loader.s"

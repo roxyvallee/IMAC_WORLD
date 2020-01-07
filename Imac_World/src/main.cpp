@@ -5,7 +5,6 @@
 #include <glimac/Cube.hpp>
 #include <glimac/FilePath.hpp>
 #include <glimac/Image.hpp>
-#include <glimac/TrackballCamera.hpp>
 #include <glimac/FreeflyCamera.hpp>
 #include <glimac/Grid.hpp>
 #include <glimac/Cursor.hpp>
@@ -143,7 +142,6 @@ int main(int argc, char** argv) {
                     break;
 
                 case SDL_KEYUP:
-                    //std::cout << "la position est : " << cursor.getX_Cursor() << "," << cursor.getY_Cursor() << ";" << cursor.getZ_Cursor() << std::endl;
                     break;
             }
         }
