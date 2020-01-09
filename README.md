@@ -8,6 +8,7 @@ Il aborde des notions clé de la programmation en C++, du rendu 3D et de l'inter
 
 
 <h5> Etape 1 : </h5>
+--> créer un dossier build dans IMAC_WORLD
 --> ouvrir le terminal dans le dossier build
 
 <h5> Etape 2 : </h5>
