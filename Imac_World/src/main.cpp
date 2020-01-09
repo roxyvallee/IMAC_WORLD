@@ -37,7 +37,8 @@ int main(int argc, char** argv) {
     Grid maGrid;
     Cursor cursor;
     Above above;
-    Texture flower("../Imac_World/assets/textures/flower.jpg");
+    Texture flower("../Imac_World/assets/textures/flower.jpg"); 
+    Texture grass("../Imac_World/assets/textures/grass.jpg"); 
 
     // Initialize Imgui window
     above.initImgui(windowManager.m_window, &windowManager.m_glContext);
@@ -146,8 +147,6 @@ int main(int argc, char** argv) {
             }
         }
 
-        const glm::mat4 ViewMatrix = camera.getViewMatrix(); // pour placer notre caméra
-
         /*********************************
          * HERE SHOULD COME THE RENDERING CODE
          *********************************/
@@ -157,12 +156,9 @@ int main(int argc, char** argv) {
 
         above.beginFrame(windowManager.m_window);
         
-
 #pragma region CUBE
 
-
         glBindVertexArray(cube.getVAO());
-
 
         for(int i=0; i < maGrid.getGridSize(); i++)
         {
@@ -172,11 +168,19 @@ int main(int argc, char** argv) {
             }
             else
             {
-                cube.drawCube(maGrid, i, camera, cubeProgramTexture, above.getClickDay(), above.getClickNight(), flower);    
+                switch(maGrid.getType_Grid(i)){
+                    case 1:
+                        cube.drawCube(maGrid, i, camera, cubeProgramTexture, above.getClickDay(), above.getClickNight(), flower); 
+                    break; 
+                    case 2:
+                        cube.drawCube(maGrid, i, camera, cubeProgramTexture, above.getClickDay(), above.getClickNight(), grass); 
+                    break; 
+                default:
+                    std::cerr << "no texture selected" << std::endl;
+                }  
             }
         }
         
-        //CUBE CURSOR
         cursor.drawCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor(), maGrid, camera, cubeProgram);
 
         glBindVertexArray(0);
@@ -184,11 +188,9 @@ int main(int argc, char** argv) {
 #pragma endregion CUBE
 
 
-
 #pragma region IMGUI
 
-        above.drawAbove(WINDOW_WIDTH, WINDOW_HEIGHT, maGrid[maGrid.findCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor())], maGrid);
-        //std::cout << "erreur de segmentation ici ? #1" << std::endl;
+        above.drawAbove(WINDOW_WIDTH, WINDOW_HEIGHT, maGrid[maGrid.findCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor())], maGrid, cube);
         if(above.getClickCreateCube() &1) {
             //ajouter notre cube
             maGrid.createCube(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor());
@@ -216,6 +218,10 @@ int main(int argc, char** argv) {
         if(above.getClickTextureFlower() &1) {
             //active texture flower
             maGrid.changeType(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor(), 1);
+        }
+        if(above.getClickTextureGrass() &1) {
+            //active texture flower
+            maGrid.changeType(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor(), 2);
         }
         if(above.getClickColor() &1) {
             //active color

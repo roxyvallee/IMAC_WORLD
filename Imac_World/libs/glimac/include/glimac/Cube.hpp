@@ -32,6 +32,12 @@ namespace glimac{
 			GLuint m_vao;
 			GLuint m_vbo;
 
+			glm::vec4 m_lightDir;
+			glm::vec4 m_lightPos;
+
+			GLint m_uLightDir_vs;
+			GLint m_uLightPos_vs;
+
 			void add_up_face();
 			void add_down_face();
 			void add_front_face();
@@ -43,17 +49,45 @@ namespace glimac{
 		
 			int m_type;
 			Cube();
+			/// \brief find the begin of tab vertice
+			/// \return the begin of tab vertice
 			inline const ShapeVertex* getDataPointer() const { return &m_Vertices[0];}
+
+			/// \brief find the number of vertex
+			/// \return the number of vertex
 			inline GLsizei getVertexCount() const { return m_nVertexCount;}
+
+			/// \brief find the VAO
+			/// \return the VAO
 			inline GLuint getVAO(){ return m_vao; };
+
+			/// \brief find the VBO
+			/// \return the VBO
 			inline GLuint getVBO(){ return m_vbo; };
+
+			/// \brief find the direction of directionnal light
+			/// \return the direction of directionnal light
+			inline glm::vec4& getLightD(){ return m_lightDir; };
+
+			/// \brief find the direction of position light
+			/// \return the direction of position light
+			inline glm::vec4& getLightP(){ return m_lightPos; };
+
+			/// \brief find the direction of directionnal light
+			/// \return the direction of directionnal light
+			inline GLint getULightDir(){ return m_uLightDir_vs; };
+
+			/// \brief find the direction of position light
+			/// \return the direction of position light	
+			inline GLint getULightPos(){ return m_uLightPos_vs; };
+
 			void initBufferCube();
 
+			/// \brief draw cube with light
+			/// \param : the grid, int i, the camera, the program of shaders, button day, button night and the texture
 			template <typename T>
 			void drawCube(Grid &maGrid, const int i, FreeflyCamera camera, const T &program, int clickDay, int clickNight, Texture &flower){
 				program.m_Program.use();
-				//Indique à OpenGL qu'il doit aller chercher sur l'unité de texture 0 
-		    	//pour lire dans la texture uTexture:
 		    	glUniform1i(program.uTexture, 0);
 
 				const glm::mat4 ProjMatrix = glm::perspective( glm::radians(70.f), WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.1f, 100.f);
@@ -64,35 +98,35 @@ namespace glimac{
 		        const glm::mat4 NormalMatrix;
 		        glm::mat4 MVMatrix = camera.getViewMatrix();
 
-
 		        // Shininess
-		        glUniform1f(program.uShininess, 50.0f);
+		        glUniform1f(program.uShininess, 100.0f);
 		        glUniform3fv(program.uKd,1, glm::value_ptr(glm::vec3(0.4f, 0.4f, 0.4f)));
 		        glUniform3fv(program.uKs,1, glm::value_ptr(glm::vec3(0.4f, 0.4f, 0.4f)));
 
-		    	glm::vec4 lightDir =  ViewMatrix * glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-		        glUniform3f(program.uLightDir_vs, lightDir.x, lightDir.y, lightDir.z);
-		        glm::vec4 lightPos =  ViewMatrix * glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
-		        glUniform3f(program.uLightPos_vs, lightPos.x, lightPos.y, lightPos.z);
+		    	m_lightDir =  ViewMatrix * glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+		    	m_uLightDir_vs = program.uLightDir_vs;
+		        glUniform3f(m_uLightDir_vs, m_lightDir.x, m_lightDir.y, m_lightDir.z);
+		        
+		        m_lightPos =  ViewMatrix * glm::vec4(1.0f, -5.0f, 1.0f, 0.0f);
+		        m_uLightPos_vs = program.uLightPos_vs;
+		        glUniform3f(m_uLightPos_vs, m_lightPos.x, m_lightPos.y, m_lightPos.z);
 		        
 		        glUniform3fv(program.uAmbiantLightIntensity, 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));	
 
 		        if(clickDay &1){
-		        	addLight(program, ViewMatrix);
-			        std::cout << "day" << std::endl;
+		        	addLight(program);
 		        }
 
 		        if(clickNight &1){
-		        	removeLight(program, ViewMatrix);
-			        std::cout << "night" << clickNight << "et day " << clickDay << std::endl;
+		        	removeLight(program);
 		        }
 		       
 	            MVMatrix = glm::translate(ViewMatrix, glm::vec3(2*maGrid.getX_Grid(i), 2*maGrid.getY_Grid(i), 2*maGrid.getZ_Grid(i)));
 	           
-	            glUniformMatrix4fv(program.uMVMatrix, 1, GL_FALSE, glm::value_ptr(NormalMatrix)); // Value
-	            glUniformMatrix4fv(program.uNormalMatrix, 1, GL_FALSE, glm::value_ptr(glm::transpose(glm::inverse(MVMatrix)))); // Value
-	            glUniformMatrix4fv(program.uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix * MVMatrix)); // Value  
-	            glUniform3fv(program.uCubeColor, 1, glm::value_ptr(maGrid.getColor_Grid(i))); // Value  
+	            glUniformMatrix4fv(program.uMVMatrix, 1, GL_FALSE, glm::value_ptr(MVMatrix));
+	            glUniformMatrix4fv(program.uNormalMatrix, 1, GL_FALSE, glm::value_ptr(glm::transpose(glm::inverse(MVMatrix))));
+	            glUniformMatrix4fv(program.uMVPMatrix, 1, GL_FALSE, glm::value_ptr(ProjMatrix * MVMatrix));   
+	            glUniform3fv(program.uCubeColor, 1, glm::value_ptr(maGrid.getColor_Grid(i))); 
 
 	            glActiveTexture(GL_TEXTURE0);
 		        glBindTexture(GL_TEXTURE_2D, flower.getId());
@@ -101,22 +135,31 @@ namespace glimac{
 		       	glActiveTexture(GL_TEXTURE0); 
 			}
 
+			/// \brief add the directionnal light and reset position light
+			/// \param : program of shader
 			template <typename T>
-			void addLight(const T &program, const glm::mat4 ViewMatrix){
+			void addLight(const T &program){
 		        // Light variables
 		        glUniform3fv(program.uLightIntensityD, 1, glm::value_ptr(glm::vec3(5.f, 5.f, 5.f)));
 		        glUniform3fv(program.uLightIntensityP, 1, glm::value_ptr(glm::vec3(0.f, 0.f, 0.f)));
-		         std::cout << "add light" << std::endl;
 			}
 			
+			/// \brief add the position light and reset directionnal light
+			/// \param : program of shader
 			template <typename T>
-			void removeLight(const T &program, const glm::mat4 ViewMatrix){
+			void removeLight(const T &program){
 		        // Light variables
-		        glUniform3fv(program.uLightIntensityP, 1, glm::value_ptr(glm::vec3(2.f, 2.f, 2.f)));
+		        glUniform3fv(program.uLightIntensityP, 1, glm::value_ptr(glm::vec3(50.f, 50.f, 50.f)));
 		        glUniform3fv(program.uLightIntensityD, 1, glm::value_ptr(glm::vec3(0.f, 0.f, 0.f)));
-		        std::cout << "remove light" << std::endl;
-
 			}
+
+			/// \brief change the position of the lights
+			/// \param : positon of the directionnal light, position of the position light
+			void changeDirectiveLightPosition(GLint uLightDir_vs, glm::vec4 dirLightX, glm::vec4 dirPosX){
+				glUniform3f(m_uLightDir_vs, m_lightDir.x, m_lightDir.y, m_lightDir.z);
+				glUniform3f(m_uLightPos_vs, m_lightPos.x, m_lightPos.y, m_lightPos.z);
+			}
+			
 			void deleteBufferCube();
 	};
 }

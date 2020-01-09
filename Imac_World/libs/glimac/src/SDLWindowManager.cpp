@@ -39,12 +39,6 @@ SDLWindowManager::SDLWindowManager(uint32_t width, uint32_t height, const char* 
     if(GLEW_OK != glewInitError) {
         std::cerr << glewGetErrorString(glewInitError) << std::endl;
     }
-
-    // OpenGL & GLEW version
-    std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
-    std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;
-
-    
 }
 
 SDLWindowManager::~SDLWindowManager() {

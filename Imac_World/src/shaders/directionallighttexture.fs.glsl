@@ -25,31 +25,31 @@ out vec3 fFragColor;
 
 vec3 blinnPhongD() {
 
-    vec3 w_zero = normalize(-vPosition_vs);
-    vec3 wi = normalize(-uLightDir_vs);
-    vec3 halfVector = (w_zero + wi)/2;
+  vec3 w_zero = normalize(-vPosition_vs);
+  vec3 wi = normalize(-uLightDir_vs);
+  vec3 halfVector = (w_zero + wi)/2;
 
-    vec3 p1 = uKd*(dot(wi, vNormal_vs));
-    vec3 p2 = uKs*pow((dot(halfVector, vNormal_vs)), uShininess);
-    vec3 lightD = uLightIntensityD*(p1+p2);
+  vec3 p1 = uKd*(dot(wi, vNormal_vs));
+  vec3 p2 = uKs*pow((dot(halfVector, vNormal_vs)), uShininess);
+  vec3 lightD = uLightIntensityD*(p1+p2);
 
-    return lightD;
+  return lightD;
 }
 
 vec3 blinnPhongP() {
 	float d = distance(uLightPos_vs, vPosition_vs);
-  	vec3 w_zero = normalize(-vPosition_vs);
-  	vec3 wi = normalize(uLightDir_vs - vPosition_vs);
-  	vec3 halfVector = (w_zero + wi)/2;
+  vec3 w_zero = normalize(-vPosition_vs);
+  vec3 wi = normalize(uLightPos_vs - vPosition_vs);
+  vec3 halfVector = (w_zero + wi)/2;
 
-  	vec3 p1 = uKd*(dot(wi, vNormal_vs));
-  	vec3 p2 = uKs*pow((dot(halfVector, vNormal_vs)), uShininess);
-  	vec3 lightP = (uLightIntensityP / (d*d)) *(p1+p2);
+  vec3 p1 = uKd*(dot(wi, vNormal_vs));
+  vec3 p2 = uKs*pow((dot(halfVector, vNormal_vs)), uShininess);
+  vec3 lightP = (uLightIntensityP / (d*d)) *(p1+p2);
 
-    return lightP;
+  return lightP;
 }
 
 void main() {
-	 vec3 finalLight = min(blinnPhongD() + blinnPhongP() + uAmbiantLightIntensity, 1.);
-    fFragColor = finalLight * texture(uTexture, vTexCoords).xyz;
+	vec3 finalLight = min(blinnPhongD() + blinnPhongP() + uAmbiantLightIntensity, 1.);
+  fFragColor = finalLight * texture(uTexture, vTexCoords).xyz;
 }

@@ -29,7 +29,7 @@ namespace glimac {
         ImGui::NewFrame();
     }
 
-    void Above::drawAbove(const int WINDOW_WIDTH, const int WINDOW_HEIGHT, ShapeGrid &cubeSelect, Grid &maGrid){
+    void Above::drawAbove(const int WINDOW_WIDTH, const int WINDOW_HEIGHT, ShapeGrid &cubeSelect, Grid &maGrid, Cube &cube){
         ImGui::SetNextWindowPos(ImVec2(WINDOW_WIDTH-250, 10));
         ImGui::SetNextWindowSize(ImVec2(240, WINDOW_HEIGHT-(WINDOW_HEIGHT/2)));
 
@@ -43,9 +43,10 @@ namespace glimac {
         clickNight = 0;
         clickResetAll = 0;
         clickTextureFlower = 0;
+        clickTextureGrass = 0;
         clickColor = 0;
 
-        ImGui::Begin("Menu", &p_open);
+        ImGui::Begin("Menu");
 
         if (ImGui::BeginMenu("Tools"))
         {
@@ -100,13 +101,38 @@ namespace glimac {
             if (ImGui::Button("DAY")){
                 changement ^= 1;
                 clickDay++;
-            }  
+            } 
+
+            static glm::vec4& dirLightX = cube.getLightD();
+            static glm::vec4& pointLightX = cube.getLightP();
+
+            //Directionnal light
+            ImGui::Text("Directionnal light :");
+            ImGui::Text("Coordinates D");
+            ImGui::InputFloat("xD",&dirLightX.x);
+            ImGui::Text("Y :");
+            ImGui::InputFloat("yD", &dirLightX.y);
+            ImGui::Text("Z :");
+            ImGui::InputFloat("zD", &dirLightX.z);
 
             // button for night light
             if (ImGui::Button("NIGHT")){
                 changement ^= 1;
                 clickNight++;
             } 
+
+            // Point light
+            ImGui::Text("Point light :");
+            ImGui::Text("Coordinates P");
+            ImGui::InputFloat("xP", &pointLightX.x);
+            ImGui::Text("Y :");
+            ImGui::InputFloat("yP", &pointLightX.y);
+            ImGui::Text("Z :");
+            ImGui::InputFloat("zP", &pointLightX.z);
+
+            GLint uLightDir_vs = cube.getULightDir();
+            cube.changeDirectiveLightPosition(uLightDir_vs, dirLightX, pointLightX);
+
             ImGui::EndMenu();
         }
 
@@ -117,6 +143,11 @@ namespace glimac {
                 changement ^= 1;
                 clickTextureFlower++;
             }  
+            // button for texture grass
+            if (ImGui::Button("GRASS")){
+                changement ^= 1;
+                clickTextureGrass++;
+            }  
             // button for color
             if (ImGui::Button("COLOR")){
                 changement ^= 1;
@@ -125,7 +156,7 @@ namespace glimac {
             ImGui::EndMenu();
         }
 
-        if (ImGui::BeginMenu("File", &p_open))
+        if (ImGui::BeginMenu("File"))
         {
             static std::string name = "scene.txt";
 
@@ -135,13 +166,13 @@ namespace glimac {
             if (ImGui::Button("Save"))
             {
             	saveName = name;
-                std::cout << "click ok save" << std::endl;
+                std::cout << "Votre scène a bien été enregistré" << std::endl;
             }
 
             if (ImGui::Button("Open"))
             {
             	openName = name;
-                std::cout << "click ok open" << std::endl;
+                std::cout << "Votre scène a bien été ouverte" << std::endl;
             }
             ImGui::EndMenu();
         }
@@ -153,14 +184,12 @@ namespace glimac {
     {
     	saveName.clear();
     	openName.clear();
-    	
     }
 
     void Above::endFrame(SDL_Window* window) const {
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     }
-
 }
 
 

@@ -6,7 +6,6 @@
 namespace glimac {
 
 	Texture::Texture(const FilePath& filepath){
-		//m_name = filepath;
 		m_texturePointer = loadImage(filepath);
 		if(m_texturePointer == nullptr)
 		{
