@@ -1,1 +1,0 @@
-/usr/bin/c++   -Wall -O2 -lSDL2 -std=c++11  -rdynamic CMakeFiles/src_main.dir/main.cpp.o  -o src_main ../libs/glimac/libglimac.a ../libs/imgui/libimgui.a -lSDL2 -lGL -lGLU -lGLEW 

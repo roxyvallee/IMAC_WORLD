@@ -57,7 +57,7 @@ namespace glimac{
         
         // we create the value
         m_ValuePoint[0] = 30.f; 
-        m_ValuePoint[1] = -8.0;
+        m_ValuePoint[1] = -18.0;
         m_ValuePoint[2] = -4.0;
 
         m_Omega = findOmega();
