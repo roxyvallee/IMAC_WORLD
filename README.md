@@ -18,3 +18,14 @@ Il aborde des notions clé de la programmation en C++, du rendu 3D et de l'inter
  
 <h5> Etape 4 : </h5>
 --> ./src/src_main
+
+
+<h4> Guide d'utilisation : </h4>
+
+<h5> Caméra </h5>
+Touches du clavier :
+z : front, s : back, q : left, d : right, w : up, x : down
+
+<h5> Curseur </h5>
+Flèches du clavier pour se déplacer et
+Touches du clavier l : front, m : back
