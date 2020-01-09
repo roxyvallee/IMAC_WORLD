@@ -1,4 +1,4 @@
-<h1> WORLD IMAKER </h1>
+<h1> IMAC WORLD </h1>
 
 Ce projet consiste en la réalisation d’un éditeur-visualiseur de terrain et de scène en 3D. Un certain nombre de fonctionnalités sont implémentées afin de permettre à l’utilisateur de créer un monde à partir de blocs cubiques et de naviguer dedans.
 
