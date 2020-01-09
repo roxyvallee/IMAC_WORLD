@@ -34,8 +34,10 @@ int main(int argc, char** argv) {
     Grid maGrid;
     Cursor cursor;
     Above above;
-    Texture flower("../Imac_World/assets/textures/flower.jpg"); 
+    Texture rock("../Imac_World/assets/textures/rock.jpg"); 
     Texture grass("../Imac_World/assets/textures/grass.jpg"); 
+    Texture sand("../Imac_World/assets/textures/sand.jpg"); 
+    Texture water("../Imac_World/assets/textures/water.jpg"); 
 
     // Initialize Imgui window
     above.initImgui(windowManager.m_window, &windowManager.m_glContext);
@@ -148,7 +150,6 @@ int main(int argc, char** argv) {
          * HERE SHOULD COME THE RENDERING CODE
          *********************************/
 
-        glClearColor(0.439216f, 0.576471f, 0.858824f, 0.0f); //background bleu
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         above.beginFrame(windowManager.m_window);
@@ -161,16 +162,22 @@ int main(int argc, char** argv) {
         {
             if( maGrid.getType_Grid(i) == 0)
             {
-                cube.drawCube(maGrid, i, camera, cubeProgram, above.getClickDay(), above.getClickNight(), flower); 
+                cube.drawCube(maGrid, i, camera, cubeProgram, above.getClickDay(), above.getClickNight(), rock); 
             }
             else
             {
                 switch(maGrid.getType_Grid(i)){
                     case 1:
-                        cube.drawCube(maGrid, i, camera, cubeProgramTexture, above.getClickDay(), above.getClickNight(), flower); 
+                        cube.drawCube(maGrid, i, camera, cubeProgramTexture, above.getClickDay(), above.getClickNight(), rock); 
                     break; 
                     case 2:
                         cube.drawCube(maGrid, i, camera, cubeProgramTexture, above.getClickDay(), above.getClickNight(), grass); 
+                    break; 
+                    case 3:
+                        cube.drawCube(maGrid, i, camera, cubeProgramTexture, above.getClickDay(), above.getClickNight(), sand); 
+                    break; 
+                    case 4:
+                        cube.drawCube(maGrid, i, camera, cubeProgramTexture, above.getClickDay(), above.getClickNight(), water); 
                     break; 
                 default:
                     std::cerr << "no texture selected" << std::endl;
@@ -212,13 +219,21 @@ int main(int argc, char** argv) {
             //reset all cubes
             maGrid.resetCube();
         }
-        if(above.getClickTextureFlower() &1) {
-            //active texture flower
+        if(above.getClickTextureRock() &1) {
+            //active texture rock
             maGrid.changeType(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor(), 1);
         }
         if(above.getClickTextureGrass() &1) {
-            //active texture flower
+            //active texture grass
             maGrid.changeType(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor(), 2);
+        }
+        if(above.getClickTextureSand() &1) {
+            //active texture sand
+            maGrid.changeType(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor(), 3);
+        }
+        if(above.getClickTextureWater() &1) {
+            //active texture water
+            maGrid.changeType(cursor.getX_Cursor(), cursor.getY_Cursor(), cursor.getZ_Cursor(), 4);
         }
         if(above.getClickColor() &1) {
             //active color

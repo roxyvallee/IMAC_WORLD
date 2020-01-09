@@ -79,13 +79,21 @@ namespace glimac
 			/// \return the value of clickNight
 			inline int getClickNight(){return clickNight;};
 
-			/// \brief find the button click texture flower
-			/// \return the value of clickTextureFlower
-			inline int getClickTextureFlower(){return clickTextureFlower;};
+			/// \brief find the button click texture rock
+			/// \return the value of clickTextureRock
+			inline int getClickTextureRock(){return clickTextureRock;};
 
 			/// \brief find the button click texture grass
 			/// \return the value of clickTextureGrass
 			inline int getClickTextureGrass(){return clickTextureGrass;};
+
+			/// \brief find the button click texture sand
+			/// \return the value of clickTextureSand
+			inline int getClickTextureSand(){return clickTextureSand;};
+
+			/// \brief find the button click texture water
+			/// \return the value of clickTextureWater
+			inline int getClickTextureWater(){return clickTextureWater;};
 
 			/// \brief find the button click color
 			/// \return the value of clickColor
@@ -109,8 +117,10 @@ namespace glimac
         	int clickResetAll;
         	int clickDay;
         	int clickNight;
-        	int clickTextureFlower;
+        	int clickTextureRock;
         	int clickTextureGrass;
+        	int clickTextureSand;
+        	int clickTextureWater;
         	int clickColor;
         	std::string saveName;
         	std::string openName;

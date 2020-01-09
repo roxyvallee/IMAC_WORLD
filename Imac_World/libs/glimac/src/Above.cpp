@@ -42,11 +42,15 @@ namespace glimac {
         clickDay = 0;
         clickNight = 0;
         clickResetAll = 0;
-        clickTextureFlower = 0;
+        clickTextureRock = 0;
         clickTextureGrass = 0;
+        clickTextureSand = 0;
+        clickTextureWater = 0;
         clickColor = 0;
 
         ImGui::Begin("Menu");
+        ImGui::Text("Bienvenue dans IMAKERWORLD !");
+        ImGui::Text(" ");
 
         if (ImGui::BeginMenu("Tools"))
         {
@@ -138,16 +142,26 @@ namespace glimac {
 
         if (ImGui::BeginMenu("Texture"))
         {
-            // button for texture flower
-            if (ImGui::Button("FLOWER")){
+            // button for texture rock
+            if (ImGui::Button("ROCK")){
                 changement ^= 1;
-                clickTextureFlower++;
+                clickTextureRock++;
             }  
             // button for texture grass
             if (ImGui::Button("GRASS")){
                 changement ^= 1;
                 clickTextureGrass++;
+            } 
+            // button for texture sand
+            if (ImGui::Button("SAND")){
+                changement ^= 1;
+                clickTextureSand++;
             }  
+            // button for texture water
+            if (ImGui::Button("WATER")){
+                changement ^= 1;
+                clickTextureWater++;
+            }   
             // button for color
             if (ImGui::Button("COLOR")){
                 changement ^= 1;

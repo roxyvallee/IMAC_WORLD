@@ -14,7 +14,7 @@ namespace glimac{
 				{
 					for(int k=0; k<3; k++)
 					{
-						m_Grid.push_back(ShapeGrid(i,-k,j, glm::vec3(1.f, 0.f, 0.f)));
+						m_Grid.push_back(ShapeGrid(i,-k,j, glm::vec3(0.16f, 0.46f, 0.74f)));
 					}
 				}
 			}

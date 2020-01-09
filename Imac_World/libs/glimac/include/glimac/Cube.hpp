@@ -140,6 +140,7 @@ namespace glimac{
 			template <typename T>
 			void addLight(const T &program){
 		        // Light variables
+		        glClearColor(1.439216f, 2.576471f, 0.858824f, 0.0f); 
 		        glUniform3fv(program.uLightIntensityD, 1, glm::value_ptr(glm::vec3(5.f, 5.f, 5.f)));
 		        glUniform3fv(program.uLightIntensityP, 1, glm::value_ptr(glm::vec3(0.f, 0.f, 0.f)));
 			}
@@ -149,6 +150,7 @@ namespace glimac{
 			template <typename T>
 			void removeLight(const T &program){
 		        // Light variables
+		        glClearColor(0.16f, 0.46f, 0.74f, 0.0f);
 		        glUniform3fv(program.uLightIntensityP, 1, glm::value_ptr(glm::vec3(50.f, 50.f, 50.f)));
 		        glUniform3fv(program.uLightIntensityD, 1, glm::value_ptr(glm::vec3(0.f, 0.f, 0.f)));
 			}
