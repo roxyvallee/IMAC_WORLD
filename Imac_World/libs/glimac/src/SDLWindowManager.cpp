@@ -39,6 +39,7 @@ SDLWindowManager::SDLWindowManager(uint32_t width, uint32_t height, const char* 
     if(GLEW_OK != glewInitError) {
         std::cerr << glewGetErrorString(glewInitError) << std::endl;
     }
+
 }
 
 SDLWindowManager::~SDLWindowManager() {

@@ -23,9 +23,6 @@ const int WINDOW_HEIGHT = 600;
 
 int main(int argc, char** argv) {
 
-	/*********************************
-     * HERE SHOULD COME THE INITIALIZATION CODE
-     *********************************/
 
     // Initialize SDL and open a window
     SDLWindowManager windowManager(WINDOW_WIDTH, WINDOW_HEIGHT, "GLImac");

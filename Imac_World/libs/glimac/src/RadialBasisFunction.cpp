@@ -1,5 +1,6 @@
 #include "glimac/RadialBasisFunction.hpp"
 #include <Eigen/Dense>
+#include <random>
 
 namespace glimac{
 
@@ -44,6 +45,8 @@ namespace glimac{
         //return M.colPivHouseholderQr().solve(m_ValuePoint);
     } 
 
+
+
     RadialBasisFunction::RadialBasisFunction()
         : m_ValuePoint(3), m_Omega(3)
     {
@@ -53,7 +56,7 @@ namespace glimac{
         m_Points.push_back(glm::vec3(0.f,5.f, 5.f));
         
         // we create the value
-        m_ValuePoint[0] = 30.0;
+        m_ValuePoint[0] = 30.f; 
         m_ValuePoint[1] = -8.0;
         m_ValuePoint[2] = -4.0;
 
@@ -66,7 +69,7 @@ namespace glimac{
         double sum = 0.0;
         for(int i = 0; i < m_Omega.size(); i++)
         {
-            sum += m_Omega[i] * radialFunctionInverseQuadra(m_Points[i], V);
+            sum += m_Omega[i] * radialFunctionGauss(m_Points[i], V);
         }
         return sum;
     }
